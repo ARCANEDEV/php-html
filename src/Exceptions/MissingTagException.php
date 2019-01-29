@@ -6,7 +6,7 @@
  * @package  Arcanedev\Html\Exceptions
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class MissingTag extends \Exception
+class MissingTagException extends \Exception
 {
     /* -----------------------------------------------------------------
      |  Main Methods

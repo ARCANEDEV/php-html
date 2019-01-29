@@ -61,7 +61,7 @@ class SelectTest extends TestCase
         static::assertHtmlStringEqualsHtmlString(
             '<select>
                 <option value="value1">text1</option>
-                <option selected value="value2">text2</option>
+                <option value="value2" selected>text2</option>
             </select>',
             Select::make()->options($options)->value('value2')
         );
@@ -84,7 +84,7 @@ class SelectTest extends TestCase
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select>
-                <option value="" selected="selected">Placeholder</option>
+                <option value="" selected>Placeholder</option>
                 <option value="value1">text1</option>
                 <option value="value2">text2</option>
             </select>',
@@ -95,7 +95,7 @@ class SelectTest extends TestCase
 
         static::assertHtmlStringEqualsHtmlString(
             '<select>
-                <option value="0" selected="selected">Placeholder</option>
+                <option value="0" selected>Placeholder</option>
                 <option value="value1">text1</option>
                 <option value="value2">text2</option>
             </select>',
@@ -106,7 +106,7 @@ class SelectTest extends TestCase
 
         static::assertHtmlStringEqualsHtmlString(
             '<select>
-                <option value="0" selected="selected" disabled="disabled">Placeholder</option>
+                <option value="0" selected disabled>Placeholder</option>
                 <option value="value1">text1</option>
                 <option value="value2">text2</option>
             </select>',
@@ -122,7 +122,7 @@ class SelectTest extends TestCase
         static::assertHtmlStringEqualsHtmlString(
             '<select>
                 <option value="0">Placeholder</option>
-                <option value="value1" selected="selected">text1</option>
+                <option value="value1" selected>text1</option>
                 <option value="value2">text2</option>
             </select>',
             Select::make()
@@ -168,9 +168,9 @@ class SelectTest extends TestCase
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select multiple="multiple">
-                <option value="value1" selected="selected">text1</option>
+                <option value="value1" selected>text1</option>
                 <option value="value2">text2</option>
-                <option value="value3" selected="selected">text3</option>
+                <option value="value3" selected>text3</option>
             </select>',
             Select::make()
                   ->options(['value1' => 'text1', 'value2' => 'text2', 'value3' => 'text3'])
@@ -186,7 +186,7 @@ class SelectTest extends TestCase
             '<select multiple="multiple">
                 <option value="value1">text1</option>
                 <option value="value2">text2</option>
-                <option value="value3" selected="selected">text3</option>
+                <option value="value3" selected>text3</option>
             </select>',
             Select::make()
                   ->options(['value1' => 'text1', 'value2' => 'text2', 'value3' => 'text3'])
@@ -218,7 +218,7 @@ class SelectTest extends TestCase
         static::assertHtmlStringEqualsHtmlString(
             '<select>
                 <optgroup label="Cats">
-                    <option value="leopard" selected="selected">Leopard</option>
+                    <option value="leopard" selected>Leopard</option>
                 </optgroup>
                 <optgroup label="Dogs">
                     <option value="spaniel">Spaniel</option>
@@ -235,8 +235,8 @@ class SelectTest extends TestCase
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select>
-                <option value="leopard" disabled="disabled">Leopard</option>
-                <option value="spaniel" selected="selected">Spaniel</option>
+                <option value="leopard" disabled>Leopard</option>
+                <option value="spaniel" selected>Spaniel</option>
             </select>',
             Select::make()
                 ->options(
@@ -253,10 +253,10 @@ class SelectTest extends TestCase
         static::assertHtmlStringEqualsHtmlString(
             '<select>
                 <optgroup label="Cats">
-                    <option value="leopard" disabled="disabled">Leopard</option>
+                    <option value="leopard" disabled>Leopard</option>
                 </optgroup>
                 <optgroup label="Dogs">
-                    <option value="spaniel" selected="selected">Spaniel</option>
+                    <option value="spaniel" selected>Spaniel</option>
                 </optgroup>
             </select>',
             Select::make()
@@ -270,10 +270,10 @@ class SelectTest extends TestCase
         static::assertHtmlStringEqualsHtmlString(
             '<select>
                 <optgroup label="Cats">
-                    <option value="leopard" disabled="disabled">Leopard</option>
+                    <option value="leopard" disabled>Leopard</option>
                 </optgroup>
                 <optgroup label="Dogs">
-                    <option value="spaniel" selected="selected">Spaniel</option>
+                    <option value="spaniel" selected>Spaniel</option>
                 </optgroup>
                 <optgroup label="Others" disabled></optgroup>
             </select>',
@@ -299,8 +299,8 @@ class SelectTest extends TestCase
         static::assertHtmlStringEqualsHtmlString(
             '<select name="select" id="select">
                 <option value="0">0</option>
-                <option selected="selected" value="2">2</option>
-                <option value="+2" selected="selected">+2</option>
+                <option value="2" selected>2</option>
+                <option value="+2" selected>+2</option>
             </select>',
             Select::make()
                 ->name('select')

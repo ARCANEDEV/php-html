@@ -1,7 +1,7 @@
 <?php namespace Arcanedev\Html\Entities;
 
 use Arcanedev\Html\Contracts\Renderable;
-use Arcanedev\Html\Exceptions\InvalidChild;
+use Arcanedev\Html\Exceptions\InvalidChildException;
 use Arcanedev\Html\Elements\HtmlElement;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
@@ -27,16 +27,13 @@ class ChildrenCollection extends Collection implements Renderable
      */
     public static function parse($children, $mapper = null)
     {
-        if ($children instanceof HtmlElement || $children instanceof HtmlString)
-            $children = [$children];
-
         return static::make($children)
             ->unless(is_null($mapper), function (ChildrenCollection $items) use ($mapper) {
                 return $items->map($mapper);
             })
             ->each(function ($child) {
                 if ( ! static::isValidChild($child))
-                    throw InvalidChild::childMustBeAnHtmlElementOrAString();
+                    throw new InvalidChildException;
             });
     }
 
@@ -47,20 +44,9 @@ class ChildrenCollection extends Collection implements Renderable
      */
     public function render()
     {
-        $html = $this->map(function ($child): string {
-            if ($child instanceof Renderable)
-                return $child->render();
-
-            if (is_null($child))
-                return '';
-
-            if (is_string($child) || $child instanceof HtmlString)
-                return $child;
-
-            throw InvalidChild::childMustBeAnHtmlElementOrAString();
-        })->implode('');
-
-        return new HtmlString($html);
+        return new HtmlString(
+            $this->toHtml()
+        );
     }
 
     /**
@@ -70,13 +56,39 @@ class ChildrenCollection extends Collection implements Renderable
      */
     public function toHtml()
     {
-        return $this->render()->toHtml();
+        return $this->map(function ($child): string {
+            if ($child instanceof Renderable)
+                return $child->render();
+
+            if (is_null($child))
+                return '';
+
+            if (is_string($child) || $child instanceof HtmlString)
+                return $child;
+
+            throw new InvalidChildException;
+        })->implode('');
     }
 
     /* -----------------------------------------------------------------
      |  Other Methods
      | -----------------------------------------------------------------
      */
+
+    /**
+     * Results array of items from Collection or Arrayable.
+     *
+     * @param  mixed  $items
+     *
+     * @return array
+     */
+    protected function getArrayableItems($items)
+    {
+        if ($items instanceof HtmlElement || $items instanceof HtmlString)
+            return [$items];
+
+        return parent::getArrayableItems($items);
+    }
 
     /**
      * Check if valid child.

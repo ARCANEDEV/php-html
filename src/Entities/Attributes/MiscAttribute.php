@@ -1,25 +1,22 @@
-<?php namespace Arcanedev\Html\Entities;
+<?php namespace Arcanedev\Html\Entities\Attributes;
 
 use Arcanedev\Html\Helpers\Arr;
 use Illuminate\Support\Collection;
 
 /**
- * Class     Attribute
+ * Class     MiscAttribute
  *
- * @package  Arcanedev\Html\Entities
+ * @package  Arcanedev\Html\Entities\Attributes
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class Attribute
+class MiscAttribute extends AbstractAttribute
 {
     /* -----------------------------------------------------------------
      |  Properties
      | -----------------------------------------------------------------
      */
 
-    /** @var  string */
-    protected $name;
-
-    /** @var  mixed */
+    /** @var  string|mixed */
     protected $value;
 
     /* -----------------------------------------------------------------
@@ -47,7 +44,7 @@ class Attribute
     /**
      * Get the attribute's value.
      *
-     * @return mixed
+     * @return string
      */
     public function value()
     {
@@ -63,10 +60,7 @@ class Attribute
      */
     protected function setValue($value)
     {
-        if ($this->name === 'class')
-            $value = $this->parseClasses($value);
-
-        $this->value = is_string($value) ? trim($value) : $value;
+        $this->value = trim($value);
 
         return $this;
     }
@@ -77,54 +71,16 @@ class Attribute
      */
 
     /**
-     * Make an attribute.
-     *
-     * @param  string  $name
-     * @param  mixed   $value
-     *
-     * @return \Arcanedev\Html\Entities\Attribute
-     */
-    public static function make($name, $value)
-    {
-        return new static($name, $value);
-    }
-
-    /**
      * Render the attribute.
      *
      * @return string
      */
     public function render()
     {
-        return (is_null($this->value) || $this->value === '')
+        $value = $this->value();
+
+        return (is_null($value) || $value === '')
             ? $this->name
-            : $this->name.'="'.e($this->value, false).'"';
-    }
-
-    /* -----------------------------------------------------------------
-     |  Other Methods
-     | -----------------------------------------------------------------
-     */
-
-    /**
-     * Parse css classes.
-     *
-     * @param  iterable|string  $class
-     *
-     * @return string
-     */
-    private function parseClasses($class)
-    {
-        if (is_string($class))
-            $class = explode(' ', $class);
-        elseif ($class instanceof Collection)
-            $class = $class->toArray();
-
-        $class = array_unique(array_merge(
-            explode(' ', $this->value ?: ''),
-            Arr::getToggledValues($class)
-        ));
-
-        return implode(' ', $class);
+            : $this->name.'="'.e($value, false).'"';
     }
 }

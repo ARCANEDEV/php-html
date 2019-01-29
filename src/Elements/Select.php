@@ -87,8 +87,8 @@ class Select extends HtmlElement
     {
         return $this->prependChild(
             $this->makeOption($value, $text)
-                ->selectedIf( ! $this->hasSelection())
-                ->disabled($disabled)
+                 ->selectedUnless($this->hasSelection())
+                 ->disabled($disabled)
         );
     }
 
@@ -125,7 +125,7 @@ class Select extends HtmlElement
      */
     protected function hasSelection()
     {
-        return $this->children->contains(function (HtmlElement $child) {
+        return $this->getChildren()->contains(function (HtmlElement $child) {
             return $child->hasAttribute('selected');
         });
     }
@@ -158,7 +158,7 @@ class Select extends HtmlElement
      *
      * @return \Arcanedev\Html\Elements\Optgroup
      */
-    private function makeOptionsGroup($label, array $options, array $attributes = [], array $groupAttributes = [])
+    protected function makeOptionsGroup($label, array $options, array $attributes = [], array $groupAttributes = [])
     {
         return Optgroup::make()
             ->label($label)
@@ -168,6 +168,11 @@ class Select extends HtmlElement
             });
     }
 
+    /**
+     * Apply the selected value to the options.
+     *
+     * @return static
+     */
     protected function applyValueToOptions()
     {
         $value = Collection::make($this->value);
@@ -175,16 +180,16 @@ class Select extends HtmlElement
         if ( ! $this->hasAttribute('multiple'))
             $value = $value->take(1);
 
-        $this->children = $this->applyValueToElements($value, $this->children);
-
-        return $this;
+        return $this->setNewChildren(
+            static::applyValueToElements($value, $this->getChildren())
+        );
     }
 
-    protected function applyValueToElements(Collection $value, Collection $children)
+    protected static function applyValueToElements(Collection $value, Collection $children)
     {
         return $children->map(function (HtmlElement $child) use ($value) {
             if ($child instanceof Optgroup)
-                return $child->setChildren($this->applyValueToElements($value, $child->children));
+                return $child->setNewChildren(static::applyValueToElements($value, $child->getChildren()));
 
             if ($child instanceof Selectable)
                 return $child->selectedIf(

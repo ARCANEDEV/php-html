@@ -7,6 +7,8 @@ use Arcanedev\Html\Contracts\Selectable;
  *
  * @package  Arcanedev\Html\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
+ *
+ * @method   \Arcanedev\Html\Elements\Option  selectedUnless(bool $condition)
  */
 class Option extends HtmlElement implements Selectable
 {
@@ -38,7 +40,7 @@ class Option extends HtmlElement implements Selectable
      */
     public function selected()
     {
-        return $this->attribute('selected', null);
+        return $this->attribute('selected');
     }
 
     /**
@@ -50,6 +52,8 @@ class Option extends HtmlElement implements Selectable
     }
 
     /**
+     * Set the value.
+     *
      * @param  string  $value
      *
      * @return static
@@ -69,7 +73,7 @@ class Option extends HtmlElement implements Selectable
     public function disabled($disabled = true)
     {
         return $disabled
-            ? $this->attribute('disabled', 'disabled')
+            ? $this->attribute('disabled')
             : $this->forgetAttribute('disabled');
     }
 }

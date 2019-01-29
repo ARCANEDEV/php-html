@@ -17,7 +17,7 @@ use Arcanedev\Html\Elements\{A,
     Select,
     Span,
     Textarea};
-use Arcanedev\Html\Entities\Attribute;
+use Arcanedev\Html\Entities\Attributes\ClassAttribute;
 
 /**
  * Class     Html
@@ -90,7 +90,7 @@ class Html implements HtmlContract
      */
     public function class($classes)
     {
-        return Attribute::make('class', $classes)->render();
+        return ClassAttribute::make($classes)->render();
     }
 
     /**
@@ -115,7 +115,7 @@ class Html implements HtmlContract
      */
     public function div($content = null)
     {
-        return Div::make()->child($content);
+        return Div::make()->addChild($content);
     }
 
     /**

@@ -44,7 +44,7 @@ class SpanTest extends TestCase
     {
         static::assertHtmlStringEqualsHtmlString(
             '<span class="fa fa-fw fa-plus"></span>',
-            Span::make()->addClass(['fa', 'fa-fw', 'fa-plus'])
+            Span::make()->class(['fa', 'fa-fw', 'fa-plus'])
         );
     }
 }

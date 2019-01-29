@@ -1,12 +1,12 @@
 <?php namespace Arcanedev\Html\Exceptions;
 
 /**
- * Class     InvalidHtml
+ * Class     InvalidChildException
  *
  * @package  Arcanedev\Html\Exceptions
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class InvalidHtml extends \Exception
+class InvalidChildException extends \Exception
 {
-
+    //
 }

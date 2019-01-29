@@ -1,20 +1,22 @@
 <?php namespace Arcanedev\Html\Exceptions;
 
 /**
- * Class     InvalidChild
+ * Class     InvalidHtml
  *
  * @package  Arcanedev\Html\Exceptions
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class InvalidChild extends \Exception
+class InvalidHtmlException extends \Exception
 {
     /* -----------------------------------------------------------------
      |  Main Methods
      | -----------------------------------------------------------------
      */
 
-    public static function childMustBeAnHtmlElementOrAString()
+    public static function onTag(string $tag)
     {
-        return new static;
+        return new static(
+            "Can't set inner contents on `{$tag}` because it's a void element"
+        );
     }
 }

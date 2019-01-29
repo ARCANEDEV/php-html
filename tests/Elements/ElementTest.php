@@ -46,7 +46,7 @@ class ElementTest extends TestCase
     /**
      * @test
      *
-     * @expectedException         \Arcanedev\Html\Exceptions\MissingTag
+     * @expectedException         \Arcanedev\Html\Exceptions\MissingTagException
      * @expectedExceptionMessage  Class Arcanedev\Html\Elements\Element has no `$tag` property or empty.
      */
     public function it_cant_create_an_element_without_a_tag()
@@ -108,5 +108,46 @@ class ElementTest extends TestCase
                 ->attributeUnless(false, 'required')
                 ->render()
         );
+    }
+
+    /** @test */
+    public function it_can_get_class_list()
+    {
+        $elt = Element::withTag('a')->class('btn btn-primary');
+
+        static::assertEquals(
+            '<a class="btn btn-primary"></a>',
+            $elt
+        );
+
+        static::assertInstanceOf(
+            \Arcanedev\Html\Entities\Attributes\ClassAttribute::class,
+            $elt->classList()
+        );
+
+        $elt->classList()->toggle('active');
+
+        static::assertEquals(
+            '<a class="btn btn-primary active"></a>',
+            $elt
+        );
+
+        $elt->classList()->toggle('active');
+
+        static::assertEquals(
+            '<a class="btn btn-primary"></a>',
+            $elt
+        );
+    }
+
+    /**
+     * @test
+     *
+     * @expectedException         \Arcanedev\Html\Exceptions\InvalidHtmlException
+     * @expectedExceptionMessage  Can't set inner contents on `br` because it's a void element
+     */
+    public function it_must_throw_exception_on_void_element_with_child_elements()
+    {
+        Element::withTag('br')->html('Hello');
     }
 }

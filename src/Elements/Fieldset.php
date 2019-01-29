@@ -21,6 +21,8 @@ class Fieldset extends HtmlElement
      */
 
     /**
+     * Set the legend.
+     *
      * @param  \Arcanedev\Html\Elements\HtmlElement|string  $content
      *
      * @return static

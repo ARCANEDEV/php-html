@@ -114,7 +114,7 @@ class AttributesTest extends TestCase
 
         $attribute = $attributes->get('foo');
 
-        static::assertInstanceOf(\Arcanedev\Html\Entities\Attribute::class, $attribute);
+        static::assertInstanceOf(Attributes\MiscAttribute::class, $attribute);
         static::assertSame('bar', $attribute->value());
     }
 

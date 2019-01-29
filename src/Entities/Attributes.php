@@ -1,5 +1,8 @@
 <?php namespace Arcanedev\Html\Entities;
 
+use Arcanedev\Html\Entities\Attributes\AbstractAttribute;
+use Arcanedev\Html\Entities\Attributes\ClassAttribute;
+use Arcanedev\Html\Entities\Attributes\MiscAttribute;
 use ArrayAccess;
 use Illuminate\Contracts\Support\Arrayable;
 
@@ -55,30 +58,51 @@ class Attributes implements ArrayAccess, Arrayable
     /**
      * Set an attribute.
      *
-     * @param  string      $attribute
+     * @param  string      $name
      * @param  mixed|null  $value
      *
      * @return static
      */
-    public function set($attribute, $value = null)
+    public function set($name, $value = null)
     {
-        $this->offsetSet($attribute, new Attribute($attribute, $value));
+        $attribute = static::makeAttribute($name, $value);
+
+        $this->offsetSet($attribute->name(), $attribute);
 
         return $this;
     }
 
     /**
+     * Make a new attribute.
+     *
+     * @param  string  $name
+     * @param  mixed   $value
+     *
+     * @return mixed
+     */
+    protected static function makeAttribute(string $name, $value)
+    {
+        switch ($name) {
+            case 'class':
+                return new ClassAttribute($value);
+
+            default:
+                return new MiscAttribute($name, $value);
+        }
+    }
+
+    /**
      * Get an attribute.
      *
-     * @param  string  $attribute
+     * @param  string  $key
      * @param  mixed   $default
      *
-     * @return \Arcanedev\Html\Entities\Attribute|mixed
+     * @return \Arcanedev\Html\Entities\Attributes\AbstractAttribute|mixed
      */
-    public function get($attribute, $default = null)
+    public function get($key, $default = null)
     {
-        return $this->offsetExists($attribute)
-            ? $this->offsetGet($attribute)
+        return $this->offsetExists($key)
+            ? $this->offsetGet($key)
             : value($default);
     }
 
@@ -125,7 +149,7 @@ class Attributes implements ArrayAccess, Arrayable
         foreach ($attributes as $attribute => $value) {
             if (is_int($attribute)) {
                 $attribute = $value;
-                $value     = '';
+                $value     = null;
             }
 
             $this->set($attribute, $value);
@@ -154,7 +178,7 @@ class Attributes implements ArrayAccess, Arrayable
     public function render()
     {
         if ($this->isNotEmpty())
-            return implode(' ', array_map(function (Attribute $attribute) {
+            return implode(' ', array_map(function (AbstractAttribute $attribute) {
                 return $attribute->render();
             }, $this->items));
 
@@ -168,8 +192,8 @@ class Attributes implements ArrayAccess, Arrayable
      */
     public function toArray()
     {
-        return array_map(function (Attribute $value) {
-            return $value->value();
+        return array_map(function (AbstractAttribute $attribute) {
+            return $attribute->value();
         }, $this->items);
     }
 
@@ -191,6 +215,16 @@ class Attributes implements ArrayAccess, Arrayable
     public function isNotEmpty()
     {
         return ! $this->isEmpty();
+    }
+
+    /**
+     * Get the class attribute.
+     *
+     * @return \Arcanedev\Html\Entities\Attributes\ClassAttribute|null
+     */
+    public function classList()
+    {
+        return $this->get('class');
     }
 
     /* -----------------------------------------------------------------
