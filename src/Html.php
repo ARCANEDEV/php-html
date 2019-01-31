@@ -1,22 +1,10 @@
 <?php namespace Arcanedev\Html;
 
 use Arcanedev\Html\Contracts\Html as HtmlContract;
-use Arcanedev\Html\Elements\{A,
-    Button,
-    Div,
-    Element,
-    Fieldset,
-    File,
-    Form,
-    I,
-    Img,
-    Input,
-    Label,
-    Legend,
-    Option,
-    Select,
-    Span,
-    Textarea};
+use Arcanedev\Html\Elements\{
+    A, Button, Div, Element, Fieldset, File, Form, I, Img, Input, Label,
+    Legend, Option, Select, Span, Textarea
+};
 use Arcanedev\Html\Entities\Attributes\ClassAttribute;
 
 /**

@@ -77,6 +77,25 @@ class InputTest extends TestCase
     }
 
     /** @test */
+    public function it_can_make_checkbox_input()
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input id="is_checked" name="is_checked" type="checkbox" value="1">',
+            $this->html->checkbox('is_checked')
+        );
+
+        static::assertHtmlStringEqualsHtmlString(
+            '<input checked="checked" id="is_checked" name="is_checked" type="checkbox" value="1">',
+            $this->html->checkbox('is_checked', true)
+        );
+
+        static::assertHtmlStringEqualsHtmlString(
+            '<input id="is_checked" name="is_checked" type="checkbox" value="yes">',
+            $this->html->checkbox('is_checked', false, 'yes')
+        );
+    }
+
+    /** @test */
     public function it_can_check_an_input()
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -128,6 +147,33 @@ class InputTest extends TestCase
         static::assertHtmlStringEqualsHtmlString(
             '<input type="time">',
             $this->html->time()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_hidden_input()
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input type="hidden" id="_token" name="_token" value="12345">',
+            $this->html->hidden('_token', '12345')
+        );
+    }
+
+    /** @test */
+    public function it_can_make_text_input()
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input type="text" id="title" name="title" value="Hello there">',
+            $this->html->text('title', 'Hello there')
+        );
+    }
+
+    /** @test */
+    public function it_can_make_number_input()
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input type="number" id="price" name="price" value="120">',
+            $this->html->number('price', 120)
         );
     }
 }

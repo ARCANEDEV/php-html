@@ -56,7 +56,7 @@ class ChildrenCollection extends Collection implements Renderable
      */
     public function toHtml()
     {
-        return $this->map(function ($child): string {
+        $mapper = function ($child): string {
             if ($child instanceof Renderable)
                 return $child->render();
 
@@ -67,7 +67,9 @@ class ChildrenCollection extends Collection implements Renderable
                 return $child;
 
             throw new InvalidChildException;
-        })->implode('');
+        };
+
+        return $this->map($mapper)->implode('');
     }
 
     /* -----------------------------------------------------------------

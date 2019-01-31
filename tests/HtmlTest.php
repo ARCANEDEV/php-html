@@ -1,7 +1,6 @@
 <?php namespace Arcanedev\Html\Tests;
 
 use Arcanedev\Html\Html;
-use Illuminate\Support\HtmlString;
 
 /**
  * Class     HtmlTest
@@ -35,25 +34,6 @@ class HtmlTest extends TestCase
      |  Tests
      | -----------------------------------------------------------------
      */
-
-    /** @test */
-    public function it_can_make_checkbox()
-    {
-        static::assertHtmlStringEqualsHtmlString(
-            '<input id="is_checked" name="is_checked" type="checkbox" value="1">',
-            $this->html->checkbox('is_checked')
-        );
-
-        static::assertHtmlStringEqualsHtmlString(
-            '<input checked="checked" id="is_checked" name="is_checked" type="checkbox" value="1">',
-            $this->html->checkbox('is_checked', true)
-        );
-
-        static::assertHtmlStringEqualsHtmlString(
-            '<input id="is_checked" name="is_checked" type="checkbox" value="yes">',
-            $this->html->checkbox('is_checked', false, 'yes')
-        );
-    }
 
     /** @test */
     public function it_can_make_class_attribute()

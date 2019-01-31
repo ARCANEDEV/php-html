@@ -185,6 +185,14 @@ class Select extends HtmlElement
         );
     }
 
+    /**
+     * Apply the selected value to the options.
+     *
+     * @param  \Illuminate\Support\Collection  $value
+     * @param  \Illuminate\Support\Collection  $children
+     *
+     * @return \Illuminate\Support\Collection
+     */
     protected static function applyValueToElements(Collection $value, Collection $children)
     {
         return $children->map(function (HtmlElement $child) use ($value) {
