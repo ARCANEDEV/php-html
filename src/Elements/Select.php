@@ -143,7 +143,7 @@ class Select extends HtmlElement
     {
         return Option::make()
             ->value($value)
-            ->text($text ?: $value)
+            ->text($text ?: $value, false)
             ->selectedIf($value === $this->value)
             ->attributes($attributes);
     }
