@@ -28,7 +28,7 @@ class Link extends HtmlElement
      *
      * @param  string  $href
      *
-     * @return static
+     * @return $this
      */
     public function href($href)
     {
@@ -41,7 +41,7 @@ class Link extends HtmlElement
      *
      * @param  string  $value
      *
-     * @return static
+     * @return $this
      */
     public function rel($value)
     {
@@ -53,7 +53,7 @@ class Link extends HtmlElement
      *
      * @param  string  $href
      *
-     * @return static
+     * @return $this
      */
     public function stylesheet($href)
     {
@@ -65,7 +65,7 @@ class Link extends HtmlElement
      *
      * @param  string  $href
      *
-     * @return static
+     * @return $this
      */
     public function icon($href)
     {

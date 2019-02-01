@@ -13,6 +13,7 @@ class Form extends HtmlElement
      | -----------------------------------------------------------------
      */
 
+    /** @var  string */
     protected $tag = 'form';
 
     /* -----------------------------------------------------------------
@@ -21,9 +22,11 @@ class Form extends HtmlElement
      */
 
     /**
+     * Add the action attribute.
+     *
      * @param  string|null  $action
      *
-     * @return static
+     * @return $this
      */
     public function action($action)
     {
@@ -31,9 +34,11 @@ class Form extends HtmlElement
     }
 
     /**
+     * Add the method attribute.
+     *
      * @param  string|null  $method
      *
-     * @return static
+     * @return $this
      */
     public function method($method)
     {
@@ -43,7 +48,9 @@ class Form extends HtmlElement
     }
 
     /**
-     * @return static
+     * Add the novalidate attribute.
+     *
+     * @return $this
      */
     public function novalidate()
     {
@@ -51,7 +58,9 @@ class Form extends HtmlElement
     }
 
     /**
-     * @return static
+     * Add the enctype attribute for files.
+     *
+     * @return $this
      */
     public function acceptsFiles()
     {

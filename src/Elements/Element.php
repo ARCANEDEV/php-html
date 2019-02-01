@@ -18,7 +18,7 @@ class Element extends HtmlElement
      *
      * @param  string  $tag
      *
-     * @return static
+     * @return $this
      */
     public static function withTag($tag)
     {
@@ -28,7 +28,7 @@ class Element extends HtmlElement
     /**
      * @param  string  $tag
      *
-     * @return static
+     * @return $this
      */
     protected function setTag($tag)
     {

@@ -21,7 +21,9 @@ class Textarea extends HtmlElement
      */
 
     /**
-     * @return static
+     * Add the autofocus attribute.
+     *
+     * @return $this
      */
     public function autofocus()
     {
@@ -29,9 +31,11 @@ class Textarea extends HtmlElement
     }
 
     /**
+     * Add the placeholder attribute.
+     *
      * @param  string  $placeholder
      *
-     * @return static
+     * @return $this
      */
     public function placeholder($placeholder)
     {
@@ -39,9 +43,11 @@ class Textarea extends HtmlElement
     }
 
     /**
+     * Add the name attribute.
+     *
      * @param  string  $name
      *
-     * @return static
+     * @return $this
      */
     public function name($name)
     {
@@ -49,7 +55,9 @@ class Textarea extends HtmlElement
     }
 
     /**
-     * @return static
+     * Add the required attribute.
+     *
+     * @return $this
      */
     public function required()
     {
@@ -59,10 +67,22 @@ class Textarea extends HtmlElement
     /**
      * @param  string  $value
      *
-     * @return static
+     * @return $this
      */
     public function value($value)
     {
         return $this->html($value);
+    }
+
+    /**
+     * @param  string  $size
+     *
+     * @return $this
+     */
+    public function size($size)
+    {
+        list($cols, $rows) = explode('x', $size);
+
+        return $this->attribute('cols', $cols)->attribute('rows', $rows);
     }
 }

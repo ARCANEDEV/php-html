@@ -1,7 +1,5 @@
 <?php namespace Arcanedev\Html\Elements;
 
-use Arcanedev\Html\Concerns\Elements\HasAttributes;
-use Arcanedev\Html\Concerns\Elements\HasChildElements;
 use Arcanedev\Html\Contracts\Elements\HtmlElement as HtmlElementContract;
 use Arcanedev\Html\Exceptions\{InvalidHtmlException, MissingTagException};
 use Closure;
@@ -26,11 +24,11 @@ abstract class HtmlElement implements HtmlElementContract
      | -----------------------------------------------------------------
      */
 
-    use HasAttributes,
-        HasChildElements,
+    use Concerns\HasAttributes,
+        Concerns\HasChildElements,
         Macroable {
-        __call as __callMacro;
-    }
+            __call as __callMacro;
+        }
 
     /* -----------------------------------------------------------------
      |  Properties
@@ -91,7 +89,7 @@ abstract class HtmlElement implements HtmlElementContract
      *
      * @param  string  $id
      *
-     * @return static
+     * @return $this
      */
     public function id($id)
     {
@@ -113,7 +111,7 @@ abstract class HtmlElement implements HtmlElementContract
      *
      * @param  iterable|string  $class
      *
-     * @return static
+     * @return $this
      */
     public function class($class)
     {
@@ -123,9 +121,11 @@ abstract class HtmlElement implements HtmlElementContract
     }
 
     /**
+     * Set the style attribute.
+     *
      * @param  array|string  $style
      *
-     * @return static
+     * @return $this
      */
     public function style($style)
     {
@@ -144,7 +144,7 @@ abstract class HtmlElement implements HtmlElementContract
      * @param  array|string  $name
      * @param  mixed         $value
      *
-     * @return static
+     * @return $this
      */
     public function data($name, $value = null)
     {
@@ -167,12 +167,11 @@ abstract class HtmlElement implements HtmlElementContract
      */
     public function text($text, $doubleEncode = true)
     {
-        return $this->html(
-            e($text, $doubleEncode)
-        );
+        return $this->html(e($text, $doubleEncode));
     }
 
     /**
+     * Add an html child/children.
      *
      * @param  string|null  $html
      *

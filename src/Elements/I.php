@@ -13,10 +13,6 @@ class I extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    /**
-     * The tag type.
-     *
-     * @var string
-     */
+    /** @var  string */
     protected $tag = 'i';
 }

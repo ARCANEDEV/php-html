@@ -1,4 +1,4 @@
-<?php namespace Arcanedev\Html\Concerns\Elements;
+<?php namespace Arcanedev\Html\Elements\Concerns;
 
 use Arcanedev\Html\Elements\HtmlElement;
 use Arcanedev\Html\Entities\ChildrenCollection;
@@ -7,7 +7,7 @@ use Closure;
 /**
  * Trait     HasChildElements
  *
- * @package  Arcanedev\Html\Concerns\Elements
+ * @package  Arcanedev\Html\Elements\Concerns
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 trait HasChildElements

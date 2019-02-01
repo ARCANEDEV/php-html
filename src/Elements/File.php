@@ -22,6 +22,7 @@ class File extends HtmlElement
      | -----------------------------------------------------------------
      */
 
+    /** @var  string */
     protected $tag = 'input';
 
     /* -----------------------------------------------------------------
@@ -36,7 +37,7 @@ class File extends HtmlElement
     {
         parent::__construct();
 
-        $this->attributes->set('type', 'file');
+        $this->getAttributes()->set('type', 'file');
     }
 
     /* -----------------------------------------------------------------
@@ -45,9 +46,11 @@ class File extends HtmlElement
      */
 
     /**
-     * @param string|null $name
+     * Add the name attribute.
      *
-     * @return static
+     * @param  string  $name
+     *
+     * @return $this
      */
     public function name($name)
     {
@@ -55,7 +58,9 @@ class File extends HtmlElement
     }
 
     /**
-     * @return static
+     * Add the required attribute.
+     *
+     * @return $this
      */
     public function required()
     {
@@ -63,7 +68,9 @@ class File extends HtmlElement
     }
 
     /**
-     * @return static
+     * Add the required attribute.
+     *
+     * @return $this
      */
     public function autofocus()
     {
@@ -71,9 +78,11 @@ class File extends HtmlElement
     }
 
     /**
+     * Add the accept attribute.
+     *
      * @param  string  $type
      *
-     * @return static
+     * @return $this
      */
     public function accept($type)
     {
@@ -81,7 +90,9 @@ class File extends HtmlElement
     }
 
     /**
-     * @return static
+     * Add the accept attribute (audios).
+     *
+     * @return $this
      */
     public function acceptAudio()
     {
@@ -89,7 +100,9 @@ class File extends HtmlElement
     }
 
     /**
-     * @return static
+     * Add the accept attribute (videos).
+     *
+     * @return $this
      */
     public function acceptVideo()
     {
@@ -97,7 +110,9 @@ class File extends HtmlElement
     }
 
     /**
-     * @return static
+     * Add the accept attribute (images).
+     *
+     * @return $this
      */
     public function acceptImage()
     {
@@ -105,7 +120,9 @@ class File extends HtmlElement
     }
 
     /**
-     * @return static
+     * Add the multiple attribute.
+     *
+     * @return $this
      */
     public function multiple()
     {

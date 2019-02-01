@@ -13,6 +13,7 @@ class Fieldset extends HtmlElement
      | -----------------------------------------------------------------
      */
 
+    /** @var  string */
     protected $tag = 'fieldset';
 
     /* -----------------------------------------------------------------
@@ -25,7 +26,7 @@ class Fieldset extends HtmlElement
      *
      * @param  \Arcanedev\Html\Elements\HtmlElement|string  $content
      *
-     * @return static
+     * @return $this
      */
     public function legend($content)
     {

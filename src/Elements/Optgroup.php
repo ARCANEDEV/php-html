@@ -13,6 +13,7 @@ class Optgroup extends HtmlElement
      | -----------------------------------------------------------------
      */
 
+    /** @var  string */
     protected $tag = 'optgroup';
 
     /* -----------------------------------------------------------------
@@ -21,9 +22,11 @@ class Optgroup extends HtmlElement
      */
 
     /**
+     * Set the label attribute.
+     *
      * @param  string  $label
      *
-     * @return static
+     * @return $this
      */
     public function label($label)
     {

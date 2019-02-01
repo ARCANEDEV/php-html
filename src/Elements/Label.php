@@ -13,6 +13,7 @@ class Label extends HtmlElement
      | -----------------------------------------------------------------
      */
 
+    /** @var  string */
     protected $tag = 'label';
 
     /* -----------------------------------------------------------------
@@ -25,7 +26,7 @@ class Label extends HtmlElement
      *
      * @param  string  $for
      *
-     * @return static
+     * @return $this
      */
     public function for($for)
     {

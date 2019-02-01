@@ -13,6 +13,7 @@ class Img extends HtmlElement
      | -----------------------------------------------------------------
      */
 
+    /** @var  string */
     protected $tag = 'img';
 
     /* -----------------------------------------------------------------
@@ -23,9 +24,9 @@ class Img extends HtmlElement
     /**
      * Set the src attribute.
      *
-     * @param  string|null  $src
+     * @param  string  $src
      *
-     * @return static
+     * @return $this
      */
     public function src($src)
     {
@@ -35,9 +36,9 @@ class Img extends HtmlElement
     /**
      * Set the alt attribute.
      *
-     * @param  string|null  $alt
+     * @param  string  $alt
      *
-     * @return static
+     * @return $this
      */
     public function alt($alt)
     {

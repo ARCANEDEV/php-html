@@ -34,7 +34,7 @@ abstract class ListElement extends Element
      * @param  iterable  $items
      * @param  array     $attributes
      *
-     * @return \Arcanedev\Html\Elements\ListElement
+     * @return $this
      */
     public function items($items, array $attributes = [])
     {

@@ -30,12 +30,12 @@ interface HtmlElement extends Renderable
     /**
      * Set an attribute.
      *
-     * @param  string       $attribute
+     * @param  string       $name
      * @param  string|null  $value
      *
      * @return static
      */
-    public function attribute($attribute, $value = null);
+    public function attribute(string $name, $value = null);
 
     /**
      * Set the attributes.

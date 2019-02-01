@@ -55,8 +55,8 @@ class TextareaTest extends TestCase
     public function it_can_create_with_a_value()
     {
         static::assertHtmlStringEqualsHtmlString(
-            '<textarea>My epic</textarea>',
-            Textarea::make()->value('My epic')
+            '<textarea>My epic content</textarea>',
+            Textarea::make()->value('My epic content')
         );
     }
 
@@ -64,8 +64,17 @@ class TextareaTest extends TestCase
     public function it_can_create_with_required_attribute()
     {
         static::assertHtmlStringEqualsHtmlString(
-            '<textarea required>My epic</textarea>',
-            Textarea::make()->value('My epic')->required()
+            '<textarea required>My epic content</textarea>',
+            Textarea::make()->value('My epic content')->required()
+        );
+    }
+
+    /** @test */
+    public function it_can_set_the_size()
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<textarea cols="60" rows="15">My epic content</textarea>',
+            Textarea::make()->value('My epic content')->size('60x15')
         );
     }
 }

@@ -13,6 +13,7 @@ class Input extends HtmlElement
      | -----------------------------------------------------------------
      */
 
+    /** @var  string */
     protected $tag = 'input';
 
     /* -----------------------------------------------------------------
@@ -23,7 +24,7 @@ class Input extends HtmlElement
     /**
      * Set the autofocus attribute.
      *
-     * @return static
+     * @return $this
      */
     public function autofocus()
     {
@@ -31,15 +32,31 @@ class Input extends HtmlElement
     }
 
     /**
+     * Add the checked attribute.
+     *
      * @param  bool  $checked
      *
-     * @return static
+     * @return $this
      */
     public function checked($checked = true)
     {
-        return $checked
-            ? $this->attribute('checked', 'checked')
-            : $this->forgetAttribute('checked');
+        $type = $this->getAttributeValue('type');
+
+        return $this->if($type === 'checkbox', function (self $input) use ($checked) {
+            return $checked
+                ? $input->attribute('checked')
+                : $input->forgetAttribute('checked');
+        });
+    }
+
+    /**
+     * Remove the checked attribute.
+     *
+     * @return $this
+     */
+    public function unchecked()
+    {
+        return $this->checked(false);
     }
 
     /**
@@ -47,7 +64,7 @@ class Input extends HtmlElement
      *
      * @param  bool  $disabled
      *
-     * @return static
+     * @return $this
      */
     public function disabled($disabled = true)
     {
@@ -57,9 +74,11 @@ class Input extends HtmlElement
     }
 
     /**
-     * @param  string|null  $name
+     * Add the name attribute.
      *
-     * @return static
+     * @param  string  $name
+     *
+     * @return $this
      */
     public function name($name)
     {
@@ -67,9 +86,11 @@ class Input extends HtmlElement
     }
 
     /**
-     * @param string|null $placeholder
+     * Add the placeholder attribute.
      *
-     * @return static
+     * @param  string  $placeholder
+     *
+     * @return $this
      */
     public function placeholder($placeholder)
     {
@@ -77,9 +98,11 @@ class Input extends HtmlElement
     }
 
     /**
-     * @param bool $required
+     * Add the required attribute.
      *
-     * @return static
+     * @param  bool  $required
+     *
+     * @return $this
      */
     public function required($required = true)
     {
@@ -89,9 +112,11 @@ class Input extends HtmlElement
     }
 
     /**
-     * @param string|null $type
+     * Add the type attribute.
      *
-     * @return static
+     * @param  string  $type
+     *
+     * @return $this
      */
     public function type($type)
     {
@@ -99,17 +124,11 @@ class Input extends HtmlElement
     }
 
     /**
-     * @return static
-     */
-    public function unchecked()
-    {
-        return $this->checked(false);
-    }
-
-    /**
+     * Add the value attribute.
+     *
      * @param  string  $value
      *
-     * @return static
+     * @return $this
      */
     public function value($value)
     {
@@ -117,7 +136,9 @@ class Input extends HtmlElement
     }
 
     /**
-     * @return static
+     * Add the readonly attribute.
+     *
+     * @return $this
      */
     public function readonly()
     {

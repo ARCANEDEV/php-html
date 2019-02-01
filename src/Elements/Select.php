@@ -32,24 +32,27 @@ class Select extends HtmlElement
      */
 
     /**
-     * @return static
+     * Set the select input as multiple.
+     *
+     * @return $this
      */
     public function multiple()
     {
-        $element = clone $this;
-        $element = $element->attribute('multiple');
-        $name    = $element->getAttribute('name');
+        /** @var  self  $elt */
+        $elt  = with(clone $this)->attribute('multiple');
+        $name = $elt->getAttribute('name');
 
-        if ($name && ! Str::endsWith($name->value(), '[]'))
-            $element = $element->name($name->value().'[]');
-
-        return $element->applyValueToOptions();
+        return $elt->if($name && ! Str::endsWith($name->value(), '[]'), function (self $elt) use ($name) {
+            return $elt->name($name->value().'[]');
+        })->applyValueToOptions();
     }
 
     /**
+     * Add the name attribute.
+     *
      * @param  string  $name
      *
-     * @return static
+     * @return $this
      */
     public function name($name)
     {
@@ -63,7 +66,7 @@ class Select extends HtmlElement
      * @param  array     $attributes
      * @param  array     $groupAttributes
      *
-     * @return static
+     * @return $this
      */
     public function options($options, array $attributes = [], array $groupAttributes = [])
     {
@@ -81,7 +84,7 @@ class Select extends HtmlElement
      * @param  mixed|null  $value
      * @param  bool        $disabled
      *
-     * @return static
+     * @return $this
      */
     public function placeholder($text, $value = null, $disabled = false)
     {
@@ -93,7 +96,9 @@ class Select extends HtmlElement
     }
 
     /**
-     * @return static
+     * Add the required attribute.
+     *
+     * @return $this
      */
     public function required()
     {
@@ -101,16 +106,17 @@ class Select extends HtmlElement
     }
 
     /**
+     * Set the value.
+     *
      * @param  string|iterable|null  $value
      *
-     * @return static
+     * @return $this
      */
     public function value($value = null)
     {
-        $element        = clone $this;
-        $element->value = $value;
-
-        return $element->applyValueToOptions();
+        return tap(clone $this, function ($element) use ($value) {
+            $element->value = $value;
+        })->applyValueToOptions();
     }
 
     /* -----------------------------------------------------------------

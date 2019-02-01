@@ -13,5 +13,6 @@ class Legend extends HtmlElement
      | -----------------------------------------------------------------
      */
 
+    /** @var  string */
     protected $tag = 'legend';
 }

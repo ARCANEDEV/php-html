@@ -13,5 +13,6 @@ class Meta extends HtmlElement
      | -----------------------------------------------------------------
      */
 
+    /** @var  string */
     protected $tag = 'meta';
 }

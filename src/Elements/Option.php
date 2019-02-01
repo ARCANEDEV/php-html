@@ -17,7 +17,7 @@ class Option extends HtmlElement implements Selectable
      | -----------------------------------------------------------------
      */
 
-    /** @var string */
+    /** @var  string */
     protected $tag = 'option';
 
     /* -----------------------------------------------------------------
@@ -26,9 +26,11 @@ class Option extends HtmlElement implements Selectable
      */
 
     /**
+     * Add the selected if it fulfill the condition.
+     *
      * @param  bool  $condition
      *
-     * @return static
+     * @return $this
      */
     public function selectedIf($condition)
     {
@@ -36,7 +38,9 @@ class Option extends HtmlElement implements Selectable
     }
 
     /**
-     * @return static
+     * Add the selected attribute.
+     *
+     * @return $this
      */
     public function selected()
     {
@@ -44,7 +48,9 @@ class Option extends HtmlElement implements Selectable
     }
 
     /**
-     * @return static
+     * Remove the selected attribute.
+     *
+     * @return $this
      */
     public function unselected()
     {
@@ -56,7 +62,7 @@ class Option extends HtmlElement implements Selectable
      *
      * @param  string  $value
      *
-     * @return static
+     * @return $this
      */
     public function value($value)
     {
@@ -68,7 +74,7 @@ class Option extends HtmlElement implements Selectable
      *
      * @param  bool  $disabled
      *
-     * @return static
+     * @return $this
      */
     public function disabled($disabled = true)
     {

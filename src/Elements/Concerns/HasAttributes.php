@@ -1,4 +1,4 @@
-<?php namespace Arcanedev\Html\Concerns\Elements;
+<?php namespace Arcanedev\Html\Elements\Concerns;
 
 use Arcanedev\Html\Elements\HtmlElement;
 use Arcanedev\Html\Entities\Attributes;
@@ -6,7 +6,7 @@ use Arcanedev\Html\Entities\Attributes;
 /**
  * Trait     HasAttributes
  *
- * @package  Arcanedev\Html\Concerns\Elements
+ * @package  Arcanedev\Html\Elements\Concerns
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 trait HasAttributes
@@ -46,7 +46,7 @@ trait HasAttributes
     /**
      * Reset the attributes.
      *
-     * @return static
+     * @return $this
      */
     public function initAttributes()
     {
@@ -58,15 +58,15 @@ trait HasAttributes
     /**
      * Set an attribute.
      *
-     * @param  string       $attribute
+     * @param  string       $name
      * @param  string|null  $value
      *
-     * @return static
+     * @return $this
      */
-    public function attribute($attribute, $value = null)
+    public function attribute(string $name, $value = null)
     {
-        return tap(clone $this, function (HtmlElement $elt) use ($attribute, $value) {
-            $elt->getAttributes()->set($attribute, $value);
+        return tap(clone $this, function (HtmlElement $elt) use ($name, $value) {
+            $elt->getAttributes()->set($name, $value);
         });
     }
 
@@ -75,7 +75,7 @@ trait HasAttributes
      *
      * @param  iterable  $attributes
      *
-     * @return static
+     * @return $this
      */
     public function attributes($attributes)
     {
@@ -87,28 +87,46 @@ trait HasAttributes
     /**
      * Forget attribute.
      *
-     * @param  string  $attribute
+     * @param  string  $name
      *
-     * @return static
+     * @return $this
      */
-    public function forgetAttribute($attribute)
+    public function forgetAttribute(string $name)
     {
-        return tap(clone $this, function (HtmlElement $elt) use ($attribute) {
-            $elt->getAttributes()->forget($attribute);
+        if ( ! $this->hasAttribute($name))
+            return $this;
+
+        return tap(clone $this, function ($elt) use ($name) {
+            /** @var  static  $elt */
+            $elt->getAttributes()->forget($name);
         });
     }
 
     /**
      * Get an attribute.
      *
-     * @param  string  $attribute
+     * @param  string  $name
      * @param  mixed   $default
      *
      * @return \Arcanedev\Html\Entities\Attributes\MiscAttribute|mixed
      */
-    public function getAttribute($attribute, $default = null)
+    public function getAttribute(string $name, $default = null)
     {
-        return $this->getAttributes()->get($attribute, $default);
+        return $this->getAttributes()->get($name, $default);
+    }
+
+    /**
+     * Get the attribute's value.
+     *
+     * @param  string  $name
+     *
+     * @return string|mixed
+     */
+    protected function getAttributeValue(string $name)
+    {
+        return $this->hasAttribute($name)
+            ? $this->getAttribute($name)->value()
+            : null;
     }
 
     /**
@@ -118,7 +136,7 @@ trait HasAttributes
      *
      * @return bool
      */
-    public function hasAttribute($attribute)
+    public function hasAttribute(string $attribute)
     {
         return $this->getAttributes()->has($attribute);
     }
