@@ -70,5 +70,15 @@ class ButtonTest extends TestCase
             '<button type="submit">Hi</button>',
             Button::make()->type('submit')->html('Hi')
         );
+
+        static::assertHtmlStringEqualsHtmlString(
+            '<button type="submit">Hi</button>',
+            Button::make()->submit()->html('Hi')
+        );
+
+        static::assertHtmlStringEqualsHtmlString(
+            '<button type="reset">Reset the form</button>',
+            Button::make()->reset()->html('Reset the form')
+        );
     }
 }
