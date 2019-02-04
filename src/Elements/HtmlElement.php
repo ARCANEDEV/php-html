@@ -121,6 +121,20 @@ abstract class HtmlElement implements HtmlElementContract
     }
 
     /**
+     * Push a class to the list.
+     *
+     * @param  string  $class
+     *
+     * @return $this
+     */
+    public function pushClass($class)
+    {
+        return tap(clone $this, function (HtmlElement $elt) use ($class) {
+            $elt->classList()->push($class);
+        });
+    }
+
+    /**
      * Set the style attribute.
      *
      * @param  array|string  $style

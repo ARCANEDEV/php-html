@@ -93,51 +93,53 @@ class ClassAttribute extends AbstractAttribute implements \Countable
     }
 
     /**
-     * Add the given class.
+     * Push the given class.
      *
-     * @param  string $class
+     * @param  string  $class
      *
      * @return $this
      */
-    public function add($class)
+    public function push(string $class)
     {
-        if ($this->has($class))
-            return $this;
+        foreach (explode(' ', $class) as $item) {
+            if ( ! $this->has($item))
+                $this->classes[] = $item;
+        }
 
-        return $this->setValue(
-            array_merge($this->all(), [trim($class)])
-        );
+        return $this;
     }
 
     /**
      * Remove the given class.
      *
-     * @param  string $class
+     * @param  string  $class
      *
      * @return $this
      */
     public function remove($class)
     {
-        if (!$this->has($class))
+        if ( ! $this->has($class))
             return $this;
 
-        $classes = array_diff($this->all(), [trim($class)]);
+        $class = trim($class);
 
-        return $this->setValue($classes);
+        return $this->setValue(
+            array_diff($this->all(), [$class])
+        );
     }
 
     /**
      * Toggle the given class.
      *
-     * @param  string $class
+     * @param  string  $class
      *
      * @return $this
      */
-    public function toggle($class)
+    public function toggle(string $class)
     {
         return $this->has($class)
             ? $this->remove($class)
-            : $this->add($class);
+            : $this->push($class);
     }
 
     /**
@@ -145,11 +147,11 @@ class ClassAttribute extends AbstractAttribute implements \Countable
      *
      * @see  has
      *
-     * @param  string $class
+     * @param  string  $class
      *
      * @return bool
      */
-    public function contains($class)
+    public function contains(string $class)
     {
         return $this->has($class);
     }
@@ -157,11 +159,11 @@ class ClassAttribute extends AbstractAttribute implements \Countable
     /**
      * Check if contains the given class.
      *
-     * @param  string $class
+     * @param  string  $class
      *
      * @return bool
      */
-    public function has($class)
+    public function has(string $class)
     {
         return in_array(trim($class), $this->all());
     }
@@ -169,15 +171,15 @@ class ClassAttribute extends AbstractAttribute implements \Countable
     /**
      * Replaces an existing class with a new class.
      *
-     * @param  string $oldClass
-     * @param  string $newClass
+     * @param  string  $oldClass
+     * @param  string  $newClass
      *
      * @return $this
      */
     public function replace($oldClass, $newClass)
     {
         if ($this->has($oldClass))
-            $this->remove($oldClass)->add($newClass);
+            $this->remove($oldClass)->push($newClass);
 
         return $this;
     }
