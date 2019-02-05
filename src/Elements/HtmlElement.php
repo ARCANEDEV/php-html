@@ -1,12 +1,13 @@
 <?php namespace Arcanedev\Html\Elements;
 
 use Arcanedev\Html\Contracts\Elements\HtmlElement as HtmlElementContract;
-use Arcanedev\Html\Exceptions\{InvalidHtmlException, MissingTagException};
+use Arcanedev\Html\Exceptions\{
+    InvalidHtmlException, MissingTagException
+};
 use Closure;
-use Illuminate\Support\Collection;
-use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
-use Illuminate\Support\Traits\Macroable;
+use Illuminate\Support\{
+    Collection, HtmlString, Str, Traits\Macroable
+};
 
 /**
  * Class     HtmlElement
@@ -117,6 +118,20 @@ abstract class HtmlElement implements HtmlElementContract
     {
         return tap(clone $this, function (HtmlElement $elt) use ($class) {
             $elt->getAttributes()->addClass($class);
+        });
+    }
+
+    /**
+     * Push a class to the list.
+     *
+     * @param  string  $class
+     *
+     * @return $this
+     */
+    public function pushClass($class)
+    {
+        return tap(clone $this, function (HtmlElement $elt) use ($class) {
+            $elt->classList()->push($class);
         });
     }
 

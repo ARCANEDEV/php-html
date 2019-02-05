@@ -42,16 +42,16 @@ class ClassAttributeTest extends TestCase
     {
         $attribute = ClassAttribute::make();
 
-        $attribute->add('btn');
+        $attribute->push('btn');
 
         static::assertSame(['btn'], $attribute->all());
 
-        $attribute->add('btn-primary');
+        $attribute->push('btn-primary');
 
         static::assertSame(['btn', 'btn-primary'], $attribute->all());
 
         // Make sure the classes are unique
-        $attribute->add('btn-primary');
+        $attribute->push('btn-primary');
 
         static::assertSame(['btn', 'btn-primary'], $attribute->all());
     }
@@ -73,12 +73,12 @@ class ClassAttributeTest extends TestCase
     {
         $attribute = ClassAttribute::make();
 
-        $attribute->add('btn');
+        $attribute->push('btn');
 
         static::assertTrue($attribute->has('btn'));
         static::assertTrue($attribute->contains('btn'));
 
-        $attribute->add('btn-primary');
+        $attribute->push('btn-primary');
 
         static::assertTrue($attribute->has('btn'));
         static::assertTrue($attribute->has('btn-primary'));
@@ -147,7 +147,7 @@ class ClassAttributeTest extends TestCase
         static::assertTrue($attribute->isEmpty());
         static::assertFalse($attribute->isNotEmpty());
 
-        $attribute->add('btn');
+        $attribute->push('btn');
 
         static::assertFalse($attribute->isEmpty());
         static::assertTrue($attribute->isNotEmpty());
