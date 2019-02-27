@@ -43,14 +43,12 @@ class ElementTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     *
-     * @expectedException         \Arcanedev\Html\Exceptions\MissingTagException
-     * @expectedExceptionMessage  Class Arcanedev\Html\Elements\Element has no `$tag` property or empty.
-     */
+    /** @test */
     public function it_cant_create_an_element_without_a_tag()
     {
+        $this->expectException(\Arcanedev\Html\Exceptions\MissingTagException::class);
+        $this->expectExceptionMessage('Class Arcanedev\Html\Elements\Element has no `$tag` property or empty.');
+
         Element::make()->render();
     }
 
@@ -158,14 +156,12 @@ class ElementTest extends TestCase
         static::assertCount(4, $elt->classList());
     }
 
-    /**
-     * @test
-     *
-     * @expectedException         \Arcanedev\Html\Exceptions\InvalidHtmlException
-     * @expectedExceptionMessage  Can't set inner contents on `br` because it's a void element
-     */
+    /** @test */
     public function it_must_throw_exception_on_void_element_with_child_elements()
     {
+        $this->expectException(\Arcanedev\Html\Exceptions\InvalidHtmlException::class);
+        $this->expectExceptionMessage("Can't set inner contents on `br` because it's a void element");
+
         Element::withTag('br')->html('Hello');
     }
 }
