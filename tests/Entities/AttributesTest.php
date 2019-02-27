@@ -31,7 +31,7 @@ class AttributesTest extends TestCase
     {
         $attributes = (new Attributes)->addClass('foo bar');
 
-        static::assertArraySubset(['class' => 'foo bar'], $attributes->toArray());
+        static::assertEquals(['class' => 'foo bar'], $attributes->toArray());
     }
 
     /** @test */
@@ -39,7 +39,7 @@ class AttributesTest extends TestCase
     {
         $attributes = (new Attributes)->addClass(['foo', 'bar']);
 
-        static::assertArraySubset(['class' => 'foo bar'], $attributes->toArray());
+        static::assertEquals(['class' => 'foo bar'], $attributes->toArray());
     }
 
     /** @test */
@@ -50,7 +50,7 @@ class AttributesTest extends TestCase
             'bar' => false,
         ]);
 
-        static::assertArraySubset(['class' => 'foo'], $attributes->toArray());
+        static::assertEquals(['class' => 'foo'], $attributes->toArray());
     }
 
     /** @test */
@@ -62,7 +62,7 @@ class AttributesTest extends TestCase
             'baz',
         ]);
 
-        static::assertArraySubset(['class' => 'foo baz'], $attributes->toArray());
+        static::assertEquals(['class' => 'foo baz'], $attributes->toArray());
     }
 
     /** @test */
@@ -72,7 +72,7 @@ class AttributesTest extends TestCase
         $attributes->set('href', '#');
         $attributes->set('class', 'foobar');
 
-        static::assertArraySubset(
+        static::assertEquals(
             ['href' => '#', 'class' => 'foobar'],
             $attributes->toArray()
         );
@@ -83,7 +83,10 @@ class AttributesTest extends TestCase
     {
         $attributes = (new Attributes)->set('required');
 
-        static::assertArraySubset(['required' => null], $attributes->toArray());
+        static::assertEquals(
+            ['required' => null],
+            $attributes->toArray()
+        );
     }
 
     /** @test */
@@ -152,7 +155,10 @@ class AttributesTest extends TestCase
             'required',
         ]);
 
-        static::assertArraySubset(['name' => 'email', 'required' => null], $attributes->toArray());
+        static::assertEquals(
+            ['name' => 'email', 'class' => 'foobar', 'required' => null],
+            $attributes->toArray()
+        );
     }
 
     /** @test */

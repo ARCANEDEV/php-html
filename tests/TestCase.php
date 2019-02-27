@@ -1,5 +1,6 @@
 <?php namespace Arcanedev\Html\Tests;
 
+use Arcanedev\Html\Tests\Concerns\AssertArraySubset;
 use Arcanedev\Html\Tests\Concerns\AssertsHtmlStrings;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 

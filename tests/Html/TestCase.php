@@ -24,14 +24,14 @@ abstract class TestCase extends BaseTestCase
      | -----------------------------------------------------------------
      */
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->html = new Html;
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->html);
 
