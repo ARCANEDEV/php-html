@@ -208,11 +208,13 @@ class Html implements HtmlContract
      */
     public function input($type = null, $name = null, $value = null)
     {
+        $hasValue = $name && ! is_null($value) && $type !== 'password';
+
         return Input::make()
                     ->attributeIf($type, 'type', $type)
                     ->attributeIf($name, 'name', $name)
                     ->attributeIf($name, 'id', $name)
-                    ->attributeIf($name && ! is_null($value), 'value', $value);
+                    ->attributeIf($hasValue, 'value', $value);
     }
 
     /**

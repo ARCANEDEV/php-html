@@ -176,4 +176,13 @@ class InputTest extends TestCase
             $this->html->number('price', 120)
         );
     }
+
+    /** @test */
+    public function it_avoids_fill_value_for_password_input()
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input id="password" name="password" type="password"/>',
+            $this->html->input('password', 'password', 'secret')
+        );
+    }
 }
