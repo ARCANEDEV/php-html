@@ -37,12 +37,12 @@ interface Html
      * Make a checkbox input.
      *
      * @param  string|null  $name
-     * @param  bool         $checked
+     * @param  bool|null    $checked
      * @param  string|null  $value
      *
      * @return \Arcanedev\Html\Elements\Input
      */
-    public function checkbox($name = null, $checked = false, $value = '1');
+    public function checkbox($name = null, $checked = null, $value = '1');
 
     /**
      * Parse and render `class` attribute.
@@ -58,10 +58,11 @@ interface Html
      *
      * @param  string|null  $name
      * @param  string|null  $value
+     * @param  bool         $format
      *
      * @return \Arcanedev\Html\Elements\Input
      */
-    public function date($name = '', $value = '');
+    public function date($name = null, $value = null, bool $format = true);
 
     /**
      * Make a div element.
@@ -89,7 +90,7 @@ interface Html
      *
      * @return \Arcanedev\Html\Elements\Input
      */
-    public function email($name, $value = null);
+    public function email($name = null, $value = null);
 
     /**
      * Make a fieldset tag.
@@ -212,12 +213,12 @@ interface Html
      * Make a radio input.
      *
      * @param  string|null  $name
-     * @param  bool         $checked
+     * @param  bool|null    $checked
      * @param  string|null  $value
      *
      * @return \Arcanedev\Html\Elements\Input
      */
-    public function radio($name = null, $checked = false, $value = null);
+    public function radio($name = null, $checked = null, $value = null);
 
     /**
      * Make a reset button.
@@ -260,12 +261,12 @@ interface Html
     /**
      * Make a tel link.
      *
-     * @param  string       $number
+     * @param  string       $phoneNumber
      * @param  string|null  $text
      *
      * @return \Arcanedev\Html\Elements\A
      */
-    public function telLink($number, $text = null);
+    public function telLink($phoneNumber, $text = null);
 
     /**
      * Make a text input.
@@ -292,10 +293,11 @@ interface Html
      *
      * @param  string|null  $name
      * @param  string|null  $value
+     * @param  bool         $format
      *
      * @return \Arcanedev\Html\Elements\Input
      */
-    public function time($name = null, $value = null);
+    public function time($name = null, $value = null, $format = true);
 
     /**
      * Make a number input.

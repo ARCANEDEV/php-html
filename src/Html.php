@@ -6,6 +6,8 @@ use Arcanedev\Html\Elements\{
     Legend, Option, Select, Span, Textarea
 };
 use Arcanedev\Html\Entities\Attributes\ClassAttribute;
+use DateTimeImmutable;
+use Illuminate\Support\Str;
 
 /**
  * Class     Html
@@ -15,6 +17,14 @@ use Arcanedev\Html\Entities\Attributes\ClassAttribute;
  */
 class Html implements HtmlContract
 {
+    /* -----------------------------------------------------------------
+     |  Constants
+     | -----------------------------------------------------------------
+     */
+
+    const HTML_DATE_FORMAT = 'Y-m-d';
+    const HTML_TIME_FORMAT = 'H:i:s';
+
     /* -----------------------------------------------------------------
      |  Main Methods
      | -----------------------------------------------------------------
@@ -54,18 +64,18 @@ class Html implements HtmlContract
      * Make a checkbox input.
      *
      * @param  string|null  $name
-     * @param  bool         $checked
+     * @param  bool|null    $checked
      * @param  string|null  $value
      *
      * @return \Arcanedev\Html\Elements\Input
      */
-    public function checkbox($name = null, $checked = false, $value = '1')
+    public function checkbox($name = null, $checked = null, $value = '1')
     {
         return Input::make()
                     ->attribute('type', 'checkbox')
                     ->attributeIf($name, 'name', $name)
                     ->attributeIf($name, 'id', $name)
-                    ->attributeIf(! is_null($value), 'value', $value)
+                    ->attributeIf( ! is_null($value), 'value', $value)
                     ->attributeIf((bool) $checked, 'checked');
     }
 
@@ -86,12 +96,19 @@ class Html implements HtmlContract
      *
      * @param  string|null  $name
      * @param  string|null  $value
+     * @param  bool         $format
      *
      * @return \Arcanedev\Html\Elements\Input
      */
-    public function date($name = '', $value = '')
+    public function date($name = null, $value = null, bool $format = true)
     {
-        return $this->input('date', $name, $value);
+        $input = $this->input('date', $name, $value);
+
+        return $format
+            && $input->hasAttribute('value')
+            && ! empty($value = $input->getAttribute('value')->value())
+            ? $input->value(static::formatDateTime($value, static::HTML_DATE_FORMAT))
+            : $input;
     }
 
     /**
@@ -121,12 +138,12 @@ class Html implements HtmlContract
     /**
      * Make an email input.
      *
-     * @param  string       $name
+     * @param  string|null  $name
      * @param  string|null  $value
      *
      * @return \Arcanedev\Html\Elements\Input
      */
-    public function email($name, $value = null)
+    public function email($name = null, $value = null)
     {
         return $this->input('email', $name, $value);
     }
@@ -305,16 +322,35 @@ class Html implements HtmlContract
      * Make a radio input.
      *
      * @param  string|null  $name
-     * @param  bool         $checked
+     * @param  bool|null    $checked
      * @param  string|null  $value
      *
      * @return \Arcanedev\Html\Elements\Input
      */
-    public function radio($name = null, $checked = false, $value = null)
+    public function radio($name = null, $checked = null, $value = null)
     {
         return $this->input('radio', $name, $value)
-                    ->attributeIf($name, 'id', $value === null ? $name : ($name.'_'.str_slug($value)))
+                    ->attributeIf($name, 'id', $value === null ? $name : ($name.'_'.Str::slug($value)))
                     ->attributeIf(( ! is_null($value)) || $checked, 'checked');
+    }
+
+    /**
+     * Make a range input.
+     *
+     * @param  string|null  $name
+     * @param  string|null  $value
+     * @param  string|null  $min
+     * @param  string|null  $max
+     * @param  string|null  $step
+     *
+     * @return \Arcanedev\Html\Elements\Input
+     */
+    public function range($name = null, $value = null, $min = null, $max = null, $step = null)
+    {
+        return $this->input('range', $name, $value)
+                    ->attributeIfNotNull($min, 'min', $min)
+                    ->attributeIfNotNull($max, 'max', $max)
+                    ->attributeIfNotNull($step, 'step', $step);
     }
 
     /**
@@ -418,12 +454,19 @@ class Html implements HtmlContract
      *
      * @param  string|null  $name
      * @param  string|null  $value
+     * @param  bool         $format
      *
      * @return \Arcanedev\Html\Elements\Input
      */
-    public function time($name = null, $value = null)
+    public function time($name = null, $value = null, $format = true)
     {
-        return $this->input('time', $name, $value);
+        $input = $this->input('time', $name, $value);
+
+        return $format
+            && $input->hasAttribute('value')
+            && ! empty($value = $input->getAttribute('value')->value())
+            ? $input->value(static::formatDateTime($value, self::HTML_TIME_FORMAT))
+            : $input;
     }
 
     /**
@@ -473,5 +516,30 @@ class Html implements HtmlContract
     public function dl(array $attributes = [])
     {
         return Elements\Dl::make()->attributes($attributes);
+    }
+
+    /* -----------------------------------------------------------------
+     |  Other Methods
+     | -----------------------------------------------------------------
+     */
+
+    /**
+     * Format the date/time value.
+     *
+     * @param  string  $value
+     * @param  string  $format
+     *
+     * @return string
+     */
+    protected static function formatDateTime($value, string $format)
+    {
+        try {
+            return empty($value)
+                ? $value
+                : (new DateTimeImmutable($value))->format($format);
+        }
+        catch (\Exception $e) {
+            return $value;
+        }
     }
 }

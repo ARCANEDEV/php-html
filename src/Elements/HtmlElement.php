@@ -17,6 +17,7 @@ use Illuminate\Support\{
  *
  * @method  \Arcanedev\Html\Elements\HtmlElement|mixed  attributeIf(bool $condition, string $attribute, mixed $value = null)
  * @method  \Arcanedev\Html\Elements\HtmlElement|mixed  attributeUnless(bool $condition, string $attribute, mixed $value = null)
+ * @method  \Arcanedev\Html\Elements\HtmlElement|mixed  attributeIfNotNull(mixed $value, string $attribute, mixed $value = null)
  */
 abstract class HtmlElement implements HtmlElementContract
 {
@@ -229,6 +230,20 @@ abstract class HtmlElement implements HtmlElementContract
     }
 
     /**
+     * Conditionally transform the element.
+     * Note that since elements are immutable, you'll need to return a new instance from the callback.
+     *
+     * @param  mixed     $value
+     * @param  \Closure  $callback
+     *
+     * @return mixed
+     */
+    public function ifNotNull($value, Closure $callback)
+    {
+        return $this->unless(is_null($value), $callback);
+    }
+
+    /**
      * Open the html element.
      *
      * @return \Illuminate\Support\HtmlString
@@ -325,7 +340,7 @@ abstract class HtmlElement implements HtmlElementContract
      */
     public function __call($name, array $arguments = [])
     {
-        if (Str::endsWith($name, $conditions = ['If', 'Unless'])) {
+        if (Str::endsWith($name, $conditions = ['If', 'Unless', 'IfNotNull'])) {
             foreach ($conditions as $condition) {
                 if (method_exists($this, $method = str_replace($condition, '', $name)))
                     return $this->callConditionalMethod($condition, $method, $arguments);
@@ -346,17 +361,20 @@ abstract class HtmlElement implements HtmlElementContract
      */
     protected function callConditionalMethod($type, $method, array $arguments)
     {
-        $condition = (bool) array_shift($arguments);
+        $value = array_shift($arguments);
         $callback  = function () use ($method, $arguments) {
             return $this->{$method}(...$arguments);
         };
 
         switch ($type) {
             case 'If':
-                return $this->if($condition, $callback);
+                return $this->if((bool) $value, $callback);
 
             case 'Unless':
-                return $this->unless($condition, $callback);
+                return $this->unless((bool) $value, $callback);
+
+            case 'IfNotNull':
+                return $this->ifNotNull($value, $callback);
 
             default:
                 return $this;
