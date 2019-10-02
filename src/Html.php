@@ -472,14 +472,20 @@ class Html implements HtmlContract
     /**
      * Make a number input.
      *
-     * @param  string       $name
+     * @param  string|null  $name
      * @param  string|null  $value
+     * @param  mixed|null   $min
+     * @param  mixed|null   $max
+     * @param  mixed|null   $step
      *
      * @return \Arcanedev\Html\Elements\Input
      */
-    public function number($name, $value = null)
+    public function number($name = null, $value = null, $min = null, $max = null, $step = null)
     {
-        return $this->input('number', $name, $value);
+        return $this->input('number', $name, $value)
+                    ->attributeIfNotNull($min, 'min', $min)
+                    ->attributeIfNotNull($max, 'max', $max)
+                    ->attributeIfNotNull($step, 'step', $step);
     }
 
     /**

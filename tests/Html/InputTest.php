@@ -235,8 +235,32 @@ class InputTest extends TestCase
     public function it_can_make_number_input()
     {
         static::assertHtmlStringEqualsHtmlString(
+            '<input type="number">',
+            $this->html->number()
+        );
+
+        static::assertHtmlStringEqualsHtmlString(
             '<input type="number" id="price" name="price" value="120">',
             $this->html->number('price', 120)
+        );
+    }
+
+    /** @test */
+    public function it_can_make_a_number_input_with_min_max_step()
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input type="number" name="percentage" id="percentage" value="0" min="0" max="100">',
+            $this->html->number('percentage', '0', '0', '100')
+        );
+
+        static::assertHtmlStringEqualsHtmlString(
+            '<input type="number" name="percentage" id="percentage" value="0" min="0" max="100" step="10">',
+            $this->html->number('percentage', '0', '0', '100', '10')
+        );
+
+        static::assertHtmlStringEqualsHtmlString(
+            '<input type="number" name="percentage" id="percentage" value="30" max="100" step="10">',
+            $this->html->number('percentage', '30', null, '100', '10')
         );
     }
 
