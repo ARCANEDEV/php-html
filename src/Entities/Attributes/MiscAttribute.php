@@ -1,7 +1,8 @@
-<?php namespace Arcanedev\Html\Entities\Attributes;
+<?php
 
-use Arcanedev\Html\Helpers\Arr;
-use Illuminate\Support\Collection;
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Entities\Attributes;
 
 /**
  * Class     MiscAttribute
@@ -60,7 +61,7 @@ class MiscAttribute extends AbstractAttribute
      */
     protected function setValue($value)
     {
-        $this->value = trim($value);
+        $this->value = trim((string) $value);
 
         return $this;
     }

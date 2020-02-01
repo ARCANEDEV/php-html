@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Contracts;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Contracts;
 
 /**
  * Interface     Html
@@ -51,7 +55,7 @@ interface Html
      *
      * @return string
      */
-    public function class($classes);
+    public function class($classes): string;
 
     /**
      * Make a date input.

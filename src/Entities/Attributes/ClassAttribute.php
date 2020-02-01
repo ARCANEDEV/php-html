@@ -1,8 +1,12 @@
-<?php namespace Arcanedev\Html\Entities\Attributes;
+<?php
 
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Entities\Attributes;
+
+use Countable;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
+use Illuminate\Support\{Arr, Collection};
 
 /**
  * Class     ClassAttribute
@@ -10,7 +14,7 @@ use Illuminate\Support\Collection;
  * @package  Arcanedev\Html\Entities\Attributes
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class ClassAttribute extends AbstractAttribute implements \Countable
+class ClassAttribute extends AbstractAttribute implements Countable
 {
     /* -----------------------------------------------------------------
      |  Properties

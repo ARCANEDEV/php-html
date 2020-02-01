@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Legend;
 
@@ -16,7 +20,7 @@ class LegendTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create()
+    public function it_can_create(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<legend></legend>',

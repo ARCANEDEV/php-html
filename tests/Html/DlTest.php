@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     DlTest
@@ -14,7 +18,7 @@ class DlTest extends TestCase
      */
 
     /** @test */
-    public function it_can_be_instantiated()
+    public function it_can_be_instantiated(): void
     {
         $dl = $this->html->dl();
 
@@ -29,7 +33,7 @@ class DlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_make_list()
+    public function it_can_make_list(): void
     {
         $dl = $this->html->dl();
 
@@ -45,7 +49,7 @@ class DlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_items()
+    public function it_can_add_items(): void
     {
         $dl    = $this->html->dl();
         $count = 0;
@@ -82,7 +86,7 @@ class DlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_html_items()
+    public function it_can_add_html_items(): void
     {
         $items = [
             'Term 1' => 'Definition 1',
@@ -104,7 +108,7 @@ class DlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_multiple_items_at_once_with_custom_attributes()
+    public function it_can_add_multiple_items_at_once_with_custom_attributes(): void
     {
         $items = [
             'Term 1' => 'Definition 1',

@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     MailToTest
@@ -14,7 +18,7 @@ class MailToTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create_a_mailto_link()
+    public function it_can_create_a_mailto_link(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<a href="mailto:hello@example.com">hello@example.com</a>',
@@ -23,7 +27,7 @@ class MailToTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_mailto_link_with_contents()
+    public function it_can_create_a_mailto_link_with_contents(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<a href="mailto:hello@example.com">E-mail</a>',

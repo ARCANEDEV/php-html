@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Form;
 use Arcanedev\Html\Elements\Input;
@@ -17,7 +21,7 @@ class FormTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create()
+    public function it_can_create(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<form></form>',
@@ -26,7 +30,7 @@ class FormTest extends TestCase
     }
 
     /** @test */
-    public function it_can_split_form_tags()
+    public function it_can_split_form_tags(): void
     {
         $form = Form::make();
 
@@ -40,7 +44,7 @@ class FormTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_a_custom_action()
+    public function it_can_create_with_a_custom_action(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<form action="/submit"></form>',
@@ -49,7 +53,7 @@ class FormTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_a_custom_method()
+    public function it_can_create_with_a_custom_method(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<form method="POST"></form>',
@@ -58,7 +62,7 @@ class FormTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_accepts_files()
+    public function it_can_create_with_accepts_files(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<form enctype="multipart/form-data"></form>',
@@ -67,7 +71,7 @@ class FormTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_html_builder()
+    public function it_can_create_with_html_builder(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<form method="POST" action="/submit"></form>',
@@ -76,7 +80,7 @@ class FormTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_form_that_add_novalidate_attribute()
+    public function it_can_create_a_form_that_add_novalidate_attribute(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<form enctype="multipart/form-data" novalidate=""></form>',
@@ -85,7 +89,7 @@ class FormTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_multiple_children_type_html_element()
+    public function it_can_add_multiple_children_type_html_element(): void
     {
         $form = Form::make();
 
@@ -112,7 +116,7 @@ class FormTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_multiple_children_type_html_string()
+    public function it_can_add_multiple_children_type_html_string(): void
     {
         $form = Form::make();
 

@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     ButtonTest
@@ -14,7 +18,7 @@ class ButtonTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create_a_button()
+    public function it_can_create_a_button(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<button></button>',
@@ -23,7 +27,7 @@ class ButtonTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_button_with_contents()
+    public function it_can_create_a_button_with_contents(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<button>Hi</button>',
@@ -32,7 +36,7 @@ class ButtonTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_button_with_html_contents()
+    public function it_can_create_a_button_with_html_contents(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<button><em>Hi</em></button>',
@@ -41,7 +45,7 @@ class ButtonTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_button_with_a_type()
+    public function it_can_create_a_button_with_a_type(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<button type="submit">Hi</button>',

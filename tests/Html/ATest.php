@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     ATest
@@ -14,7 +18,7 @@ class ATest extends TestCase
      */
 
     /** @test */
-    public function it_can_create_an_a_element()
+    public function it_can_create_an_a_element(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<a></a>',
@@ -23,7 +27,7 @@ class ATest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_an_a_element_with_a_href()
+    public function it_can_create_an_a_element_with_a_href(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<a href="https://github.com"></a>',
@@ -32,7 +36,7 @@ class ATest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_an_a_element_with_a_href_and_text_contents()
+    public function it_can_create_an_a_element_with_a_href_and_text_contents(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<a href="https://github.com">ARCANEDEV</a>',
@@ -41,7 +45,7 @@ class ATest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_an_a_element_with_a_href_and_html_contents()
+    public function it_can_create_an_a_element_with_a_href_and_html_contents(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<a href="https://github.com/ARCANEDEV">ARCANEDEV <em>(Github)</em></a>',

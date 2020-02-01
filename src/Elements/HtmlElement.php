@@ -1,13 +1,17 @@
-<?php namespace Arcanedev\Html\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Elements;
 
 use Arcanedev\Html\Contracts\Elements\HtmlElement as HtmlElementContract;
-use Arcanedev\Html\Exceptions\{
-    InvalidHtmlException, MissingTagException
-};
+use Arcanedev\Html\Exceptions\InvalidHtmlException;
+use Arcanedev\Html\Exceptions\MissingTagException;
 use Closure;
-use Illuminate\Support\{
-    Collection, HtmlString, Str, Traits\Macroable
-};
+use Illuminate\Support\Collection;
+use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
+use Illuminate\Support\Traits\Macroable;
 
 /**
  * Class     HtmlElement
@@ -61,7 +65,7 @@ abstract class HtmlElement implements HtmlElementContract
     /**
      * Make a html element.
      *
-     * @return static
+     * @return $this
      */
     public static function make()
     {
@@ -77,11 +81,14 @@ abstract class HtmlElement implements HtmlElementContract
      * Get the tag type.
      *
      * @return string
+     *
+     * @throws \Arcanedev\Html\Exceptions\MissingTagException
      */
     protected function getTag()
     {
-        if (empty($this->tag))
+        if (empty($this->tag)) {
             throw MissingTagException::onClass(static::class);
+        }
 
         return $this->tag;
     }
@@ -192,11 +199,14 @@ abstract class HtmlElement implements HtmlElementContract
      * @param  string|null  $html
      *
      * @return $this
+     *
+     * @throws \Arcanedev\Html\Exceptions\InvalidHtmlException
      */
     public function html($html)
     {
-        if ($this->isVoidElement())
+        if ($this->isVoidElement()) {
             throw InvalidHtmlException::onTag($this->getTag());
+        }
 
         return $this->setNewChildren($html);
     }
@@ -240,7 +250,7 @@ abstract class HtmlElement implements HtmlElementContract
      */
     public function ifNotNull($value, Closure $callback)
     {
-        return $this->unless(is_null($value), $callback);
+        return $this->if( ! is_null($value), $callback);
     }
 
     /**
@@ -280,9 +290,7 @@ abstract class HtmlElement implements HtmlElementContract
      */
     public function render()
     {
-        return new HtmlString(
-            $this->toHtml()
-        );
+        return new HtmlString($this->toHtml());
     }
 
     /**

@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 use Arcanedev\Html\Html;
 use Arcanedev\Html\Tests\TestCase as BaseTestCase;

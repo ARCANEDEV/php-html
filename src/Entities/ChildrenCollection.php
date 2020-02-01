@@ -1,10 +1,14 @@
-<?php namespace Arcanedev\Html\Entities;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Entities;
 
 use Arcanedev\Html\Contracts\Renderable;
-use Arcanedev\Html\Exceptions\InvalidChildException;
 use Arcanedev\Html\Elements\HtmlElement;
-use Illuminate\Support\Collection;
-use Illuminate\Support\HtmlString;
+use Arcanedev\Html\Exceptions\InvalidChildException;
+use Illuminate\Support\{Collection, HtmlString};
+use Illuminate\Contracts\Support\Htmlable;
 
 /**
  * Class     ChildrenCollection
@@ -44,9 +48,7 @@ class ChildrenCollection extends Collection implements Renderable
      */
     public function render()
     {
-        return new HtmlString(
-            $this->toHtml()
-        );
+        return new HtmlString($this->toHtml());
     }
 
     /**
@@ -57,11 +59,11 @@ class ChildrenCollection extends Collection implements Renderable
     public function toHtml()
     {
         $mapper = function ($child): string {
-            if ($child instanceof Renderable)
-                return $child->render();
-
             if (is_null($child))
                 return '';
+
+            if ($child instanceof Htmlable)
+                return $child->toHtml();
 
             if (is_string($child) || $child instanceof HtmlString)
                 return $child;

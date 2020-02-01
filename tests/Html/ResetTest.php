@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     ResetTest
@@ -14,7 +18,7 @@ class ResetTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create_a_reset_button()
+    public function it_can_create_a_reset_button(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<button type="reset"></button>',
@@ -23,7 +27,7 @@ class ResetTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_reset_button_with_contents()
+    public function it_can_create_a_reset_button_with_contents(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<button type="reset">Reset</button>',

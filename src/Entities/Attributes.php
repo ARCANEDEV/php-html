@@ -1,8 +1,10 @@
-<?php namespace Arcanedev\Html\Entities;
+<?php
 
-use Arcanedev\Html\Entities\Attributes\AbstractAttribute;
-use Arcanedev\Html\Entities\Attributes\ClassAttribute;
-use Arcanedev\Html\Entities\Attributes\MiscAttribute;
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Entities;
+
+use Arcanedev\Html\Entities\Attributes\{AbstractAttribute, ClassAttribute, MiscAttribute};
 use ArrayAccess;
 use Illuminate\Contracts\Support\Arrayable;
 

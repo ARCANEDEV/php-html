@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Elements;
 
 /**
  * Class     Ul
@@ -31,7 +35,7 @@ class Ul extends ListElement
     protected function makeItem($value, array $attributes)
     {
         return Element::withTag('li')
-            ->attributes($attributes)
-            ->html($value);
+                      ->attributes($attributes)
+                      ->html($value);
     }
 }

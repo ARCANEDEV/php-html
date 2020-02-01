@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Div;
 
@@ -16,7 +20,7 @@ class DivTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create()
+    public function it_can_create(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<div></div>',
@@ -32,7 +36,7 @@ class DivTest extends TestCase
      * @param  array   $styles
      * @param  string  $expected
      */
-    public function it_can_create_with_custom_styles(array $styles, string $expected)
+    public function it_can_create_with_custom_styles(array $styles, string $expected): void
     {
         static::assertHtmlStringEqualsHtmlString(
             $expected,
@@ -55,7 +59,7 @@ class DivTest extends TestCase
      *
      * @return array
      */
-    public function getCustomStylesDP()
+    public function getCustomStylesDP(): array
     {
         return [
             [

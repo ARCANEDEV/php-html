@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     FormTest
@@ -14,7 +18,7 @@ class FormTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create_a_form()
+    public function it_can_create_a_form(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<form method="POST"></form>',
@@ -23,7 +27,7 @@ class FormTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_form_with_a_custom_action()
+    public function it_can_create_a_form_with_a_custom_action(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<form method="POST" action="/submit"></form>',

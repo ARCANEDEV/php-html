@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Exceptions;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Exceptions;
 
 /**
  * Class     MissingTag

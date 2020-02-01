@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Element;
 
@@ -16,7 +20,7 @@ class HtmlElementTest extends TestCase
      */
 
     /** @test */
-    public function it_can_register_a_macro()
+    public function it_can_register_a_macro(): void
     {
         Element::macro('btnPrimary', function () {
             return $this->class('btn btn-primary');

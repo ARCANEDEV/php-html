@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\A;
 use Arcanedev\Html\Elements\Ul;
@@ -17,7 +21,7 @@ class UlTest extends TestCase
      */
 
     /** @test */
-    public function it_can_be_instantiated()
+    public function it_can_be_instantiated(): void
     {
         $ul = Ul::make();
 
@@ -33,7 +37,7 @@ class UlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_make_list()
+    public function it_can_make_list(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<ul></ul>',
@@ -47,7 +51,7 @@ class UlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_items()
+    public function it_can_add_items(): void
     {
         $ul = Ul::make();
 
@@ -76,7 +80,7 @@ class UlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_html_items()
+    public function it_can_add_html_items(): void
     {
         $items = collect([
             A::make()->href('#')->html('Item 1'),
@@ -106,7 +110,7 @@ class UlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_multiple_items_at_once()
+    public function it_can_add_multiple_items_at_once(): void
     {
         $items = [
             'Item 1',
@@ -136,7 +140,7 @@ class UlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_handle_nested_items()
+    public function it_can_handle_nested_items(): void
     {
         $items = [
             'Item 1',

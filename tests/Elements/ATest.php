@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\A;
 
@@ -16,16 +20,16 @@ class ATest extends TestCase
      */
 
     /** @test */
-    public function it_can_create()
+    public function it_can_create(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<a></a>',
-            A::make()
+            A::make()->toHtml()
         );
     }
 
     /** @test */
-    public function it_can_create_with_a_href()
+    public function it_can_create_with_a_href(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<a href="https://github.com"></a>',
@@ -34,7 +38,7 @@ class ATest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_custom_data_attributes()
+    public function it_can_create_with_custom_data_attributes(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<a href="#delete-user-modal" data-role="modal" data-id="1" data-name="User 1"></a>',

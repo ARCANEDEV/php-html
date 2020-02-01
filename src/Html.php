@@ -1,9 +1,12 @@
-<?php namespace Arcanedev\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html;
 
 use Arcanedev\Html\Contracts\Html as HtmlContract;
 use Arcanedev\Html\Elements\{
-    A, Button, Div, Element, Fieldset, File, Form, I, Img, Input, Label,
-    Legend, Option, Select, Span, Textarea
+    A, Button, Div, Dl, Element, Fieldset, File, Form, I, Img, Input, Label, Legend, Option, Select, Span, Textarea, Ul
 };
 use Arcanedev\Html\Entities\Attributes\ClassAttribute;
 use DateTimeImmutable;
@@ -41,7 +44,7 @@ class Html implements HtmlContract
     public function a($href = null, $value = null)
     {
         return A::make()
-                ->attributeIf( ! is_null($href), 'href', $href)
+                ->attributeIfNotNull($href, 'href', $href)
                 ->html($value);
     }
 
@@ -56,7 +59,7 @@ class Html implements HtmlContract
     public function button($content = null, $type = null)
     {
         return Button::make()
-                     ->attributeIf($type, 'type', $type)
+                     ->attributeIfNotNull($type, 'type', $type)
                      ->html($content);
     }
 
@@ -73,9 +76,9 @@ class Html implements HtmlContract
     {
         return Input::make()
                     ->attribute('type', 'checkbox')
-                    ->attributeIf($name, 'name', $name)
-                    ->attributeIf($name, 'id', $name)
-                    ->attributeIf( ! is_null($value), 'value', $value)
+                    ->attributeIfNotNull($name, 'name', $name)
+                    ->attributeIfNotNull($name, 'id', $name)
+                    ->attributeIfNotNull($value, 'value', $value)
                     ->attributeIf((bool) $checked, 'checked');
     }
 
@@ -86,7 +89,7 @@ class Html implements HtmlContract
      *
      * @return string
      */
-    public function class($classes)
+    public function class($classes): string
     {
         return ClassAttribute::make($classes)->render();
     }
@@ -104,11 +107,15 @@ class Html implements HtmlContract
     {
         $input = $this->input('date', $name, $value);
 
-        return $format
+        if (
+            $format
             && $input->hasAttribute('value')
             && ! empty($value = $input->getAttribute('value')->value())
-            ? $input->value(static::formatDateTime($value, static::HTML_DATE_FORMAT))
-            : $input;
+        ) {
+            $input = $input->value(static::formatDateTime($value, static::HTML_DATE_FORMAT));
+        }
+
+        return $input;
     }
 
     /**
@@ -172,11 +179,13 @@ class Html implements HtmlContract
     public function file($name = null)
     {
         return File::make()
-                   ->attributeIf($name, 'name', $name)
-                   ->attributeIf($name, 'id', $name);
+                   ->attributeIfNotNull($name, 'name', $name)
+                   ->attributeIfNotNull($name, 'id', $name);
     }
 
     /**
+     * Make a form input.
+     *
      * @param  string       $method
      * @param  string|null  $action
      *
@@ -186,7 +195,7 @@ class Html implements HtmlContract
     {
         return Form::make()
                    ->method($method)
-                   ->attributeIf($action, 'action', $action);
+                   ->attributeIfNotNull($action, 'action', $action);
     }
 
     /**
@@ -228,9 +237,9 @@ class Html implements HtmlContract
         $hasValue = $name && ! is_null($value) && $type !== 'password';
 
         return Input::make()
-                    ->attributeIf($type, 'type', $type)
-                    ->attributeIf($name, 'name', $name)
-                    ->attributeIf($name, 'id', $name)
+                    ->attributeIfNotNull($type, 'type', $type)
+                    ->attributeIfNotNull($name, 'name', $name)
+                    ->attributeIfNotNull($name, 'id', $name)
                     ->attributeIf($hasValue, 'value', $value);
     }
 
@@ -245,8 +254,8 @@ class Html implements HtmlContract
     public function img($src = null, $alt = null)
     {
         return Img::make()
-                  ->attributeIf($src, 'src', $src)
-                  ->attributeIf($alt, 'alt', $alt);
+                  ->attributeIfNotNull($src, 'src', $src)
+                  ->attributeIfNotNull($alt, 'alt', $alt);
     }
 
     /**
@@ -260,7 +269,7 @@ class Html implements HtmlContract
     public function label($content = null, $for = null)
     {
         return Label::make()
-                    ->attributeIf($for, 'for', $for)
+                    ->attributeIfNotNull($for, 'for', $for)
                     ->children($content);
     }
 
@@ -330,7 +339,7 @@ class Html implements HtmlContract
     public function radio($name = null, $checked = null, $value = null)
     {
         return $this->input('radio', $name, $value)
-                    ->attributeIf($name, 'id', $value === null ? $name : ($name.'_'.Str::slug($value)))
+                    ->attributeIfNotNull($name, 'id', $value === null ? $name : ($name.'_'.Str::slug($value)))
                     ->attributeIf(( ! is_null($value)) || $checked, 'checked');
     }
 
@@ -377,8 +386,8 @@ class Html implements HtmlContract
     public function select($name = null, $options = [], $value = null)
     {
         return Select::make()
-                     ->attributeIf($name, 'name', $name)
-                     ->attributeIf($name, 'id', $name)
+                     ->attributeIfNotNull($name, 'name', $name)
+                     ->attributeIfNotNull($name, 'id', $name)
                      ->options($options)
                      ->value($value);
     }
@@ -444,8 +453,8 @@ class Html implements HtmlContract
     public function textarea($name = null, $value = null)
     {
         return Textarea::make()
-                       ->attributeIf($name, 'name', $name)
-                       ->attributeIf($name, 'id', $name)
+                       ->attributeIfNotNull($name, 'name', $name)
+                       ->attributeIfNotNull($name, 'id', $name)
                        ->value($value);
     }
 
@@ -509,7 +518,7 @@ class Html implements HtmlContract
      */
     public function ul(array $attributes = [])
     {
-        return Elements\Ul::make()->attributes($attributes);
+        return Ul::make()->attributes($attributes);
     }
 
     /**
@@ -521,7 +530,7 @@ class Html implements HtmlContract
      */
     public function dl(array $attributes = [])
     {
-        return Elements\Dl::make()->attributes($attributes);
+        return Dl::make()->attributes($attributes);
     }
 
     /* -----------------------------------------------------------------
@@ -537,7 +546,7 @@ class Html implements HtmlContract
      *
      * @return string
      */
-    protected static function formatDateTime($value, string $format)
+    protected static function formatDateTime(string $value, string $format): string
     {
         try {
             return empty($value)

@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Img;
 
@@ -16,7 +20,7 @@ class ImgTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create()
+    public function it_can_create(): void
     {
         $expected = '<img>';
 
@@ -24,7 +28,7 @@ class ImgTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_an_alt_attribute()
+    public function it_can_create_with_an_alt_attribute(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<img alt="Image title">',
@@ -33,7 +37,7 @@ class ImgTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_a_src_attribute()
+    public function it_can_create_with_a_src_attribute(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<img src="logo.jpg">',
@@ -42,7 +46,7 @@ class ImgTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_builder()
+    public function it_can_create_with_builder(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<img src="logo.jpg" alt="ARCANEDEV">',

@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Contracts\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Contracts\Elements;
 
 use Arcanedev\Html\Contracts\Renderable;
 

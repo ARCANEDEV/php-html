@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Elements\Concerns;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Elements\Concerns;
 
 use Arcanedev\Html\Elements\HtmlElement;
 use Arcanedev\Html\Entities\ChildrenCollection;
@@ -42,7 +46,7 @@ trait HasChildElements
      *
      * @param \Arcanedev\Html\Entities\ChildrenCollection $children
      *
-     * @return static
+     * @return $this
      */
     public function setChildren(ChildrenCollection $children)
     {
@@ -74,7 +78,7 @@ trait HasChildElements
      * @param  mixed          $children
      * @param  \Closure|null  $mapper
      *
-     * @return static
+     * @return $this
      */
     public function children($children, Closure $mapper = null)
     {
@@ -87,7 +91,7 @@ trait HasChildElements
      * @param  mixed          $child
      * @param  \Closure|null  $mapper
      *
-     * @return static
+     * @return $this
      */
     public function addChild($child, Closure $mapper = null)
     {
@@ -107,7 +111,7 @@ trait HasChildElements
      * @param  mixed          $children
      * @param  \Closure|null  $mapper
      *
-     * @return static
+     * @return $this
      */
     public function setNewChildren($children, Closure $mapper = null)
     {
@@ -122,7 +126,7 @@ trait HasChildElements
      * @param  \Arcanedev\Html\Elements\HtmlElement|string|iterable  $children
      * @param  \Closure|null                                         $mapper
      *
-     * @return static
+     * @return $this
      */
     public function prependChild($children, $mapper = null)
     {
@@ -135,7 +139,7 @@ trait HasChildElements
      * @param  mixed          $children
      * @param  \Closure|null  $mapper
      *
-     * @return static
+     * @return $this
      */
     public function prependChildren($children, Closure $mapper = null)
     {
