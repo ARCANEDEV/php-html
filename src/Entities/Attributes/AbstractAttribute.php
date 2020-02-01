@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Entities\Attributes;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Entities\Attributes;
 
 /**
  * Class     AbstractAttribute

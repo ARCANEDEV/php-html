@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Select;
 
@@ -16,7 +20,7 @@ class SelectTest extends TestCase
      */
 
     /** @test */
-    public function it_can_render_a_select_input()
+    public function it_can_render_a_select_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select></select>',
@@ -25,7 +29,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_render_a_select_element_required()
+    public function it_can_render_a_select_element_required(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select required></select>',
@@ -34,7 +38,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_render_options()
+    public function it_can_render_options(): void
     {
         $options = [
             'value1' => 'text1',
@@ -51,7 +55,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_have_a_value()
+    public function it_can_have_a_value(): void
     {
         $options = [
             'value1' => 'text1',
@@ -80,7 +84,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_have_a_placeholder_option()
+    public function it_can_have_a_placeholder_option(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select>
@@ -117,7 +121,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_doesnt_select_the_placeholder_if_something_has_already_been_selected()
+    public function it_doesnt_select_the_placeholder_if_something_has_already_been_selected(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select>
@@ -133,7 +137,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_have_a_multiple_option()
+    public function it_can_have_a_multiple_option(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select multiple="multiple">
@@ -148,7 +152,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_convert_multiple_select_name()
+    public function it_can_convert_multiple_select_name(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select multiple="multiple" name="foo[]">
@@ -164,7 +168,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_have_multiple_values()
+    public function it_can_have_multiple_values(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select multiple="multiple">
@@ -180,7 +184,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_have_one_multiple_value()
+    public function it_can_have_one_multiple_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select multiple="multiple">
@@ -196,7 +200,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_have_an_optgroup()
+    public function it_can_have_an_optgroup(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select>
@@ -213,7 +217,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_select_an_item_in_an_optgroup()
+    public function it_can_select_an_item_in_an_optgroup(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select>
@@ -231,7 +235,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_apply_options_with_custom_attributes()
+    public function it_can_apply_options_with_custom_attributes(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select>
@@ -248,7 +252,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_select_an_item_in_an_optgroup_with_custom_attributes()
+    public function it_can_select_an_item_in_an_optgroup_with_custom_attributes(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select>
@@ -288,7 +292,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_render_a_select_element_with_options_with_a_selected_value_when_the_values_are_similar()
+    public function it_can_render_a_select_element_with_options_with_a_selected_value_when_the_values_are_similar(): void
     {
         $options = [
             '0'  => '0',

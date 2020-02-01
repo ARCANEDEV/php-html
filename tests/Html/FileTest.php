@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     FileTest
@@ -14,7 +18,7 @@ class FileTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create_a_file_input()
+    public function it_can_create_a_file_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input type="file">',
@@ -23,7 +27,7 @@ class FileTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_file_input_with_a_name()
+    public function it_can_create_a_file_input_with_a_name(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input id="archives" type="file" name="archives">',

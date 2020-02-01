@@ -1,6 +1,11 @@
-<?php namespace Arcanedev\Html\Tests\Concerns;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Concerns;
 
 use DOMDocument;
+use Illuminate\Contracts\Support\Htmlable;
 
 /**
  * Trait     AssertsHtmlStrings
@@ -18,12 +23,15 @@ trait AssertsHtmlStrings
     /**
      * Assert two Html strings are equals.
      *
-     * @param  string  $expected
-     * @param  string  $actual
-     * @param  string  $message
+     * @param  string                                         $expected
+     * @param  string|\Illuminate\Contracts\Support\Htmlable  $actual
+     * @param  string                                         $message
      */
-    public static function assertHtmlStringEqualsHtmlString(string $expected, string $actual, string $message = '')
+    public static function assertHtmlStringEqualsHtmlString(string $expected, $actual, string $message = ''): void
     {
+        if ($actual instanceof Htmlable)
+            $actual = $actual->toHtml();
+
         static::assertEqualsCanonicalizing(
             static::convertToDomDocument($expected),
             static::convertToDomDocument($actual),
@@ -43,7 +51,7 @@ trait AssertsHtmlStrings
      *
      * @return \DOMDocument
      */
-    protected static function convertToDomDocument($html)
+    protected static function convertToDomDocument($html): DOMDocument
     {
         return tap(new DOMDocument, function (DOMDocument $dom) use ($html) {
             $dom->loadHTML(preg_replace('/>\s+</', '><', $html));

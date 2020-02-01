@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Dl;
 
@@ -16,7 +20,7 @@ class DlTest extends TestCase
      */
 
     /** @test */
-    public function it_can_be_instantiated()
+    public function it_can_be_instantiated(): void
     {
         $dl = Dl::make();
 
@@ -30,7 +34,7 @@ class DlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_make_list()
+    public function it_can_make_list(): void
     {
         $dl = Dl::make();
 
@@ -46,7 +50,7 @@ class DlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_items()
+    public function it_can_add_items(): void
     {
         $dl    = Dl::make();
         $count = 0;
@@ -83,7 +87,7 @@ class DlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_html_items()
+    public function it_can_add_html_items(): void
     {
         $items = [
             'Term 1' => 'Definition 1',
@@ -105,7 +109,7 @@ class DlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_multiple_items_at_once_with_custom_attributes()
+    public function it_can_add_multiple_items_at_once_with_custom_attributes(): void
     {
         $items = [
             'Term 1' => 'Definition 1',
@@ -130,7 +134,7 @@ class DlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_multiple_items_with_multiple_definitions()
+    public function it_can_add_multiple_items_with_multiple_definitions(): void
     {
         $items = [
             'Term 1' => 'Definition 1',

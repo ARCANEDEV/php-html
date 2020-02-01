@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     SpanTest
@@ -14,7 +18,7 @@ class SpanTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create_a_span()
+    public function it_can_create_a_span(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<span></span>',
@@ -23,7 +27,7 @@ class SpanTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_span_with_contents()
+    public function it_can_create_a_span_with_contents(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<span>Hi</span>',
@@ -32,7 +36,7 @@ class SpanTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_span_with_html_contents()
+    public function it_can_create_a_span_with_html_contents(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<span><em>Hi</em></span>',

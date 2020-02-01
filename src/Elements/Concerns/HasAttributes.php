@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Elements\Concerns;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Elements\Concerns;
 
 use Arcanedev\Html\Elements\HtmlElement;
 use Arcanedev\Html\Entities\Attributes;

@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 use Arcanedev\Html\Elements\Element;
 
@@ -16,7 +20,7 @@ class ElementTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create_an_element()
+    public function it_can_create_an_element(): void
     {
         static::assertEquals(
             '<foo></foo>',
@@ -25,7 +29,7 @@ class ElementTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_conditional_changes()
+    public function it_can_add_conditional_changes(): void
     {
         $elt      = $this->html->element('foo');
         $callback = function (Element $elt) {
@@ -54,7 +58,7 @@ class ElementTest extends TestCase
     }
 
     /** @test */
-    public function it_can_set_an_attribute_with_attribute_if()
+    public function it_can_set_an_attribute_with_attribute_if(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<div foo="bar"></div>',

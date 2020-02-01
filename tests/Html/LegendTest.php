@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     LegendTest
@@ -14,7 +18,7 @@ class LegendTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create_a_legend()
+    public function it_can_create_a_legend(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<legend></legend>',
@@ -23,7 +27,7 @@ class LegendTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_legend_with_contents()
+    public function it_can_create_a_legend_with_contents(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<legend>Hi</legend>',

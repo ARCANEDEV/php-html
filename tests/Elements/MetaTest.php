@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Meta;
 
@@ -16,7 +20,7 @@ class MetaTest extends TestCase
      */
 
     /** @test */
-    public function it_can_be_instantiated()
+    public function it_can_be_instantiated(): void
     {
         $expected = '<meta/>';
 
@@ -24,7 +28,7 @@ class MetaTest extends TestCase
     }
 
     /** @test */
-    public function it_make_with_attributes()
+    public function it_make_with_attributes(): void
     {
         $expected = '<meta name="csrf-token" content="12345"/>';
 

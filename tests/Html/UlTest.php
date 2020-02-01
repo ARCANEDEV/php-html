@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     UlTest
@@ -14,7 +18,7 @@ class UlTest extends TestCase
      */
 
     /** @test */
-    public function it_can_make_list()
+    public function it_can_make_list(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<ul></ul>',
@@ -28,7 +32,7 @@ class UlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_items()
+    public function it_can_add_items(): void
     {
         $ul = $this->html->ul();
 
@@ -57,7 +61,7 @@ class UlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_html_items()
+    public function it_can_add_html_items(): void
     {
         $items = collect([
             $this->html->a('#', 'Item 1'),
@@ -87,7 +91,7 @@ class UlTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_multiple_items_at_once()
+    public function it_can_add_multiple_items_at_once(): void
     {
         $items = [
             'Item 1',

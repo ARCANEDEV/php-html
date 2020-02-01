@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Textarea;
 
@@ -16,7 +20,7 @@ class TextareaTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create()
+    public function it_can_create(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<textarea></textarea>',
@@ -25,7 +29,7 @@ class TextareaTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_autofocus_attribute()
+    public function it_can_create_with_autofocus_attribute(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<textarea autofocus></textarea>',
@@ -34,7 +38,7 @@ class TextareaTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_a_placeholder()
+    public function it_can_create_with_a_placeholder(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<textarea placeholder="Lorem ipsum"></textarea>',
@@ -43,7 +47,7 @@ class TextareaTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_a_name()
+    public function it_can_create_with_a_name(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<textarea name="text"></textarea>',
@@ -52,7 +56,7 @@ class TextareaTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_a_value()
+    public function it_can_create_with_a_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<textarea>My epic content</textarea>',
@@ -61,7 +65,7 @@ class TextareaTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_required_attribute()
+    public function it_can_create_with_required_attribute(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<textarea required>My epic content</textarea>',
@@ -70,7 +74,7 @@ class TextareaTest extends TestCase
     }
 
     /** @test */
-    public function it_can_set_the_size()
+    public function it_can_set_the_size(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<textarea cols="60" rows="15">My epic content</textarea>',

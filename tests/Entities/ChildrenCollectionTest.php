@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Entities;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Entities;
 
 use Arcanedev\Html\Elements\Span;
 use Arcanedev\Html\Entities\ChildrenCollection;
@@ -18,7 +22,7 @@ class ChildrenCollectionTest extends TestCase
      */
 
     /** @test */
-    public function it_can_be_instantiated()
+    public function it_can_be_instantiated(): void
     {
         $children = new ChildrenCollection;
 
@@ -36,7 +40,7 @@ class ChildrenCollectionTest extends TestCase
     }
 
     /** @test */
-    public function it_can_parse_children()
+    public function it_can_parse_children(): void
     {
         $children = ChildrenCollection::parse(['foo', null, 'bar']);
 
@@ -45,7 +49,7 @@ class ChildrenCollectionTest extends TestCase
     }
 
     /** @test */
-    public function it_can_convert_to_html()
+    public function it_can_convert_to_html(): void
     {
         $children = ChildrenCollection::parse(['foo', null, 'bar'], function ($child) {
             return ! is_null($child)
@@ -64,7 +68,7 @@ class ChildrenCollectionTest extends TestCase
      *
      * @param  mixed  $child
      */
-    public function it_must_throw_exception_on_parse_with_invalid_child($child)
+    public function it_must_throw_exception_on_parse_with_invalid_child($child): void
     {
         $this->expectException(\Arcanedev\Html\Exceptions\InvalidChildException::class);
 
@@ -78,7 +82,7 @@ class ChildrenCollectionTest extends TestCase
      *
      * @param  mixed  $child
      */
-    public function it_must_throw_exception_on_convert_to_html_with_invalid_child($child)
+    public function it_must_throw_exception_on_convert_to_html_with_invalid_child($child): void
     {
         $this->expectException(\Arcanedev\Html\Exceptions\InvalidChildException::class);
 
@@ -93,7 +97,7 @@ class ChildrenCollectionTest extends TestCase
      *
      * @return array
      */
-    public function getInvalidChildrenToParseDataProvider()
+    public function getInvalidChildrenToParseDataProvider(): array
     {
         return [
             [true],

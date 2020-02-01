@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Button;
 use Arcanedev\Html\Elements\I;
@@ -17,7 +21,7 @@ class ButtonTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create()
+    public function it_can_create(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<button></button>',
@@ -26,7 +30,7 @@ class ButtonTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_custom_type_and_value()
+    public function it_can_create_with_custom_type_and_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<button type="submit" value="btn_value">Submit</button>',
@@ -35,7 +39,7 @@ class ButtonTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_content()
+    public function it_can_create_with_content(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<button>Hi</button>',
@@ -44,7 +48,7 @@ class ButtonTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_html_content()
+    public function it_can_create_with_html_content(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<button><em>Hi</em></button>',
@@ -53,7 +57,7 @@ class ButtonTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_html_element_object()
+    public function it_can_create_with_html_element_object(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<button><i class="fa fa-plus"></i></button>',
@@ -64,7 +68,7 @@ class ButtonTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_a_specific_type()
+    public function it_can_create_with_a_specific_type(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<button type="submit">Hi</button>',

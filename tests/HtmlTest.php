@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests;
 
 use Arcanedev\Html\Html;
 

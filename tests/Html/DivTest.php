@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     DivTest
@@ -14,7 +18,7 @@ class DivTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create_a_div()
+    public function it_can_create_a_div(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<div></div>',

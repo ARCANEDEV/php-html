@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Entities;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Entities;
 
 use Arcanedev\Html\Entities\Attributes;
 use Arcanedev\Html\Tests\TestCase;
@@ -17,7 +21,7 @@ class AttributesTest extends TestCase
      */
 
     /** @test */
-    public function it_can_be_instantiated()
+    public function it_can_be_instantiated(): void
     {
         $attributes = new Attributes;
 
@@ -27,7 +31,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_accepts_classes_as_strings()
+    public function it_accepts_classes_as_strings(): void
     {
         $attributes = (new Attributes)->addClass('foo bar');
 
@@ -35,7 +39,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_accepts_classes_as_an_array()
+    public function it_accepts_classes_as_an_array(): void
     {
         $attributes = (new Attributes)->addClass(['foo', 'bar']);
 
@@ -43,7 +47,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_classes_conditionally_with_an_associative_array()
+    public function it_can_add_classes_conditionally_with_an_associative_array(): void
     {
         $attributes = (new Attributes)->addClass([
             'foo' => true,
@@ -54,7 +58,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_can_simultaneously_add_classes_conditionally_and_non_conditionally()
+    public function it_can_simultaneously_add_classes_conditionally_and_non_conditionally(): void
     {
         $attributes = (new Attributes)->addClass([
             'foo' => true,
@@ -66,7 +70,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_accepts_attributes()
+    public function it_accepts_attributes(): void
     {
         $attributes = new Attributes;
         $attributes->set('href', '#');
@@ -79,7 +83,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_accepts_attributes_without_values()
+    public function it_accepts_attributes_without_values(): void
     {
         $attributes = (new Attributes)->set('required');
 
@@ -90,7 +94,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_can_forget_an_attribute()
+    public function it_can_forget_an_attribute(): void
     {
         $attributes = new Attributes;
         $attributes->set('href', '#');
@@ -100,7 +104,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_can_forget_its_classes()
+    public function it_can_forget_its_classes(): void
     {
         $attributes = new Attributes;
         $attributes->addClass('foo');
@@ -110,7 +114,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_an_attribute()
+    public function it_can_get_an_attribute(): void
     {
         $attributes = new Attributes;
         $attributes->set('foo', 'bar');
@@ -122,7 +126,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_a_class_list()
+    public function it_can_get_a_class_list(): void
     {
         $attributes = new Attributes;
 
@@ -134,19 +138,19 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_null_if_an_attribute_does_not_exist()
+    public function it_returns_null_if_an_attribute_does_not_exist(): void
     {
         static::assertNull((new Attributes)->get('foo'));
     }
 
     /** @test */
-    public function it_can_return_a_fallback_if_an_attribute_does_not_exist()
+    public function it_can_return_a_fallback_if_an_attribute_does_not_exist(): void
     {
         static::assertSame('bar', (new Attributes)->get('foo', 'bar'));
     }
 
     /** @test */
-    public function it_accepts_multiple_attributes()
+    public function it_accepts_multiple_attributes(): void
     {
         $attributes = new Attributes;
         $attributes->setMany([
@@ -162,7 +166,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_can_be_rendered_when_empty()
+    public function it_can_be_rendered_when_empty(): void
     {
         $attributes = new Attributes;
 
@@ -170,7 +174,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_can_be_rendered_with_an_attribute()
+    public function it_can_be_rendered_with_an_attribute(): void
     {
         $attributes = new Attributes;
         $attributes->set('foo', 'bar');
@@ -179,7 +183,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_can_be_rendered_with_multiple_attributes()
+    public function it_can_be_rendered_with_multiple_attributes(): void
     {
         $attributes = ['foo' => 'bar', 'baz' => 'qux'];
         $expected   = 'foo="bar" baz="qux"';
@@ -190,7 +194,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_can_be_rendered_with_a_falsish_attribute()
+    public function it_can_be_rendered_with_a_falsish_attribute(): void
     {
         $attributes = (new Attributes)->set('foo', '0');
 
@@ -198,7 +202,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_can_escape_values_when_rendered()
+    public function it_can_escape_values_when_rendered(): void
     {
         $attributes = (new Attributes)->set('foo', '<bar baz=""></bar>');
 
@@ -206,7 +210,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_can_render_square_brackets()
+    public function it_can_render_square_brackets(): void
     {
         $attributes = (new Attributes)->set('names[]', 'Sebastian');
 
@@ -214,7 +218,7 @@ class AttributesTest extends TestCase
     }
 
     /** @test */
-    public function it_can_determine_whether_an_attribute_exists()
+    public function it_can_determine_whether_an_attribute_exists(): void
     {
         $attributes = (new Attributes)->set('foo', 'bar');
 

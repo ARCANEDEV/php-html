@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     RadioTest
@@ -14,7 +18,7 @@ class RadioTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create_a_radio_button()
+    public function it_can_create_a_radio_button(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input type="radio">',
@@ -23,7 +27,7 @@ class RadioTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_radio_button_with_a_name()
+    public function it_can_create_a_radio_button_with_a_name(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input type="radio" name="my_radio" id="my_radio">',
@@ -32,7 +36,7 @@ class RadioTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_checked_radio_button_with_a_name()
+    public function it_can_create_a_checked_radio_button_with_a_name(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input type="radio" name="my_radio" id="my_radio" checked="checked">',
@@ -41,7 +45,7 @@ class RadioTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_radio_button_with_a_name_and_value()
+    public function it_can_create_a_radio_button_with_a_name_and_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input type="radio" name="my_radio" id="my_radio_1" checked="checked" value="1">',
@@ -50,7 +54,7 @@ class RadioTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_radio_button_with_a_name_and_a_zero_value()
+    public function it_can_create_a_radio_button_with_a_name_and_a_zero_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input type="radio" name="my_radio" id="my_radio_0" checked="checked" value="0">',

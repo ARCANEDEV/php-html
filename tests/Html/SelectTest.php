@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     SelectTest
@@ -14,7 +18,7 @@ class SelectTest extends TestCase
      */
 
     /** @test */
-    public function it_can_render_a_select_element()
+    public function it_can_render_a_select_element(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select></select>',
@@ -23,7 +27,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_render_a_select_element_required()
+    public function it_can_render_a_select_element_required(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<select required></select>',
@@ -32,7 +36,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_render_a_select_element_with_options()
+    public function it_can_render_a_select_element_with_options(): void
     {
         $options = [
             'value1' => 'text1',
@@ -49,7 +53,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_render_a_select_element_with_options_with_a_selected_value()
+    public function it_can_render_a_select_element_with_options_with_a_selected_value(): void
     {
         $options = [
             'value1' => 'text1',
@@ -66,7 +70,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_render_a_select_element_with_options_with_a_selected_value_when_the_values_are_similar()
+    public function it_can_render_a_select_element_with_options_with_a_selected_value_when_the_values_are_similar(): void
     {
         $options = [
             '0'  => '0',
@@ -85,7 +89,7 @@ class SelectTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_select_with_multiple_attribute()
+    public function it_can_create_a_select_with_multiple_attribute(): void
     {
         $options = [
             'value1' => 'text1',

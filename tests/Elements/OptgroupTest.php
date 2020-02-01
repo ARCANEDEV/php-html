@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Optgroup;
 
@@ -16,7 +20,7 @@ class OptgroupTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create()
+    public function it_can_create(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<optgroup></optgroup>',
@@ -25,7 +29,7 @@ class OptgroupTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_a_label()
+    public function it_can_create_with_a_label(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<optgroup label="Cats"></optgroup>',

@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     FieldsetTest
@@ -14,7 +18,7 @@ class FieldsetTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create_a_fieldset()
+    public function it_can_create_a_fieldset(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<fieldset></fieldset>',
@@ -23,7 +27,7 @@ class FieldsetTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_fieldset_with_a_legend()
+    public function it_can_create_a_fieldset_with_a_legend(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<fieldset><legend>Legend</legend></fieldset>',
@@ -32,7 +36,7 @@ class FieldsetTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_a_legend_to_the_fieldset()
+    public function it_can_add_a_legend_to_the_fieldset(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<fieldset><legend>Legend</legend></fieldset>',

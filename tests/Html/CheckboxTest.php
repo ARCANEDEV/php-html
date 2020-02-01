@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     CheckboxTest
@@ -14,7 +18,7 @@ class CheckboxTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create_a_checkbox()
+    public function it_can_create_a_checkbox(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input type="checkbox" value="1">',
@@ -23,7 +27,7 @@ class CheckboxTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_checkbox_with_a_name()
+    public function it_can_create_a_checkbox_with_a_name(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input type="checkbox" name="my_checkbox" id="my_checkbox" value="1">',
@@ -32,7 +36,7 @@ class CheckboxTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_checked_checkbox_with_a_name()
+    public function it_can_create_a_checked_checkbox_with_a_name(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input type="checkbox" name="my_checkbox" id="my_checkbox" checked="checked" value="1">',
@@ -41,7 +45,7 @@ class CheckboxTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_checkbox_with_a_name_and_a_custom_value()
+    public function it_can_create_a_checkbox_with_a_name_and_a_custom_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input type="checkbox" name="my_checkbox" id="my_checkbox" checked="checked" value="foo">',
@@ -50,7 +54,7 @@ class CheckboxTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_checkbox_with_a_name_and_a_zero_value()
+    public function it_can_create_a_checkbox_with_a_name_and_a_zero_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input type="checkbox" name="my_checkbox" id="my_checkbox" checked="checked" value="0">',

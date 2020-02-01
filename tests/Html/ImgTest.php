@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     ImgTest
@@ -14,7 +18,7 @@ class ImgTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create_a_img_tag_with_image_source_and_alt()
+    public function it_can_create_a_img_tag_with_image_source_and_alt(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<img src="/path/to/image/file" alt="alt_value">',

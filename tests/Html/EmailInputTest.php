@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     EmailInputTest
@@ -14,7 +18,7 @@ class EmailInputTest extends TestCase
      */
 
     /** @test */
-    public function it_can_make_email_input()
+    public function it_can_make_email_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input id="email" name="email" type="email" value="hello@email.com"/>',

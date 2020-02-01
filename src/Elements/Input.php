@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Elements;
 
 /**
  * Class     Input

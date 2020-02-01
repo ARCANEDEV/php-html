@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Elements;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Label;
 
@@ -16,7 +20,7 @@ class LabelTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create()
+    public function it_can_create(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<label></label>',
@@ -25,7 +29,7 @@ class LabelTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_with_a_custom_for_attribute()
+    public function it_can_create_with_a_custom_for_attribute(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<label for="some_input_id"></label>',

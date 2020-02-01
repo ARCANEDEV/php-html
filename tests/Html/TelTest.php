@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\Html\Tests\Html;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\Html\Tests\Html;
 
 /**
  * Class     TelTest
@@ -14,7 +18,7 @@ class TelTest extends TestCase
      */
 
     /** @test */
-    public function it_can_create_a_tel_link()
+    public function it_can_create_a_tel_link(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<a href="tel:+19999999999">+19999999999</a>',
@@ -23,7 +27,7 @@ class TelTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_tel_link_with_contents()
+    public function it_can_create_a_tel_link_with_contents(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<a href="tel:+19999999999">Call me</a>',
