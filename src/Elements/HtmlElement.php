@@ -5,12 +5,8 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Elements;
 
 use Arcanedev\Html\Contracts\Elements\HtmlElement as HtmlElementContract;
-use Arcanedev\Html\Exceptions\InvalidHtmlException;
-use Arcanedev\Html\Exceptions\MissingTagException;
-use Closure;
-use Illuminate\Support\Collection;
-use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
+use Arcanedev\Html\Exceptions\{InvalidHtmlException, MissingTagException};
+use Illuminate\Support\{Collection, HtmlString, Str};
 use Illuminate\Support\Traits\Macroable;
 
 /**
@@ -21,7 +17,7 @@ use Illuminate\Support\Traits\Macroable;
  *
  * @method  \Arcanedev\Html\Elements\HtmlElement|mixed  attributeIf(bool $condition, string $attribute, mixed $value = null)
  * @method  \Arcanedev\Html\Elements\HtmlElement|mixed  attributeUnless(bool $condition, string $attribute, mixed $value = null)
- * @method  \Arcanedev\Html\Elements\HtmlElement|mixed  attributeIfNotNull(mixed $value, string $attribute, mixed $value = null)
+ * @method  \Arcanedev\Html\Elements\HtmlElement|mixed  attributeIfNotNull(mixed $valueToCheck, string $attribute, mixed $value = null)
  */
 abstract class HtmlElement implements HtmlElementContract
 {
@@ -32,6 +28,7 @@ abstract class HtmlElement implements HtmlElementContract
 
     use Concerns\HasAttributes,
         Concerns\HasChildElements,
+        Concerns\HasConditionalMethods,
         Macroable {
             __call as __callMacro;
         }
@@ -212,48 +209,6 @@ abstract class HtmlElement implements HtmlElementContract
     }
 
     /**
-     * Conditionally transform the element.
-     * Note that since elements are immutable, you'll need to return a new instance from the callback.
-     *
-     * @param  bool      $condition
-     * @param  \Closure  $callback
-     *
-     * @return $this|mixed
-     */
-    public function if(bool $condition, Closure $callback)
-    {
-        return $condition ? $callback($this) : $this;
-    }
-
-    /**
-     * Conditionally transform the element.
-     * Note that since elements are immutable, you'll need to return a new instance from the callback.
-     *
-     * @param  bool      $condition
-     * @param  \Closure  $callback
-     *
-     * @return $this|mixed
-     */
-    public function unless(bool $condition, Closure $callback)
-    {
-        return $this->if( ! $condition, $callback);
-    }
-
-    /**
-     * Conditionally transform the element.
-     * Note that since elements are immutable, you'll need to return a new instance from the callback.
-     *
-     * @param  mixed     $value
-     * @param  \Closure  $callback
-     *
-     * @return mixed
-     */
-    public function ifNotNull($value, Closure $callback)
-    {
-        return $this->if( ! is_null($value), $callback);
-    }
-
-    /**
      * Open the html element.
      *
      * @return \Illuminate\Support\HtmlString
@@ -348,45 +303,15 @@ abstract class HtmlElement implements HtmlElementContract
      */
     public function __call($name, array $arguments = [])
     {
-        if (Str::endsWith($name, $conditions = ['If', 'Unless', 'IfNotNull'])) {
-            foreach ($conditions as $condition) {
-                if (method_exists($this, $method = str_replace($condition, '', $name)))
+        if (Str::endsWith($name, $this->supportedConditions)) {
+            foreach ($this->supportedConditions as $condition) {
+                if (method_exists($this, $method = str_replace($condition, '', $name))) {
                     return $this->callConditionalMethod($condition, $method, $arguments);
+                }
             }
         }
 
         return $this->__callMacro($name, $arguments);
-    }
-
-    /**
-     * Call the if condition.
-     *
-     * @param  string  $type
-     * @param  string  $method
-     * @param  array   $arguments
-     *
-     * @return \Arcanedev\Html\Elements\HtmlElement|mixed
-     */
-    protected function callConditionalMethod($type, $method, array $arguments)
-    {
-        $value = array_shift($arguments);
-        $callback  = function () use ($method, $arguments) {
-            return $this->{$method}(...$arguments);
-        };
-
-        switch ($type) {
-            case 'If':
-                return $this->if((bool) $value, $callback);
-
-            case 'Unless':
-                return $this->unless((bool) $value, $callback);
-
-            case 'IfNotNull':
-                return $this->ifNotNull($value, $callback);
-
-            default:
-                return $this;
-        }
     }
 
     /**
