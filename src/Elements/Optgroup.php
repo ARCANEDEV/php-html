@@ -7,7 +7,6 @@ namespace Arcanedev\Html\Elements;
 /**
  * Class     Optgroup
  *
- * @package  Arcanedev\Html\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Optgroup extends HtmlElement

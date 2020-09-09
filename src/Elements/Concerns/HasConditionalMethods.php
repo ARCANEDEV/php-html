@@ -9,7 +9,6 @@ use Closure;
 /**
  * Trait     HasConditionalMethods
  *
- * @package  Arcanedev\Html\Elements\Concerns
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 trait HasConditionalMethods
@@ -107,7 +106,6 @@ trait HasConditionalMethods
 
             case 'IfNotNull':
                 return $this->ifNotNull($value, $callback);
-
             default:
                 return $this;
         }

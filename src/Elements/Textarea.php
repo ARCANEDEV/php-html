@@ -4,14 +4,35 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Elements;
 
+use Arcanedev\Html\Elements\Concerns\HasAutofocusAttribute;
+use Arcanedev\Html\Elements\Concerns\HasDisabledAttribute;
+use Arcanedev\Html\Elements\Concerns\HasMinMaxLengthAttributes;
+use Arcanedev\Html\Elements\Concerns\HasNameAttribute;
+use Arcanedev\Html\Elements\Concerns\HasPlaceholderAttribute;
+use Arcanedev\Html\Elements\Concerns\HasReadonlyAttribute;
+use Arcanedev\Html\Elements\Concerns\HasRequiredAttribute;
+use Arcanedev\Html\Elements\Concerns\HasValueAttribute;
+
 /**
  * Class     Textarea
  *
- * @package  Arcanedev\Html\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Textarea extends HtmlElement
 {
+    /* -----------------------------------------------------------------
+     |  Traits
+     | -----------------------------------------------------------------
+     */
+
+    use HasAutofocusAttribute,
+        HasDisabledAttribute,
+        HasMinMaxLengthAttributes,
+        HasNameAttribute,
+        HasPlaceholderAttribute,
+        HasReadonlyAttribute,
+        HasRequiredAttribute;
+
     /* -----------------------------------------------------------------
      |  Properties
      | -----------------------------------------------------------------
@@ -25,51 +46,9 @@ class Textarea extends HtmlElement
      */
 
     /**
-     * Add the autofocus attribute.
+     * Set the textarea value.
      *
-     * @return $this
-     */
-    public function autofocus()
-    {
-        return $this->attribute('autofocus');
-    }
-
-    /**
-     * Add the placeholder attribute.
-     *
-     * @param  string  $placeholder
-     *
-     * @return $this
-     */
-    public function placeholder($placeholder)
-    {
-        return $this->attribute('placeholder', $placeholder);
-    }
-
-    /**
-     * Add the name attribute.
-     *
-     * @param  string  $name
-     *
-     * @return $this
-     */
-    public function name($name)
-    {
-        return $this->attribute('name', $name);
-    }
-
-    /**
-     * Add the required attribute.
-     *
-     * @return $this
-     */
-    public function required()
-    {
-        return $this->attribute('required');
-    }
-
-    /**
-     * @param  string  $value
+     * @param string|null $value
      *
      * @return $this
      */
@@ -79,11 +58,13 @@ class Textarea extends HtmlElement
     }
 
     /**
+     * Set the textarea cols & rows sizes.
+     *
      * @param  string  $size
      *
      * @return $this
      */
-    public function size($size)
+    public function size(string $size)
     {
         list($cols, $rows) = explode('x', $size);
 

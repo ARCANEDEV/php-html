@@ -4,14 +4,24 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Elements;
 
+use Arcanedev\Html\Elements\Concerns\{HasNameAttribute, HasTypeAttribute, HasValueAttribute};
+
 /**
  * Class     Button
  *
- * @package  Arcanedev\Html\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Button extends HtmlElement
 {
+    /* -----------------------------------------------------------------
+     |  Traits
+     | -----------------------------------------------------------------
+     */
+
+    use HasNameAttribute,
+        HasTypeAttribute,
+        HasValueAttribute;
+
     /* -----------------------------------------------------------------
      |  Properties
      | -----------------------------------------------------------------
@@ -24,18 +34,6 @@ class Button extends HtmlElement
      |  Main Methods
      | -----------------------------------------------------------------
      */
-
-    /**
-     * Set the type attribute.
-     *
-     * @param  string  $type
-     *
-     * @return static
-     */
-    public function type($type)
-    {
-        return $this->attributeIf(in_array($type, ['button', 'submit', 'reset']), 'type', $type);
-    }
 
     /**
      * Set as submit button.
@@ -55,17 +53,5 @@ class Button extends HtmlElement
     public function reset()
     {
         return $this->type('reset');
-    }
-
-    /**
-     * Set the value attribute.
-     *
-     * @param  string  $value
-     *
-     * @return static
-     */
-    public function value($value)
-    {
-        return $this->attribute('value', $value);
     }
 }

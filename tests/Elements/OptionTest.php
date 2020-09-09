@@ -9,7 +9,6 @@ use Arcanedev\Html\Elements\Option;
 /**
  * Class     OptionTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class OptionTest extends TestCase

@@ -9,7 +9,6 @@ use Arcanedev\Html\Elements\Input;
 /**
  * Class     InputTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class InputTest extends TestCase
@@ -101,6 +100,24 @@ class InputTest extends TestCase
     }
 
     /** @test */
+    public function it_can_create_an_input_that_has_autofocus_when_passing_true(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input autofocus>',
+            Input::make()->autofocus(true)
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_an_input_that_has_autofocus_when_passing_false(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input>',
+            Input::make()->autofocus(false)
+        );
+    }
+
+    /** @test */
     public function it_can_check(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -184,6 +201,24 @@ class InputTest extends TestCase
         static::assertHtmlStringEqualsHtmlString(
             '<input type="button" disabled="disabled">',
             Input::make()->type('button')->disabled()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_an_input_with_maxlength(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input type="text" maxlength="25">',
+            Input::make()->type('text')->maxlength(25)
+        );
+    }
+
+    /** @test */
+    public function it_can_create_an_input_with_minlength(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input type="text" minlength="25">',
+            Input::make()->type('text')->minlength(25)
         );
     }
 }

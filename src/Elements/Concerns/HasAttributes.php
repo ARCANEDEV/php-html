@@ -10,7 +10,6 @@ use Arcanedev\Html\Entities\Attributes;
 /**
  * Trait     HasAttributes
  *
- * @package  Arcanedev\Html\Elements\Concerns
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 trait HasAttributes

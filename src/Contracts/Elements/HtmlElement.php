@@ -7,10 +7,9 @@ namespace Arcanedev\Html\Contracts\Elements;
 use Arcanedev\Html\Contracts\Renderable;
 
 /**
- * Interface     HtmlElement
+ * Interface  HtmlElement
  *
- * @package  Arcanedev\Html\Contracts
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
+ * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface HtmlElement extends Renderable
 {

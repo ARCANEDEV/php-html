@@ -9,7 +9,6 @@ use Arcanedev\Html\Elements\Img;
 /**
  * Class     ImgTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ImgTest extends TestCase

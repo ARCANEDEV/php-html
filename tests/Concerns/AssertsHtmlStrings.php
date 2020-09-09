@@ -10,7 +10,6 @@ use Illuminate\Contracts\Support\Htmlable;
 /**
  * Trait     AssertsHtmlStrings
  *
- * @package  Arcanedev\Html\Tests\Concerns
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 trait AssertsHtmlStrings

@@ -9,7 +9,6 @@ use Arcanedev\Html\Elements\Span;
 /**
  * Class     SpanTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class SpanTest extends TestCase

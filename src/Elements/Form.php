@@ -7,7 +7,6 @@ namespace Arcanedev\Html\Elements;
 /**
  * Class     Form
  *
- * @package  Arcanedev\Html\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Form extends HtmlElement
@@ -54,11 +53,15 @@ class Form extends HtmlElement
     /**
      * Add the novalidate attribute.
      *
+     * @param  bool  $novalidate
+     *
      * @return $this
      */
-    public function novalidate()
+    public function novalidate(bool $novalidate = true)
     {
-        return $this->attribute('novalidate');
+        return $novalidate
+            ? $this->attribute('novalidate')
+            : $this->forgetAttribute('novalidate');
     }
 
     /**

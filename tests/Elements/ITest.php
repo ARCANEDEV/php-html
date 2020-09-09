@@ -9,7 +9,6 @@ use Arcanedev\Html\Elements\I;
 /**
  * Class     ITest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ITest extends TestCase

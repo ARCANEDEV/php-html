@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Elements;
 
-use Arcanedev\Html\Elements\Form;
-use Arcanedev\Html\Elements\Input;
+use Arcanedev\Html\Elements\{Form, Input};
 
 /**
  * Class     FormTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class FormTest extends TestCase
@@ -80,11 +78,29 @@ class FormTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_a_form_that_add_novalidate_attribute(): void
+    public function it_can_create_a_form_with_a_novalidate_attribute(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<form enctype="multipart/form-data" novalidate=""></form>',
             Form::make()->novalidate()->acceptsFiles()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_form_that_has_novalidate_when_passing_true(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<form enctype="multipart/form-data" novalidate=""></form>',
+            Form::make()->novalidate(true)->acceptsFiles()
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_a_form_that_has_novalidate_when_passing_false(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<form enctype="multipart/form-data"></form>',
+            Form::make()->novalidate(false)->acceptsFiles()
         );
     }
 

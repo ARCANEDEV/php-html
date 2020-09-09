@@ -9,7 +9,6 @@ use Arcanedev\Html\Elements\Select;
 /**
  * Class     SelectTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class SelectTest extends TestCase
@@ -311,6 +310,138 @@ class SelectTest extends TestCase
                 ->id('select')
                 ->options($options)
                 ->value('+2')
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_disabled_select(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<select disabled>
+                <option value="value1">text1</option>
+            </select>',
+            Select::make()->disabled()->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_select_that_is_disabled_when_passing_true(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<select disabled>
+                <option value="value1">text1</option>
+            </select>',
+            Select::make()->disabled(true)->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_a_select_that_is_disabled_when_passing_false(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<select>
+                <option value="value1">text1</option>
+            </select>',
+            Select::make()->disabled(false)->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_select_that_has_autofocus(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<select autofocus>
+                <option value="value1">text1</option>
+            </select>',
+            Select::make()->autofocus()->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_select_that_has_autofocus_when_passing_true(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<select autofocus>
+                <option value="value1">text1</option>
+            </select>',
+            Select::make()->autofocus(true)->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_a_select_that_has_autofocus_when_passing_false(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<select>
+                <option value="value1">text1</option>
+            </select>',
+            Select::make()->autofocus(false)->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_select_that_is_required(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<select required>
+                <option value="value1">text1</option>
+            </select>',
+            Select::make()->required()->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_select_that_is_required_when_passing_true(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<select required>
+                <option value="value1">text1</option>
+            </select>',
+            Select::make()->required(true)->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_a_select_that_is_required_when_passing_false(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<select>
+                <option value="value1">text1</option>
+            </select>',
+            Select::make()->required(false)->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_select_that_is_readonly(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<select readonly>
+                <option value="value1">text1</option>
+            </select>',
+            Select::make()->readonly()->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_select_that_is_readonly_when_passing_true(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<select readonly>
+                <option value="value1">text1</option>
+            </select>',
+            Select::make()->readonly(true)->options(['value1' => 'text1'])->render()
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_a_select_that_is_readonly_when_passing_false(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<select>
+                <option value="value1">text1</option>
+            </select>',
+            Select::make()->readonly(false)->options(['value1' => 'text1'])->render()
         );
     }
 }

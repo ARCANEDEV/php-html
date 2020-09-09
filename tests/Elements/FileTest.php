@@ -9,7 +9,6 @@ use Arcanedev\Html\Elements\File;
 /**
  * Class     FileTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class FileTest extends TestCase
@@ -34,6 +33,24 @@ class FileTest extends TestCase
         static::assertHtmlStringEqualsHtmlString(
             '<input type="file" autofocus>',
             File::make()->autofocus()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_with_autofocus_attribute_when_passing_true(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input type="file" autofocus>',
+            File::make()->autofocus(true)
+        );
+    }
+
+    /** @test */
+    public function it_wont_create_a_file_that_has_autofocus_when_passing_false(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input type="file">',
+            File::make()->autofocus(false)
         );
     }
 

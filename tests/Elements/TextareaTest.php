@@ -9,7 +9,6 @@ use Arcanedev\Html\Elements\Textarea;
 /**
  * Class     TextareaTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class TextareaTest extends TestCase

@@ -9,7 +9,6 @@ use Arcanedev\Html\Elements\Legend;
 /**
  * Class     LegendTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class LegendTest extends TestCase

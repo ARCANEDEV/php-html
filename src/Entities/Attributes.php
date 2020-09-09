@@ -11,7 +11,6 @@ use Illuminate\Contracts\Support\Arrayable;
 /**
  * Class     Attributes
  *
- * @package  Arcanedev\Html\Entities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Attributes implements ArrayAccess, Arrayable

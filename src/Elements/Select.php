@@ -5,17 +5,31 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Elements;
 
 use Arcanedev\Html\Contracts\Selectable;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
+use Arcanedev\Html\Elements\Concerns\HasAutofocusAttribute;
+use Arcanedev\Html\Elements\Concerns\HasDisabledAttribute;
+use Arcanedev\Html\Elements\Concerns\HasNameAttribute;
+use Arcanedev\Html\Elements\Concerns\HasReadonlyAttribute;
+use Arcanedev\Html\Elements\Concerns\HasRequiredAttribute;
+use Illuminate\Support\{Collection, Str};
 
 /**
  * Class     Select
  *
- * @package  Arcanedev\Html\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Select extends HtmlElement
 {
+    /* -----------------------------------------------------------------
+     |  Traits
+     | -----------------------------------------------------------------
+     */
+
+    use HasAutofocusAttribute,
+        HasDisabledAttribute,
+        HasNameAttribute,
+        HasRequiredAttribute,
+        HasReadonlyAttribute;
+
     /* -----------------------------------------------------------------
      |  Properties
      | -----------------------------------------------------------------
@@ -52,18 +66,6 @@ class Select extends HtmlElement
     }
 
     /**
-     * Add the name attribute.
-     *
-     * @param  string  $name
-     *
-     * @return $this
-     */
-    public function name($name)
-    {
-        return $this->attribute('name', $name);
-    }
-
-    /**
      * Add options.
      *
      * @param  iterable  $options
@@ -97,16 +99,6 @@ class Select extends HtmlElement
                  ->selectedUnless($this->hasSelection())
                  ->disabled($disabled)
         );
-    }
-
-    /**
-     * Add the required attribute.
-     *
-     * @return $this
-     */
-    public function required()
-    {
-        return $this->attribute('required');
     }
 
     /**

@@ -13,7 +13,6 @@ use Illuminate\Contracts\Support\Htmlable;
 /**
  * Class     ChildrenCollection
  *
- * @package  Arcanedev\Html\Entities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ChildrenCollection extends Collection implements Renderable

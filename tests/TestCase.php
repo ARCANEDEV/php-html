@@ -10,7 +10,6 @@ use PHPUnit\Framework\TestCase as BaseTestCase;
 /**
  * Class     TestCase
  *
- * @package  Arcanedev\Html\Tests
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 abstract class TestCase extends BaseTestCase
