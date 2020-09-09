@@ -15,7 +15,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
-        "illuminate/support": "^8.0"
+        "illuminate/support": "^9.0"
     },
     "require-dev": {
         "ext-dom": "*",
@@ -37,7 +37,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-develop": "5.x-dev"
+            "dev-develop": "6.x-dev"
         }
     },
     "config": {
