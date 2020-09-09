@@ -11,7 +11,6 @@ use Arcanedev\Html\Tests\TestCase;
 /**
  * Class     ChildrenCollectionTest
  *
- * @package  Arcanedev\Html\Tests\Entities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ChildrenCollectionTest extends TestCase

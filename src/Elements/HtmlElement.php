@@ -12,7 +12,6 @@ use Illuminate\Support\Traits\Macroable;
 /**
  * Class     HtmlElement
  *
- * @package  Arcanedev\Html\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  *
  * @method  \Arcanedev\Html\Elements\HtmlElement|mixed  attributeIf(bool $condition, string $attribute, mixed $value = null)

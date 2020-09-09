@@ -9,7 +9,6 @@ use Arcanedev\Html\Elements\Dl;
 /**
  * Class     DlTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class DlTest extends TestCase

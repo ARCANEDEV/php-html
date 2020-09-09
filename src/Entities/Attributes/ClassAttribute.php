@@ -11,7 +11,6 @@ use Illuminate\Support\{Arr, Collection};
 /**
  * Class     ClassAttribute
  *
- * @package  Arcanedev\Html\Entities\Attributes
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ClassAttribute extends AbstractAttribute implements Countable

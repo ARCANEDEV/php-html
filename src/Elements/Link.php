@@ -7,10 +7,7 @@ namespace Arcanedev\Html\Elements;
 /**
  * Class     Link
  *
- * @package  Arcanedev\Html\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
- *
- * @link  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link
  */
 class Link extends HtmlElement
 {

@@ -7,7 +7,6 @@ namespace Arcanedev\Html\Tests\Html;
 /**
  * Class     ITest
  *
- * @package  Arcanedev\Html\Tests\Html
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ITest extends TestCase

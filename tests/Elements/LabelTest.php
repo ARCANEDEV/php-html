@@ -9,7 +9,6 @@ use Arcanedev\Html\Elements\Label;
 /**
  * Class     LabelTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class LabelTest extends TestCase

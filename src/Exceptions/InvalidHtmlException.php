@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Exceptions;
 
 /**
- * Class     InvalidHtml
+ * Class     InvalidHtmlException
  *
- * @package  Arcanedev\Html\Exceptions
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class InvalidHtmlException extends \Exception

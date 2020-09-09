@@ -5,9 +5,24 @@ declare(strict_types=1);
 namespace Arcanedev\Html;
 
 use Arcanedev\Html\Contracts\Html as HtmlContract;
-use Arcanedev\Html\Elements\{
-    A, Button, Div, Dl, Element, Fieldset, File, Form, I, Img, Input, Label, Legend, Option, Select, Span, Textarea, Ul
-};
+use Arcanedev\Html\Elements\A;
+use Arcanedev\Html\Elements\Button;
+use Arcanedev\Html\Elements\Div;
+use Arcanedev\Html\Elements\Dl;
+use Arcanedev\Html\Elements\Element;
+use Arcanedev\Html\Elements\Fieldset;
+use Arcanedev\Html\Elements\File;
+use Arcanedev\Html\Elements\Form;
+use Arcanedev\Html\Elements\I;
+use Arcanedev\Html\Elements\Img;
+use Arcanedev\Html\Elements\Input;
+use Arcanedev\Html\Elements\Label;
+use Arcanedev\Html\Elements\Legend;
+use Arcanedev\Html\Elements\Option;
+use Arcanedev\Html\Elements\Select;
+use Arcanedev\Html\Elements\Span;
+use Arcanedev\Html\Elements\Textarea;
+use Arcanedev\Html\Elements\Ul;
 use Arcanedev\Html\Entities\Attributes\ClassAttribute;
 use DateTimeImmutable;
 use Illuminate\Support\Str;
@@ -15,7 +30,6 @@ use Illuminate\Support\Str;
 /**
  * Class     Html
  *
- * @package  Arcanedev\Html
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Html implements HtmlContract
@@ -108,14 +122,40 @@ class Html implements HtmlContract
         $input = $this->input('date', $name, $value);
 
         if (
-            $format
-            && $input->hasAttribute('value')
-            && ! empty($value = $input->getAttribute('value')->value())
+            ! $format ||
+            ! $input->hasAttribute('value') ||
+            empty($value = $input->getAttribute('value')->value())
         ) {
-            $input = $input->value(static::formatDateTime($value, static::HTML_DATE_FORMAT));
+            return $input;
         }
 
-        return $input;
+        return $input->value(static::formatDateTime($value, static::HTML_DATE_FORMAT));;
+    }
+
+    /**
+     * Make a datetime input.
+     *
+     * @param  string|null  $name
+     * @param  string|null  $value
+     * @param  bool         $format
+     *
+     * @return \Arcanedev\Html\Elements\Input
+     */
+    public function datetime($name = null, $value = null, $format = true)
+    {
+        $input = $this->input('datetime-local', $name, $value);
+
+        if (
+            ! $format ||
+            ! $input->hasAttribute('value') ||
+            empty($value = $input->getAttribute('value')->value())
+        ) {
+            return $input;
+        }
+
+        return $input->value(
+            $this->formatDateTime($value, static::HTML_DATE_FORMAT.'\T'.static::HTML_TIME_FORMAT)
+        );
     }
 
     /**
@@ -481,11 +521,11 @@ class Html implements HtmlContract
     /**
      * Make a number input.
      *
-     * @param  string|null  $name
-     * @param  string|null  $value
-     * @param  mixed|null   $min
-     * @param  mixed|null   $max
-     * @param  mixed|null   $step
+     * @param  string|null            $name
+     * @param  string|null            $value
+     * @param  string|float|int|null  $min
+     * @param  string|float|int|null  $max
+     * @param  string|float|int|null  $step
      *
      * @return \Arcanedev\Html\Elements\Input
      */
@@ -549,12 +589,13 @@ class Html implements HtmlContract
     protected static function formatDateTime(string $value, string $format): string
     {
         try {
-            return empty($value)
-                ? $value
-                : (new DateTimeImmutable($value))->format($format);
+            if ( ! empty($value))
+                $value = (new DateTimeImmutable($value))->format($format);
         }
         catch (\Exception $e) {
-            return $value;
+            // Do nothing...
         }
+
+        return $value;
     }
 }

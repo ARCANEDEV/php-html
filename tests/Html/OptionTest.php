@@ -7,7 +7,6 @@ namespace Arcanedev\Html\Tests\Html;
 /**
  * Class     OptionTest
  *
- * @package  Arcanedev\Html\Tests\Html
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class OptionTest extends TestCase

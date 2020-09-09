@@ -5,17 +5,25 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Elements;
 
 use Arcanedev\Html\Contracts\Selectable;
+use Arcanedev\Html\Elements\Concerns\{HasDisabledAttribute, HasValueAttribute};
 
 /**
  * Class     Option
  *
- * @package  Arcanedev\Html\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  *
  * @method   \Arcanedev\Html\Elements\Option  selectedUnless(bool $condition)
  */
 class Option extends HtmlElement implements Selectable
 {
+    /* -----------------------------------------------------------------
+     |  Traits
+     | -----------------------------------------------------------------
+     */
+
+    use HasDisabledAttribute,
+        HasValueAttribute;
+
     /* -----------------------------------------------------------------
      |  Properties
      | -----------------------------------------------------------------
@@ -44,11 +52,15 @@ class Option extends HtmlElement implements Selectable
     /**
      * Add the selected attribute.
      *
+     * @param  bool  $selected
+     *
      * @return $this
      */
-    public function selected()
+    public function selected(bool $selected = true)
     {
-        return $this->attribute('selected');
+        return $selected
+            ? $this->attribute('selected')
+            : $this->forgetAttribute('selected');
     }
 
     /**
@@ -58,32 +70,6 @@ class Option extends HtmlElement implements Selectable
      */
     public function unselected()
     {
-        return $this->forgetAttribute('selected');
-    }
-
-    /**
-     * Set the value.
-     *
-     * @param  string  $value
-     *
-     * @return $this
-     */
-    public function value($value)
-    {
-        return $this->attribute('value', $value);
-    }
-
-    /**
-     * Set the disabled attribute.
-     *
-     * @param  bool  $disabled
-     *
-     * @return $this
-     */
-    public function disabled($disabled = true)
-    {
-        return $disabled
-            ? $this->attribute('disabled')
-            : $this->forgetAttribute('disabled');
+        return $this->selected(false);
     }
 }

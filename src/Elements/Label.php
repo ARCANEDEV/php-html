@@ -7,7 +7,6 @@ namespace Arcanedev\Html\Elements;
 /**
  * Class     Label
  *
- * @package  Arcanedev\Html\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Label extends HtmlElement

@@ -9,7 +9,6 @@ use Arcanedev\Html\Elements\Link;
 /**
  * Class     LinkTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class LinkTest extends TestCase

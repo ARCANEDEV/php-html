@@ -9,7 +9,6 @@ use Illuminate\Support\Arr;
 /**
  * Class     Dl
  *
- * @package  Arcanedev\Html\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Dl extends HtmlElement

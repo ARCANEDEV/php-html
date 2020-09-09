@@ -9,7 +9,6 @@ use Arcanedev\Html\Elements\Element;
 /**
  * Class     ElementTest
  *
- * @package  Arcanedev\Html\Tests\Html
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ElementTest extends TestCase

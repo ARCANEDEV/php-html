@@ -9,7 +9,6 @@ use Arcanedev\Html\Elements\Meta;
 /**
  * Class     MetaTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class MetaTest extends TestCase

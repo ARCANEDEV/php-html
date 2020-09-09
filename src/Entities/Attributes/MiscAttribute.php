@@ -7,7 +7,6 @@ namespace Arcanedev\Html\Entities\Attributes;
 /**
  * Class     MiscAttribute
  *
- * @package  Arcanedev\Html\Entities\Attributes
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class MiscAttribute extends AbstractAttribute

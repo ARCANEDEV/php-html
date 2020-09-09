@@ -10,7 +10,6 @@ use Arcanedev\Html\Tests\TestCase;
 /**
  * Class     AttributesTest
  *
- * @package  Arcanedev\Html\Tests\Entities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class AttributesTest extends TestCase

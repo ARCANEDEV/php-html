@@ -10,7 +10,6 @@ use Arcanedev\Html\Tests\TestCase as BaseTestCase;
 /**
  * Class     TestCase
  *
- * @package  Arcanedev\Html\Tests\Html
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 abstract class TestCase extends BaseTestCase

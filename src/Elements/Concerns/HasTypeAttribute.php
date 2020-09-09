@@ -2,14 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Arcanedev\Html\Exceptions;
+namespace Arcanedev\Html\Elements\Concerns;
 
 /**
- * Class     MissingTagException
+ * Trait     HasTypeAttribute
  *
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
+ *
+ * @mixin \Arcanedev\Html\Elements\Concerns\HasAttributes
  */
-class MissingTagException extends \Exception
+trait HasTypeAttribute
 {
     /* -----------------------------------------------------------------
      |  Main Methods
@@ -17,12 +19,14 @@ class MissingTagException extends \Exception
      */
 
     /**
-     * @param  string  $className
+     * Add the type attribute.
+     *
+     * @param  string  $type
      *
      * @return static
      */
-    public static function onClass($className)
+    public function type(string $type)
     {
-        return new self("Class {$className} has no `\$tag` property or empty.");
+        return $this->attribute('type', $type);
     }
 }

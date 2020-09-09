@@ -7,7 +7,6 @@ namespace Arcanedev\Html\Elements;
 /**
  * Class     Element
  *
- * @package  Arcanedev\Html\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Element extends HtmlElement

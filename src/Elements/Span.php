@@ -7,7 +7,6 @@ namespace Arcanedev\Html\Elements;
 /**
  * Class     Span
  *
- * @package  Arcanedev\Html\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Span extends HtmlElement

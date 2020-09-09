@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Contracts;
 
 /**
- * Interface     Selectable
+ * Interface  Selectable
  *
- * @package  Arcanedev\Html\Contracts
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
+ * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface Selectable
 {
@@ -18,19 +17,23 @@ interface Selectable
      */
 
     /**
-     * @return static
+     * Add the selected attribute.
+     *
+     * @param  bool  $selected
+     *
+     * @return $this
      */
-    public function selected();
+    public function selected(bool $selected = true);
 
     /**
      * @param  bool  $condition
      *
-     * @return static
+     * @return $this
      */
     public function selectedIf($condition);
 
     /**
-     * @return static
+     * @return $this
      */
     public function unselected();
 }

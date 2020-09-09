@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Elements;
 
-use Arcanedev\Html\Elements\A;
-use Arcanedev\Html\Elements\Ol;
+use Arcanedev\Html\Elements\{A, Ol};
 
 /**
  * Class     OlTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class OlTest extends TestCase

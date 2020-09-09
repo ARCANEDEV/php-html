@@ -7,7 +7,6 @@ namespace Arcanedev\Html\Entities\Attributes;
 /**
  * Class     AbstractAttribute
  *
- * @package  Arcanedev\Html\Entities\Attributes
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 abstract class AbstractAttribute

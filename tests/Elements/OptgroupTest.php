@@ -9,7 +9,6 @@ use Arcanedev\Html\Elements\Optgroup;
 /**
  * Class     OptgroupTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class OptgroupTest extends TestCase

@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Elements;
 
-use Arcanedev\Html\Elements\Div;
-use Arcanedev\Html\Elements\Element;
+use Arcanedev\Html\Elements\{Div, Element};
 
 /**
  * Class     ElementTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ElementTest extends TestCase

@@ -7,10 +7,9 @@ namespace Arcanedev\Html\Contracts;
 use Illuminate\Contracts\Support\Htmlable;
 
 /**
- * Interface     Renderable
+ * Interface  Renderable
  *
- * @package  Arcanedev\Html\Contracts
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
+ * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface Renderable extends Htmlable
 {

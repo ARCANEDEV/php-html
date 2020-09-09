@@ -7,7 +7,6 @@ namespace Arcanedev\Html\Tests\Html;
 /**
  * Class     InputTest
  *
- * @package  Arcanedev\Html\Tests\Html
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class InputTest extends TestCase
@@ -137,6 +136,24 @@ class InputTest extends TestCase
     }
 
     /** @test */
+    public function it_can_create_an_input_without_readonly(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input>',
+            $this->html->input()->readonly(false)
+        );
+    }
+
+    /** @test */
+    public function it_can_remove_readonly_from_a_readonly_input(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input>',
+            $this->html->input()->readonly()->readonly(false)
+        );
+    }
+
+    /** @test */
     public function it_can_make_a_date_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -169,6 +186,42 @@ class InputTest extends TestCase
         static::assertHtmlStringEqualsHtmlString(
             '<input id="test_date" name="test_date" type="date" value="notadate"/>',
             $this->html->date('test_date', 'notadate')
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_datetime_input(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input type="datetime-local">',
+            $this->html->datetime()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_datetime_input_with_blank_date(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input id="test_datetime" name="test_datetime" type="datetime-local" value=""/>',
+            $this->html->datetime('test_datetime', '')
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_datetime_input_and_format_date(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input id="test_datetime" name="test_datetime" type="datetime-local" value="2020-01-20T15:00:12"/>',
+            $this->html->datetime('test_datetime', '2020-01-20T15:00:12')
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_datetime_input_with_invalid_date(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input id="test_datetime" name="test_datetime" type="datetime-local" value="notadate"/>',
+            $this->html->datetime('test_datetime', 'notadate')
         );
     }
 
@@ -265,6 +318,42 @@ class InputTest extends TestCase
         static::assertHtmlStringEqualsHtmlString(
             '<input type="number" name="percentage" id="percentage" value="30" max="100" step="10">',
             $this->html->number('percentage', '30', null, '100', '10')
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_number_input(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input type="number">',
+            $this->html->number()
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_number_input_with_min_max(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input type="number" name="test" id="test" value="0" min="0" max="100">',
+            $this->html->number('test', '0', '0', '100')
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_number_input_with_min_max_step(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input type="number" name="test" id="test" value="0" min="0" max="100" step="10">',
+            $this->html->number('test', '0', '0', '100', '10')
+        );
+    }
+
+    /** @test */
+    public function it_can_create_a_number_input_with_max_step(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<input type="number" name="test" id="test" value="30" max="100" step="10">',
+            $this->html->number('test', '30', null, '100', '10')
         );
     }
 

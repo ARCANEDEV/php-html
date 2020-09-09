@@ -7,7 +7,6 @@ namespace Arcanedev\Html\Elements;
 /**
  * Class     Img
  *
- * @package  Arcanedev\Html\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Img extends HtmlElement

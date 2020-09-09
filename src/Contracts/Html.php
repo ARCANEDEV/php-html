@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Contracts;
 
 /**
- * Interface     Html
+ * Interface  Html
  *
- * @package  Arcanedev\Html\Contracts
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
+ * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface Html
 {

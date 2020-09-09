@@ -7,7 +7,6 @@ namespace Arcanedev\Html\Elements;
 /**
  * Class     ListElement
  *
- * @package  Arcanedev\Html\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 abstract class ListElement extends Element

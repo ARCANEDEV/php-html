@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Elements;
 
-use Arcanedev\Html\Elements\A;
-use Arcanedev\Html\Elements\Ul;
+use Arcanedev\Html\Elements\{A, Ul};
 
 /**
  * Class     UlTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class UlTest extends TestCase

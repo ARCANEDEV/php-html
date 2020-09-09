@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Elements;
 
-use Arcanedev\Html\Elements\Button;
-use Arcanedev\Html\Elements\I;
+use Arcanedev\Html\Elements\{Button, I};
 
 /**
  * Class     ButtonTest
  *
- * @package  Arcanedev\Html\Tests\Elements
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ButtonTest extends TestCase
