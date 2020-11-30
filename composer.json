@@ -14,12 +14,12 @@
     "type":    "library",
     "license": "MIT",
     "require": {
-        "php": "^7.3",
+        "php": "^7.3|^8.0",
         "illuminate/support": "^8.0"
     },
     "require-dev": {
         "ext-dom": "*",
-        "phpunit/phpunit": "^9.3"
+        "phpunit/phpunit": "^9.3.3"
     },
     "autoload": {
         "psr-4": {
