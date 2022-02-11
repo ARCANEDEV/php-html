@@ -240,7 +240,7 @@ class Attributes implements ArrayAccess, Arrayable
      *
      * @return bool
      */
-    public function offsetExists($key)
+    public function offsetExists($key): bool
     {
         return array_key_exists($key, $this->items);
     }
@@ -252,7 +252,7 @@ class Attributes implements ArrayAccess, Arrayable
      *
      * @return mixed
      */
-    public function offsetGet($key)
+    public function offsetGet($key): mixed
     {
         return $this->items[$key];
     }
@@ -265,7 +265,7 @@ class Attributes implements ArrayAccess, Arrayable
      *
      * @return void
      */
-    public function offsetSet($key, $value)
+    public function offsetSet($key, $value): void
     {
         $this->items[$key] = $value;
     }
@@ -277,7 +277,7 @@ class Attributes implements ArrayAccess, Arrayable
      *
      * @return void
      */
-    public function offsetUnset($key)
+    public function offsetUnset($key): void
     {
         unset($this->items[$key]);
     }
