@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Elements;
 
+use Arcanedev\Html\Elements\Concerns\HasTargetAttribute;
+
 /**
  * Class     Form
  *
@@ -11,6 +13,13 @@ namespace Arcanedev\Html\Elements;
  */
 class Form extends HtmlElement
 {
+    /* -----------------------------------------------------------------
+     |  Traits
+     | -----------------------------------------------------------------
+     */
+
+    use HasTargetAttribute;
+
     /* -----------------------------------------------------------------
      |  Properties
      | -----------------------------------------------------------------

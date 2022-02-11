@@ -64,8 +64,8 @@ class ChildrenCollection extends Collection implements Renderable
             if ($child instanceof Htmlable)
                 return $child->toHtml();
 
-            if (is_string($child) || $child instanceof HtmlString)
-                return $child;
+            if (is_string($child) || is_numeric($child))
+                return strval($child);
 
             throw new InvalidChildException;
         };
@@ -102,9 +102,9 @@ class ChildrenCollection extends Collection implements Renderable
      */
     protected static function isValidChild($child)
     {
-        return $child instanceof HtmlElement
-            || $child instanceof HtmlString
+        return $child instanceof Htmlable
             || is_string($child)
+            || is_numeric($child)
             || is_null($child);
     }
 }

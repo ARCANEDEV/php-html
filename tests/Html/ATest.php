@@ -51,4 +51,22 @@ class ATest extends TestCase
             $this->html->a('https://github.com/ARCANEDEV', 'ARCANEDEV <em>(Github)</em>')
         );
     }
+
+    /** @test */
+    public function it_can_create_an_a_element_with_a_target(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<a target="_blank"></a>',
+            $this->html->a()->target('_blank')
+        );
+    }
+
+    /** @test */
+    public function it_can_create_an_a_element_with_a_href_and_a_target(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<a href="https://github.com/ARCANEDEV" target="_blank">ARCANEDEV <em>(Github)</em></a>',
+            $this->html->a('https://github.com/ARCANEDEV', 'ARCANEDEV <em>(Github)</em>')->target('_blank')
+        );
+    }
 }

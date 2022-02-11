@@ -33,4 +33,18 @@ class FormTest extends TestCase
             $this->html->form('POST', '/submit')
         );
     }
+
+    /** @test */
+    public function it_can_create_a_form_with_a_target(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<form method="POST" action="/submit" target="_blank">'.
+            '<input type="hidden" name="_token" value="abc">'.
+            '</form>',
+            $this->html
+                ->form('POST', '/submit')
+                ->target('_blank')
+                ->addChild('<input type="hidden" name="_token" value="abc">')
+        );
+    }
 }

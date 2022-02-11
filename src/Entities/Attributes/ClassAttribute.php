@@ -192,7 +192,7 @@ class ClassAttribute extends AbstractAttribute implements Countable
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->all());
     }
