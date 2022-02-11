@@ -100,8 +100,7 @@ class ChildrenCollectionTest extends TestCase
     {
         return [
             [true],
-            [1],
-            [.1],
+            [false],
         ];
     }
 }

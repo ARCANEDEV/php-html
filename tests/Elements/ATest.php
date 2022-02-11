@@ -44,4 +44,13 @@ class ATest extends TestCase
             A::make()->href('#delete-user-modal')->data(['role' => 'modal', 'id' => 1, 'name' => 'User 1'])
         );
     }
+
+    /** @test */
+    public function it_can_create_an_a_element_with_a_target(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<a target="_blank"></a>',
+            A::make()->target('_blank')
+        );
+    }
 }

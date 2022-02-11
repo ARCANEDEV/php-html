@@ -159,7 +159,7 @@ class InputTest extends TestCase
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input readonly>',
-            Input::make()->readonly()
+            Input::make()->isReadonly()
         );
     }
 

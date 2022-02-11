@@ -20,7 +20,7 @@ trait HasReadonlyAttribute
      *
      * @return $this
      */
-    public function readonly(bool $readonly = true)
+    public function isReadonly(bool $readonly = true)
     {
         return $readonly
             ? $this->attribute('readonly')

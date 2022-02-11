@@ -131,7 +131,7 @@ class InputTest extends TestCase
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input readonly>',
-            $this->html->input()->readonly()
+            $this->html->input()->isReadonly()
         );
     }
 
@@ -140,7 +140,7 @@ class InputTest extends TestCase
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input>',
-            $this->html->input()->readonly(false)
+            $this->html->input()->isReadonly(false)
         );
     }
 
@@ -149,7 +149,7 @@ class InputTest extends TestCase
     {
         static::assertHtmlStringEqualsHtmlString(
             '<input>',
-            $this->html->input()->readonly()->readonly(false)
+            $this->html->input()->isReadonly()->isReadonly(false)
         );
     }
 

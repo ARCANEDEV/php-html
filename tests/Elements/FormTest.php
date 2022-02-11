@@ -157,4 +157,13 @@ class FormTest extends TestCase
             $form->open()->toHtml()
         );
     }
+
+    /** @test */
+    public function it_can_create_a_form_with_a_target(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<form target="_blank"></form>',
+            Form::make()->target('_blank')
+        );
+    }
 }
