@@ -18,22 +18,16 @@ interface Selectable
 
     /**
      * Add the selected attribute.
-     *
-     * @param  bool  $selected
-     *
-     * @return $this
      */
-    public function selected(bool $selected = true);
+    public function selected(bool $selected = true): static;
 
     /**
-     * @param  bool  $condition
-     *
-     * @return $this
+     * Add the selected if it fulfill the condition.
      */
-    public function selectedIf($condition);
+    public function selectedIf(bool $condition): static;
 
     /**
-     * @return $this
+     * Remove the selected attribute.
      */
-    public function unselected();
+    public function unselected(): static;
 }

@@ -25,8 +25,7 @@ class Form extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    /** @var  string */
-    protected $tag = 'form';
+    protected string $tag = 'form';
 
     /* -----------------------------------------------------------------
      |  Main Methods
@@ -36,11 +35,9 @@ class Form extends HtmlElement
     /**
      * Add the action attribute.
      *
-     * @param  string|null  $action
-     *
      * @return $this
      */
-    public function action($action)
+    public function action(?string $action): static
     {
         return $this->attribute('action', $action);
     }
@@ -48,11 +45,9 @@ class Form extends HtmlElement
     /**
      * Add the method attribute.
      *
-     * @param  string|null  $method
-     *
      * @return $this
      */
-    public function method($method)
+    public function method(string $method): static
     {
         $method = strtoupper($method);
 
@@ -62,11 +57,9 @@ class Form extends HtmlElement
     /**
      * Add the novalidate attribute.
      *
-     * @param  bool  $novalidate
-     *
      * @return $this
      */
-    public function novalidate(bool $novalidate = true)
+    public function novalidate(bool $novalidate = true): static
     {
         return $novalidate
             ? $this->attribute('novalidate')
@@ -78,7 +71,7 @@ class Form extends HtmlElement
      *
      * @return $this
      */
-    public function acceptsFiles()
+    public function acceptsFiles(): static
     {
         return $this->attribute('enctype', 'multipart/form-data');
     }

@@ -21,11 +21,9 @@ trait HasNameAttribute
     /**
      * Add the name attribute.
      *
-     * @param  string  $name
-     *
      * @return $this
      */
-    public function name(string $name)
+    public function name(string $name): static
     {
         return $this->attribute('name', $name);
     }

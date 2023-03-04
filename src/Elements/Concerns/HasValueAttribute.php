@@ -21,11 +21,9 @@ trait HasValueAttribute
     /**
      * Add the value attribute.
      *
-     * @param  string|mixed|null  $value
-     *
      * @return $this
      */
-    public function value($value)
+    public function value(mixed $value): static
     {
         return $this->attribute('value', $value);
     }

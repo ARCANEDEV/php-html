@@ -9,7 +9,7 @@ namespace Arcanedev\Html\Elements;
  *
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-abstract class ListElement extends Element
+abstract class ListElement extends HtmlElement
 {
     /* -----------------------------------------------------------------
      |  Main Methods
@@ -19,16 +19,11 @@ abstract class ListElement extends Element
     /**
      * Add an item.
      *
-     * @param  mixed  $value
-     * @param  array  $attributes
-     *
      * @return $this
      */
-    public function item($value, array $attributes = [])
+    public function item(mixed $value, array $attributes = []): static
     {
-        return $this->addChild($value, function ($value) use ($attributes) {
-            return $this->makeItem($value, $attributes);
-        });
+        return $this->addChild($value, fn($value) => $this->makeItem($value, $attributes));
     }
 
     /**
@@ -39,24 +34,16 @@ abstract class ListElement extends Element
      *
      * @return $this
      */
-    public function items($items, array $attributes = [])
+    public function items(iterable $items, array $attributes = []): static
     {
-        return $this->children($items, function ($value) use ($attributes) {
-            $value = is_array($value)
-                ? static::make()->items($value) // Create nested items
-                : $value;
-
-            return $this->makeItem($value, $attributes);
-        });
+        return $this->children($items, fn($value) => $this->makeItem(
+            is_array($value) ? static::make()->items($value) : $value, // Create nested items if the value is array
+            $attributes
+        ));
     }
 
     /**
      * Make an item.
-     *
-     * @param  mixed  $value
-     * @param  array  $attributes
-     *
-     * @return \Arcanedev\Html\Elements\Element
      */
-    abstract protected function makeItem($value, array $attributes);
+    abstract protected function makeItem(mixed $value, array $attributes): HtmlElement;
 }

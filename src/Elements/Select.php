@@ -35,14 +35,11 @@ class Select extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    /** @var string */
-    protected $tag = 'select';
+    protected string $tag = 'select';
 
-    /** @var array */
-    protected $options = [];
+    protected array $options = [];
 
-    /** @var string|iterable */
-    protected $value = '';
+    protected mixed $value = '';
 
     /* -----------------------------------------------------------------
      |  Main Methods
@@ -54,45 +51,37 @@ class Select extends HtmlElement
      *
      * @return $this
      */
-    public function multiple()
+    public function multiple(): static
     {
         /** @var  self  $elt */
         $elt  = with(clone $this)->attribute('multiple');
         $name = $elt->getAttribute('name');
 
-        return $elt->if($name && ! Str::endsWith($name->value(), '[]'), function (self $elt) use ($name) {
-            return $elt->name($name->value().'[]');
-        })->applyValueToOptions();
+        return $elt->if(
+            $name && ! Str::endsWith($name->value(), '[]'),
+            fn(self $elt) => $elt->name($name->value().'[]')
+        )->applyValueToOptions();
     }
 
     /**
      * Add options.
      *
-     * @param  iterable  $options
-     * @param  array     $attributes
-     * @param  array     $groupAttributes
-     *
      * @return $this
      */
-    public function options($options, array $attributes = [], array $groupAttributes = [])
+    public function options(iterable $options, array $attributes = [], array $groupAttributes = []): static
     {
-        return $this->children($options, function ($text, $value) use ($attributes, $groupAttributes) {
-            return is_array($text)
-                ? $this->makeOptionsGroup($value, $text, $attributes, $groupAttributes[$value] ?? [])
-                : $this->makeOption($value, $text, $attributes[$value] ?? []);
-        });
+        return $this->children($options, fn($text, $value) => is_array($text)
+            ? $this->makeOptionsGroup($value, $text, $attributes, $groupAttributes[$value] ?? [])
+            : $this->makeOption($value, $text, $attributes[$value] ?? [])
+        );
     }
 
     /**
      * Add a placeholder option.
      *
-     * @param  string      $text
-     * @param  mixed|null  $value
-     * @param  bool        $disabled
-     *
      * @return $this
      */
-    public function placeholder($text, $value = null, $disabled = false)
+    public function placeholder(string $text, mixed $value = null, bool $disabled = false): static
     {
         return $this->prependChild(
             $this->makeOption($value, $text)
@@ -104,13 +93,11 @@ class Select extends HtmlElement
     /**
      * Set the value.
      *
-     * @param  string|iterable|null  $value
-     *
      * @return $this
      */
-    public function value($value = null)
+    public function value(mixed $value = null): static
     {
-        return tap(clone $this, function ($element) use ($value) {
+        return tap(clone $this, function (self $element) use ($value) {
             $element->value = $value;
         })->applyValueToOptions();
     }
@@ -122,26 +109,18 @@ class Select extends HtmlElement
 
     /**
      * Check if has a selected option.
-     *
-     * @return bool
      */
-    protected function hasSelection()
+    protected function hasSelection(): bool
     {
-        return $this->getChildren()->contains(function (HtmlElement $child) {
-            return $child->hasAttribute('selected');
-        });
+        return $this->getChildren()->contains(
+            fn(HtmlElement $child) => $child->hasAttribute('selected')
+        );
     }
 
     /**
      * Make an option tag.
-     *
-     * @param  string  $value
-     * @param  string  $text
-     * @param  array   $attributes
-     *
-     * @return \Arcanedev\Html\Elements\Option
      */
-    protected function makeOption($value, $text = null, array $attributes = [])
+    protected function makeOption(mixed $value, ?string $text = null, array $attributes = []): Option
     {
         return Option::make()
             ->value($value)
@@ -152,30 +131,28 @@ class Select extends HtmlElement
 
     /**
      * Make an options group.
-     *
-     * @param  string  $label
-     * @param  array   $options
-     * @param  array   $attributes
-     * @param  array   $groupAttributes
-     *
-     * @return \Arcanedev\Html\Elements\Optgroup
      */
-    protected function makeOptionsGroup($label, array $options, array $attributes = [], array $groupAttributes = [])
-    {
+    protected function makeOptionsGroup(
+        string $label,
+        array $options,
+        array $attributes = [],
+        array $groupAttributes = []
+    ): Optgroup {
         return Optgroup::make()
             ->label($label)
             ->attributes($groupAttributes)
-            ->children($options, function ($optionText, $optionValue) use ($attributes) {
-                return $this->makeOption($optionValue, $optionText, $attributes[$optionValue] ?? []);
-            });
+            ->children(
+                $options,
+                fn($optionText, $optionValue) => $this->makeOption($optionValue, $optionText, $attributes[$optionValue] ?? [])
+            );
     }
 
     /**
      * Apply the selected value to the options.
      *
-     * @return static
+     * @return $this
      */
-    protected function applyValueToOptions()
+    protected function applyValueToOptions(): static
     {
         $value = Collection::make($this->value);
 
@@ -189,13 +166,8 @@ class Select extends HtmlElement
 
     /**
      * Apply the selected value to the options.
-     *
-     * @param  \Illuminate\Support\Collection  $value
-     * @param  \Illuminate\Support\Collection  $children
-     *
-     * @return \Illuminate\Support\Collection
      */
-    protected static function applyValueToElements(Collection $value, Collection $children)
+    protected static function applyValueToElements(Collection $value, Collection $children): Collection
     {
         return $children->map(function (HtmlElement $child) use ($value) {
             if ($child instanceof Optgroup)

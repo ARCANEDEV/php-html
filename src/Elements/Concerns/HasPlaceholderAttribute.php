@@ -21,11 +21,9 @@ trait HasPlaceholderAttribute
     /**
      * Add the placeholder attribute.
      *
-     * @param  string  $placeholder
-     *
      * @return $this
      */
-    public function placeholder(string $placeholder)
+    public function placeholder(string $placeholder): static
     {
         return $this->attribute('placeholder', $placeholder);
     }

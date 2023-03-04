@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Elements;
 
 use Arcanedev\Html\Contracts\Elements\HtmlElement as HtmlElementContract;
-use Arcanedev\Html\Exceptions\{InvalidHtmlException, MissingTagException};
-use Illuminate\Support\{Collection, HtmlString, Str};
+use Arcanedev\Html\Entities\Attributes\ClassAttribute;
+use Arcanedev\Html\Exceptions\InvalidHtmlException;
+use Arcanedev\Html\Exceptions\MissingTagException;
+use Illuminate\Support\Collection;
+use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 
 /**
@@ -18,7 +22,7 @@ use Illuminate\Support\Traits\Macroable;
  * @method  \Arcanedev\Html\Elements\HtmlElement|mixed  attributeUnless(bool $condition, string $attribute, mixed $value = null)
  * @method  \Arcanedev\Html\Elements\HtmlElement|mixed  attributeIfNotNull(mixed $valueToCheck, string $attribute, mixed $value = null)
  */
-abstract class HtmlElement implements HtmlElementContract
+class HtmlElement implements HtmlElementContract
 {
     /* -----------------------------------------------------------------
      |  Traits
@@ -39,10 +43,8 @@ abstract class HtmlElement implements HtmlElementContract
 
     /**
      * The tag type.
-     *
-     * @var string
      */
-    protected $tag;
+    protected string $tag;
 
     /* -----------------------------------------------------------------
      |  Constructor
@@ -63,9 +65,17 @@ abstract class HtmlElement implements HtmlElementContract
      *
      * @return $this
      */
-    public static function make()
+    public static function make(): static
     {
         return new static;
+    }
+
+    /**
+     * Create a element with tag.
+     */
+    public static function withTag(string $tag): static
+    {
+        return static::make()->setTag($tag);
     }
 
     /* -----------------------------------------------------------------
@@ -74,13 +84,21 @@ abstract class HtmlElement implements HtmlElementContract
      */
 
     /**
+     * Set the tag property.
+     */
+    protected function setTag(string $tag): static
+    {
+        $this->tag = $tag;
+
+        return $this;
+    }
+
+    /**
      * Get the tag type.
-     *
-     * @return string
      *
      * @throws \Arcanedev\Html\Exceptions\MissingTagException
      */
-    protected function getTag()
+    protected function getTag(): string
     {
         if (empty($this->tag)) {
             throw MissingTagException::onClass(static::class);
@@ -92,21 +110,17 @@ abstract class HtmlElement implements HtmlElementContract
     /**
      * Set an id attribute.
      *
-     * @param  string  $id
-     *
      * @return $this
      */
-    public function id($id)
+    public function id(string $id): static
     {
         return $this->attribute('id', $id);
     }
 
     /**
      * Get the class attribute.
-     *
-     * @return \Arcanedev\Html\Entities\Attributes\ClassAttribute
      */
-    public function classList()
+    public function classList(): ClassAttribute
     {
         return $this->getAttributes()->classList();
     }
@@ -114,11 +128,9 @@ abstract class HtmlElement implements HtmlElementContract
     /**
      * Add a class (alias).
      *
-     * @param  iterable|string  $class
-     *
      * @return $this
      */
-    public function class($class)
+    public function class(iterable|string $class): static
     {
         return tap(clone $this, function (HtmlElement $elt) use ($class) {
             $elt->getAttributes()->addClass($class);
@@ -128,11 +140,9 @@ abstract class HtmlElement implements HtmlElementContract
     /**
      * Push a class to the list.
      *
-     * @param  string  $class
-     *
      * @return $this
      */
-    public function pushClass($class)
+    public function pushClass(string $class): static
     {
         return tap(clone $this, function (HtmlElement $elt) use ($class) {
             $elt->classList()->push($class);
@@ -142,16 +152,16 @@ abstract class HtmlElement implements HtmlElementContract
     /**
      * Set the style attribute.
      *
-     * @param  array|string  $style
-     *
      * @return $this
      */
-    public function style($style)
+    public function style(array|string $style): static
     {
         if (is_array($style)) {
-            $style = implode('; ', array_map(function ($value, $attribute) {
-                return "{$attribute}: {$value}";
-            }, $style, array_keys($style)));
+            $style = implode('; ', array_map(
+                fn($value, $attribute) => "{$attribute}: {$value}",
+                $style,
+                array_keys($style)
+            ));
         }
 
         return $this->attribute('style', $style);
@@ -160,31 +170,22 @@ abstract class HtmlElement implements HtmlElementContract
     /**
      * Set the data attribute.
      *
-     * @param  array|string  $name
-     * @param  mixed         $value
-     *
      * @return $this
      */
-    public function data($name, $value = null)
+    public function data(array|string $name, mixed $value = null): static
     {
-        $attributes = Collection::make(
-            is_array($name) ? $name : [$name => $value]
-        )->mapWithKeys(function ($mapValue, $mapKey) {
-            return ["data-{$mapKey}" => $mapValue];
-        });
-
-        return $this->attributes($attributes);
+        return $this->attributes(
+            Collection::make(is_array($name) ? $name : [$name => $value])
+                ->mapWithKeys(fn($mapValue, $mapKey) => ["data-{$mapKey}" => $mapValue])
+        );
     }
 
     /**
      * Set the text.
      *
-     * @param  string  $text
-     * @param  bool    $doubleEncode
-     *
      * @return $this
      */
-    public function text($text, $doubleEncode = true)
+    public function text(mixed $text, bool $doubleEncode = true): static
     {
         return $this->html(e($text, $doubleEncode));
     }
@@ -192,13 +193,11 @@ abstract class HtmlElement implements HtmlElementContract
     /**
      * Add an html child/children.
      *
-     * @param  string|null  $html
-     *
      * @return $this
      *
      * @throws \Arcanedev\Html\Exceptions\InvalidHtmlException
      */
-    public function html($html)
+    public function html(mixed $html): static
     {
         if ($this->isVoidElement()) {
             throw InvalidHtmlException::onTag($this->getTag());
@@ -209,10 +208,8 @@ abstract class HtmlElement implements HtmlElementContract
 
     /**
      * Open the html element.
-     *
-     * @return \Illuminate\Support\HtmlString
      */
-    public function open()
+    public function open(): HtmlString
     {
         $attributes = $this->getAttributes();
 
@@ -227,10 +224,8 @@ abstract class HtmlElement implements HtmlElementContract
 
     /**
      * Close the html element.
-     *
-     * @return \Illuminate\Support\HtmlString
      */
-    public function close()
+    public function close(): HtmlString
     {
         return new HtmlString(
             $this->isVoidElement() ? '' : "</{$this->getTag()}>"
@@ -239,20 +234,16 @@ abstract class HtmlElement implements HtmlElementContract
 
     /**
      * Render the element to HtmlString object.
-     *
-     * @return \Illuminate\Support\HtmlString
      */
-    public function render()
+    public function render(): HtmlString
     {
         return new HtmlString($this->toHtml());
     }
 
     /**
      * Render the element to string.
-     *
-     * @return string
      */
-    public function toHtml()
+    public function toHtml(): string
     {
         return $this->open()->toHtml().
                $this->close()->toHtml();
@@ -265,8 +256,6 @@ abstract class HtmlElement implements HtmlElementContract
 
     /**
      * Check if the tag is a void element.
-     *
-     * @return bool
      */
     public function isVoidElement(): bool
     {
@@ -283,10 +272,8 @@ abstract class HtmlElement implements HtmlElementContract
 
     /**
      * Render the element to string (magic method).
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toHtml();
     }

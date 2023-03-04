@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Elements;
 
-use Arcanedev\Html\Elements\Element;
+use Arcanedev\Html\Elements\HtmlElement;
 
 /**
  * Class     HtmlElementTest
@@ -21,11 +21,12 @@ class HtmlElementTest extends TestCase
     /** @test */
     public function it_can_register_a_macro(): void
     {
-        Element::macro('btnPrimary', function () {
+        HtmlElement::macro('btnPrimary', function () {
+            /** @var \Arcanedev\Html\Elements\HtmlElement $this */
             return $this->class('btn btn-primary');
         });
 
-        $elt = Element::withTag('a');
+        $elt = HtmlElement::withTag('a');
 
         static::assertEquals('<a></a>', $elt->toHtml());
         static::assertEquals('<a class="btn btn-primary"></a>', $elt->btnPrimary()->toHtml());

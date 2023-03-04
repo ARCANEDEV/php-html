@@ -18,8 +18,7 @@ class HtmlTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @var  \Arcanedev\Html\Html */
-    private $html;
+    private Html $html;
 
     /* -----------------------------------------------------------------
      |  Main Tests
@@ -39,7 +38,7 @@ class HtmlTest extends TestCase
      */
 
     /** @test */
-    public function it_can_make_class_attribute()
+    public function it_can_make_class_attribute(): void
     {
         static::assertSame(
             'class="btn btn-sm btn-primary"',

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Entities;
 
-use Arcanedev\Html\Entities\Attributes\{AbstractAttribute, ClassAttribute, MiscAttribute};
+use Arcanedev\Html\Entities\Attributes\AbstractAttribute;
+use Arcanedev\Html\Entities\Attributes\ClassAttribute;
+use Arcanedev\Html\Entities\Attributes\MiscAttribute;
 use ArrayAccess;
 use Illuminate\Contracts\Support\Arrayable;
 
@@ -20,8 +22,7 @@ class Attributes implements ArrayAccess, Arrayable
      | -----------------------------------------------------------------
      */
 
-    /** @var  array */
-    protected $items;
+    protected array $items;
 
     /* -----------------------------------------------------------------
      |  Constructor
@@ -30,8 +31,6 @@ class Attributes implements ArrayAccess, Arrayable
 
     /**
      * Attributes constructor.
-     *
-     * @param  array  $items
      */
     public function __construct(array $items = [])
     {
@@ -46,12 +45,8 @@ class Attributes implements ArrayAccess, Arrayable
 
     /**
      * Make the attribute instance.
-     *
-     * @param  array  $items
-     *
-     * @return \Arcanedev\Html\Entities\Attributes
      */
-    public static function make(array $items = [])
+    public static function make(array $items = []): static
     {
         return new static($items);
     }
@@ -59,12 +54,9 @@ class Attributes implements ArrayAccess, Arrayable
     /**
      * Set an attribute.
      *
-     * @param  string      $name
-     * @param  mixed|null  $value
-     *
-     * @return static
+     * @return $this
      */
-    public function set($name, $value = null)
+    public function set(string $name, mixed $value = null): static
     {
         $attribute = static::makeAttribute($name, $value);
 
@@ -75,32 +67,21 @@ class Attributes implements ArrayAccess, Arrayable
 
     /**
      * Make a new attribute.
-     *
-     * @param  string  $name
-     * @param  mixed   $value
-     *
-     * @return mixed
      */
-    protected static function makeAttribute(string $name, $value)
+    protected static function makeAttribute(string $name, mixed $value): ClassAttribute|MiscAttribute
     {
-        switch ($name) {
-            case 'class':
-                return new ClassAttribute($value);
-
-            default:
-                return new MiscAttribute($name, $value);
-        }
+        return match ($name) {
+            'class' => new ClassAttribute($value),
+            default => new MiscAttribute($name, $value),
+        };
     }
 
     /**
      * Get an attribute.
      *
-     * @param  string  $key
-     * @param  mixed   $default
-     *
-     * @return \Arcanedev\Html\Entities\Attributes\AbstractAttribute|mixed
+     * @return $this|mixed
      */
-    public function get($key, $default = null)
+    public function get(string $key, mixed $default = null): mixed
     {
         return $this->offsetExists($key)
             ? $this->offsetGet($key)
@@ -108,11 +89,11 @@ class Attributes implements ArrayAccess, Arrayable
     }
 
     /**
-     * @param  string|array  $keys
+     * Forget one or multiple attributes
      *
-     * @return static
+     * @return $this
      */
-    public function forget($keys)
+    public function forget(array|string $keys): static
     {
         foreach ((array) $keys as $key) {
             $this->offsetUnset($key);
@@ -124,11 +105,11 @@ class Attributes implements ArrayAccess, Arrayable
     /**
      * Determine if an item exists in the collection by key.
      *
-     * @param  mixed  $keys
+     * @param array<string> ...$keys
      *
      * @return bool
      */
-    public function has(...$keys)
+    public function has(...$keys): bool
     {
         foreach ($keys as $value) {
             if ( ! $this->offsetExists($value))
@@ -139,13 +120,11 @@ class Attributes implements ArrayAccess, Arrayable
     }
 
     /**
-     * Set many attributes.
+     * Set multiple attributes.
      *
-     * @param  iterable  $attributes
-     *
-     * @return static
+     * @return $this
      */
-    public function setMany($attributes)
+    public function setMany(iterable $attributes): static
     {
         foreach ($attributes as $attribute => $value) {
             if (is_int($attribute)) {
@@ -162,68 +141,58 @@ class Attributes implements ArrayAccess, Arrayable
     /**
      * Add a class.
      *
-     * @param  iterable|string  $class
-     *
-     * @return static
+     * @return $this
      */
-    public function addClass($class)
+    public function addClass(iterable|string $class): static
     {
         return $this->set('class', $class);
     }
 
     /**
      * Render the attributes.
-     *
-     * @return string
      */
-    public function render()
+    public function render(): string
     {
-        if ($this->isNotEmpty())
-            return implode(' ', array_map(function (AbstractAttribute $attribute) {
-                return $attribute->render();
-            }, $this->items));
+        if ($this->isEmpty())
+            return '';
 
-        return '';
+        return implode(' ', array_map(
+            fn(AbstractAttribute $attribute) => $attribute->render(),
+            $this->items
+        ));
     }
 
     /**
      * Convert the attributes to array.
-     *
-     * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
-        return array_map(function (AbstractAttribute $attribute) {
-            return $attribute->value();
-        }, $this->items);
+        return array_map(
+            fn(AbstractAttribute $attribute) => $attribute->value(),
+            $this->items
+        );
     }
 
     /**
      * Check if the container is empty.
-     *
-     * @return bool
      */
-    public function isEmpty()
+    public function isEmpty(): bool
     {
         return empty($this->items);
     }
 
     /**
      * Check if the container is not empty.
-     *
-     * @return bool
      */
-    public function isNotEmpty()
+    public function isNotEmpty(): bool
     {
         return ! $this->isEmpty();
     }
 
     /**
      * Get the class attribute.
-     *
-     * @return \Arcanedev\Html\Entities\Attributes\ClassAttribute|null
      */
-    public function classList()
+    public function classList(): ?ClassAttribute
     {
         return $this->get('class');
     }
@@ -233,52 +202,27 @@ class Attributes implements ArrayAccess, Arrayable
      | -----------------------------------------------------------------
      */
 
-    /**
-     * Determine if an item exists at an offset.
-     *
-     * @param  mixed  $key
-     *
-     * @return bool
-     */
-    public function offsetExists($key): bool
+    /** {@inheritDoc} */
+    public function offsetExists($offset): bool
     {
-        return array_key_exists($key, $this->items);
+        return array_key_exists($offset, $this->items);
     }
 
-    /**
-     * Get an item at a given offset.
-     *
-     * @param  mixed  $key
-     *
-     * @return mixed
-     */
-    public function offsetGet($key): mixed
+    /** {@inheritDoc} */
+    public function offsetGet($offset): mixed
     {
-        return $this->items[$key];
+        return $this->items[$offset];
     }
 
-    /**
-     * Set the item at a given offset.
-     *
-     * @param  mixed  $key
-     * @param  mixed  $value
-     *
-     * @return void
-     */
-    public function offsetSet($key, $value): void
+    /** {@inheritDoc} */
+    public function offsetSet($offset, $value): void
     {
-        $this->items[$key] = $value;
+        $this->items[$offset] = $value;
     }
 
-    /**
-     * Unset the item at a given offset.
-     *
-     * @param  string  $key
-     *
-     * @return void
-     */
-    public function offsetUnset($key): void
+    /** {@inheritDoc} */
+    public function offsetUnset($offset): void
     {
-        unset($this->items[$key]);
+        unset($this->items[$offset]);
     }
 }

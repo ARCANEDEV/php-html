@@ -21,11 +21,9 @@ trait HasTypeAttribute
     /**
      * Add the type attribute.
      *
-     * @param  string  $type
-     *
-     * @return static
+     * @return $this
      */
-    public function type(string $type)
+    public function type(string $type): static
     {
         return $this->attribute('type', $type);
     }

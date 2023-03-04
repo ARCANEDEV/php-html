@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Contracts;
 
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\HtmlString;
 
 /**
  * Interface  Renderable
@@ -20,8 +21,6 @@ interface Renderable extends Htmlable
 
     /**
      * Render the object as a string of HTML.
-     *
-     * @return \Illuminate\Support\HtmlString
      */
-    public function render();
+    public function render(): HtmlString;
 }

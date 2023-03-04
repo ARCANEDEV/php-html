@@ -16,8 +16,7 @@ class Ol extends ListElement
      | -----------------------------------------------------------------
      */
 
-    /** @var  string */
-    protected $tag = 'ol';
+    protected string $tag = 'ol';
 
     /* -----------------------------------------------------------------
      |  Other Methods
@@ -26,16 +25,9 @@ class Ol extends ListElement
 
     /**
      * Make an item.
-     *
-     * @param  mixed  $value
-     * @param  array  $attributes
-     *
-     * @return \Arcanedev\Html\Elements\Element
      */
-    protected function makeItem($value, array $attributes)
+    protected function makeItem(mixed $value, array $attributes): HtmlElement
     {
-        return Element::withTag('li')
-                      ->attributes($attributes)
-                      ->html($value);
+        return static::withTag('li')->attributes($attributes)->html($value);
     }
 }

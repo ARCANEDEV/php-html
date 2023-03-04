@@ -9,15 +9,16 @@ use Arcanedev\Html\Elements\A;
 use Arcanedev\Html\Elements\Button;
 use Arcanedev\Html\Elements\Div;
 use Arcanedev\Html\Elements\Dl;
-use Arcanedev\Html\Elements\Element;
 use Arcanedev\Html\Elements\Fieldset;
 use Arcanedev\Html\Elements\File;
 use Arcanedev\Html\Elements\Form;
+use Arcanedev\Html\Elements\HtmlElement;
 use Arcanedev\Html\Elements\I;
 use Arcanedev\Html\Elements\Img;
 use Arcanedev\Html\Elements\Input;
 use Arcanedev\Html\Elements\Label;
 use Arcanedev\Html\Elements\Legend;
+use Arcanedev\Html\Elements\Ol;
 use Arcanedev\Html\Elements\Option;
 use Arcanedev\Html\Elements\Select;
 use Arcanedev\Html\Elements\Span;
@@ -49,160 +50,105 @@ class Html implements HtmlContract
 
     /**
      * Make an `a` tag.
-     *
-     * @param  string|null  $href
-     * @param  string|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\A
      */
-    public function a($href = null, $value = null)
+    public function a(?string $href = null, ?string $content = null): A
     {
         return A::make()
-                ->attributeIfNotNull($href, 'href', $href)
-                ->html($value);
+            ->attributeIfNotNull($href, 'href', $href)
+            ->html($content);
     }
 
     /**
      * Make a `button` tag.
-     *
-     * @param  string|null  $content
-     * @param  string|null  $type
-     *
-     * @return \Arcanedev\Html\Elements\Button
      */
-    public function button($content = null, $type = null)
+    public function button(mixed $content = null, ?string $type = null): Button
     {
         return Button::make()
-                     ->attributeIfNotNull($type, 'type', $type)
-                     ->html($content);
+            ->attributeIfNotNull($type, 'type', $type)
+            ->html($content);
     }
 
     /**
      * Make a checkbox input.
-     *
-     * @param  string|null  $name
-     * @param  bool|null    $checked
-     * @param  string|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function checkbox($name = null, $checked = null, $value = '1')
+    public function checkbox(?string $name = null, ?bool $checked = null, string|int $value = '1'): Input
     {
-        return Input::make()
-                    ->attribute('type', 'checkbox')
-                    ->attributeIfNotNull($name, 'name', $name)
-                    ->attributeIfNotNull($name, 'id', $name)
-                    ->attributeIfNotNull($value, 'value', $value)
-                    ->attributeIf((bool) $checked, 'checked');
+        return $this->input()
+            ->attribute('type', 'checkbox')
+            ->attributeIfNotNull($name, 'name', $name)
+            ->attributeIfNotNull($name, 'id', $name)
+            ->attributeIfNotNull($value, 'value', $value)
+            ->attributeIf((bool)$checked, 'checked');
     }
 
     /**
      * Parse and render `class` attribute.
-     *
-     * @param  iterable|string  $classes
-     *
-     * @return string
      */
-    public function class($classes): string
+    public function class(iterable|string $classes): string
     {
         return ClassAttribute::make($classes)->render();
     }
 
     /**
      * Make a date input.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $value
-     * @param  bool         $format
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function date($name = null, $value = null, bool $format = true)
+    public function date(?string $name = null, ?string $value = null, bool $format = true): Input
     {
         $input = $this->input('date', $name, $value);
 
-        if (
-            ! $format ||
-            ! $input->hasAttribute('value') ||
-            empty($value = $input->getAttribute('value')->value())
-        ) {
-            return $input;
-        }
-
-        return $input->value(static::formatDateTime($value, static::HTML_DATE_FORMAT));;
+        return $this->canFormatDateInput($input, $value, $format)
+            ? $input->value(static::formatDateTime($value, static::HTML_DATE_FORMAT))
+            : $input;
     }
 
     /**
      * Make a datetime input.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $value
-     * @param  bool         $format
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function datetime($name = null, $value = null, $format = true)
+    public function datetime(?string $name = null, ?string $value = null, ?bool $format = true): Input
     {
         $input = $this->input('datetime-local', $name, $value);
 
-        if (
-            ! $format ||
-            ! $input->hasAttribute('value') ||
-            empty($value = $input->getAttribute('value')->value())
-        ) {
-            return $input;
-        }
-
-        return $input->value(
-            $this->formatDateTime($value, static::HTML_DATE_FORMAT.'\T'.static::HTML_TIME_FORMAT)
-        );
+        return $this->canFormatDateInput($input, $value, $format)
+            ? $input->value($this->formatDateTime($value, static::HTML_DATE_FORMAT . '\T' . static::HTML_TIME_FORMAT))
+            : $input;
     }
 
     /**
      * Make a div element.
-     *
-     * @param  \Arcanedev\Html\Elements\HtmlElement|string|null  $content
-     *
-     * @return \Arcanedev\Html\Elements\Div
      */
-    public function div($content = null)
+    public function div(mixed $content = null): Div
     {
         return Div::make()->addChild($content);
     }
 
     /**
-     * Make a custom tag element.
-     *
-     * @param  string  $tag
-     *
-     * @return \Arcanedev\Html\Elements\Element
+     * Make a description list.
      */
-    public function element($tag)
+    public function dl(array $attributes = []): Dl
     {
-        return Element::withTag($tag);
+        return Dl::make()->attributes($attributes);
+    }
+
+    /**
+     * Make a custom tag element.
+     */
+    public function element(string $tag): HtmlElement
+    {
+        return HtmlElement::withTag($tag);
     }
 
     /**
      * Make an email input.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function email($name = null, $value = null)
+    public function email(?string $name = null, ?string $value = null): Input
     {
         return $this->input('email', $name, $value);
     }
 
     /**
      * Make a fieldset tag.
-     *
-     * @param  \Arcanedev\Html\Elements\HtmlElement|string|null  $legend
-     *
-     * @return \Arcanedev\Html\Elements\Fieldset
      */
-    public function fieldset($legend = null)
+    public function fieldset(mixed $legend = null): Fieldset
     {
         return is_null($legend)
             ? Fieldset::make()
@@ -211,366 +157,240 @@ class Html implements HtmlContract
 
     /**
      * Make a file input.
-     *
-     * @param  string|null  $name
-     *
-     * @return \Arcanedev\Html\Elements\File
      */
-    public function file($name = null)
+    public function file(?string $name = null): File
     {
         return File::make()
-                   ->attributeIfNotNull($name, 'name', $name)
-                   ->attributeIfNotNull($name, 'id', $name);
+            ->attributeIfNotNull($name, 'name', $name)
+            ->attributeIfNotNull($name, 'id', $name);
     }
 
     /**
      * Make a form input.
-     *
-     * @param  string       $method
-     * @param  string|null  $action
-     *
-     * @return \Arcanedev\Html\Elements\Form
      */
-    public function form($method = 'POST', $action = null)
+    public function form(string $method = 'POST', ?string $action = null): Form
     {
         return Form::make()
-                   ->method($method)
-                   ->attributeIfNotNull($action, 'action', $action);
+            ->method($method)
+            ->attributeIfNotNull($action, 'action', $action);
     }
 
     /**
      * Make a hidden input.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function hidden($name = null, $value = null)
+    public function hidden(?string $name = null, ?string $value = null): Input
     {
         return $this->input('hidden', $name, $value);
     }
 
     /**
      * Make an i tag.
-     *
-     * @param  string|null  $content
-     *
-     * @return \Arcanedev\Html\Elements\I
      */
-    public function i($content = null)
+    public function i(?string $content = null): I
     {
         return I::make()->html($content);
     }
 
     /**
      * Make an input tag.
-     *
-     * @param  string|null  $type
-     * @param  string|null  $name
-     * @param  string|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function input($type = null, $name = null, $value = null)
+    public function input(?string $type = null, ?string $name = null, mixed $value = null): Input
     {
-        $hasValue = $name && ! is_null($value) && $type !== 'password';
+        $hasValue = $name && !is_null($value) && $type !== 'password';
 
         return Input::make()
-                    ->attributeIfNotNull($type, 'type', $type)
-                    ->attributeIfNotNull($name, 'name', $name)
-                    ->attributeIfNotNull($name, 'id', $name)
-                    ->attributeIf($hasValue, 'value', $value);
+            ->attributeIfNotNull($type, 'type', $type)
+            ->attributeIfNotNull($name, 'name', $name)
+            ->attributeIfNotNull($name, 'id', $name)
+            ->attributeIf($hasValue, 'value', $value);
     }
 
     /**
      * Make an image tag.
-     *
-     * @param  string|null  $src
-     * @param  string|null  $alt
-     *
-     * @return \Arcanedev\Html\Elements\Img
      */
-    public function img($src = null, $alt = null)
+    public function img(?string $src = null, ?string $alt = null): Img
     {
         return Img::make()
-                  ->attributeIfNotNull($src, 'src', $src)
-                  ->attributeIfNotNull($alt, 'alt', $alt);
+            ->attributeIfNotNull($src, 'src', $src)
+            ->attributeIfNotNull($alt, 'alt', $alt);
     }
 
     /**
      * Make a label tag.
-     *
-     * @param  \Arcanedev\Html\Elements\HtmlElement|iterable|string|null  $content
-     * @param  string|null                                                $for
-     *
-     * @return \Arcanedev\Html\Elements\Label
      */
-    public function label($content = null, $for = null)
+    public function label(mixed $content = null, ?string $for = null): Label
     {
         return Label::make()
-                    ->attributeIfNotNull($for, 'for', $for)
-                    ->children($content);
+            ->attributeIfNotNull($for, 'for', $for)
+            ->children($content);
     }
 
     /**
      * Make a legend tag.
-     *
-     * @param  \Arcanedev\Html\Elements\HtmlElement|string|null  $content
-     *
-     * @return \Arcanedev\Html\Elements\Legend
      */
-    public function legend($content = null)
+    public function legend(mixed $content = null): Legend
     {
         return Legend::make()->html($content);
     }
 
     /**
      * Make a mailto link.
-     *
-     * @param  string       $email
-     * @param  string|null  $content
-     *
-     * @return \Arcanedev\Html\Elements\A
      */
-    public function mailto($email, $content = null)
+    public function mailto(string $email, ?string $content = null): A
     {
         return $this->a("mailto:{$email}", $content ?: $email);
     }
 
     /**
-     * Make an option tag.
-     *
-     * @param  string|null  $text
-     * @param  string|null  $value
-     * @param  bool         $selected
-     *
-     * @return \Arcanedev\Html\Elements\Option
+     * Make a number input.
      */
-    public function option($text = null, $value = null, $selected = false)
+    public function number(
+        ?string $name = null,
+        mixed $value = null,
+        mixed $min = null,
+        mixed $max = null,
+        mixed $step = null
+    ): Input {
+        return $this->input('number', $name, $value)
+            ->attributeIfNotNull($min, 'min', $min)
+            ->attributeIfNotNull($max, 'max', $max)
+            ->attributeIfNotNull($step, 'step', $step);
+    }
+
+    /**
+     * Make an ordered list.
+     */
+    public function ol(array $attributes = []): Ol
+    {
+        return Elements\Ol::make()->attributes($attributes);
+    }
+
+    /**
+     * Make an option tag.
+     */
+    public function option(?string $text = null, mixed $value = null, bool $selected = false): Option
     {
         return Option::make()
-                     ->text($text)
-                     ->value($value)
-                     ->selectedIf($selected);
+            ->text($text)
+            ->value($value)
+            ->selectedIf($selected);
     }
 
     /**
      * Make a password input.
-     *
-     * @param  string|null  $name
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function password($name = null)
+    public function password(?string $name = null): Input
     {
         return $this->input('password', $name);
     }
 
     /**
      * Make a radio input.
-     *
-     * @param  string|null  $name
-     * @param  bool|null    $checked
-     * @param  string|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function radio($name = null, $checked = null, $value = null)
+    public function radio(?string $name = null, ?bool $checked = null, mixed $value = null): Input
     {
         return $this->input('radio', $name, $value)
-                    ->attributeIfNotNull($name, 'id', $value === null ? $name : ($name.'_'.Str::slug($value)))
-                    ->attributeIf(( ! is_null($value)) || $checked, 'checked');
+            ->attributeIfNotNull($name, 'id', $value === null ? $name : ($name . '_' . Str::slug($value)))
+            ->attributeIf((!is_null($value)) || $checked, 'checked');
     }
 
     /**
      * Make a range input.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $value
-     * @param  string|null  $min
-     * @param  string|null  $max
-     * @param  string|null  $step
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function range($name = null, $value = null, $min = null, $max = null, $step = null)
-    {
+    public function range(
+        string $name = null,
+        mixed $value = null,
+        mixed $min = null,
+        mixed $max = null,
+        mixed $step = null
+    ): Input {
         return $this->input('range', $name, $value)
-                    ->attributeIfNotNull($min, 'min', $min)
-                    ->attributeIfNotNull($max, 'max', $max)
-                    ->attributeIfNotNull($step, 'step', $step);
+            ->attributeIfNotNull($min, 'min', $min)
+            ->attributeIfNotNull($max, 'max', $max)
+            ->attributeIfNotNull($step, 'step', $step);
     }
 
     /**
      * Make a reset button.
-     *
-     * @param  string|null  $text
-     *
-     * @return \Arcanedev\Html\Elements\Button
      */
-    public function reset($text = null)
+    public function reset(mixed $content = null): Button
     {
-        return $this->button($text, 'reset');
+        return $this->button($content, 'reset');
     }
 
     /**
      * Make a select tag.
-     *
-     * @param  string|null           $name
-     * @param  array|iterable        $options
-     * @param  string|iterable|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Select
      */
-    public function select($name = null, $options = [], $value = null)
+    public function select(?string $name = null, iterable $options = [], mixed $value = null): Select
     {
         return Select::make()
-                     ->attributeIfNotNull($name, 'name', $name)
-                     ->attributeIfNotNull($name, 'id', $name)
-                     ->options($options)
-                     ->value($value);
+            ->attributeIfNotNull($name, 'name', $name)
+            ->attributeIfNotNull($name, 'id', $name)
+            ->options($options)
+            ->value($value);
     }
 
     /**
      * Make a span tag.
-     *
-     * @param  \Arcanedev\Html\Elements\HtmlElement|string|null  $content
-     *
-     * @return \Arcanedev\Html\Elements\Span
      */
-    public function span($content = null)
+    public function span(mixed $content = null): Span
     {
         return Span::make()->children($content);
     }
 
     /**
      * Make a submit button.
-     *
-     * @param  string|null  $text
-     *
-     * @return \Arcanedev\Html\Elements\Button
      */
-    public function submit($text = null)
+    public function submit(mixed $text = null): Button
     {
         return $this->button($text, 'submit');
     }
 
     /**
      * Make a tel link.
-     *
-     * @param  string       $phoneNumber
-     * @param  string|null  $text
-     *
-     * @return \Arcanedev\Html\Elements\A
      */
-    public function telLink($phoneNumber, $text = null)
+    public function telLink(string $phoneNumber, mixed $text = null): A
     {
         return $this->a("tel:{$phoneNumber}", $text ?: $phoneNumber);
     }
 
     /**
      * Make a text input.
-     *
-     * @param  string       $name
-     * @param  string|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function text($name, $value = null)
+    public function text(string $name, ?string $value = null): Input
     {
         return $this->input('text', $name, $value);
     }
 
     /**
      * Make a textarea tag.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Textarea
      */
-    public function textarea($name = null, $value = null)
+    public function textarea(?string $name = null, ?string $value = null): Textarea
     {
         return Textarea::make()
-                       ->attributeIfNotNull($name, 'name', $name)
-                       ->attributeIfNotNull($name, 'id', $name)
-                       ->value($value);
+            ->attributeIfNotNull($name, 'name', $name)
+            ->attributeIfNotNull($name, 'id', $name)
+            ->value($value);
     }
 
     /**
      * Make a time input.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $value
-     * @param  bool         $format
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function time($name = null, $value = null, $format = true)
+    public function time(?string $name = null, ?string $value = null, bool $format = true): Input
     {
         $input = $this->input('time', $name, $value);
 
-        return $format
-            && $input->hasAttribute('value')
-            && ! empty($value = $input->getAttribute('value')->value())
+        return $this->canFormatDateInput($input, $value, $format)
             ? $input->value(static::formatDateTime($value, self::HTML_TIME_FORMAT))
             : $input;
     }
 
     /**
-     * Make a number input.
-     *
-     * @param  string|null            $name
-     * @param  string|null            $value
-     * @param  string|float|int|null  $min
-     * @param  string|float|int|null  $max
-     * @param  string|float|int|null  $step
-     *
-     * @return \Arcanedev\Html\Elements\Input
-     */
-    public function number($name = null, $value = null, $min = null, $max = null, $step = null)
-    {
-        return $this->input('number', $name, $value)
-                    ->attributeIfNotNull($min, 'min', $min)
-                    ->attributeIfNotNull($max, 'max', $max)
-                    ->attributeIfNotNull($step, 'step', $step);
-    }
-
-    /**
-     * Make an ordered list.
-     *
-     * @param  array  $attributes
-     *
-     * @return \Arcanedev\Html\Elements\Ol
-     */
-    public function ol(array $attributes = [])
-    {
-        return Elements\Ol::make()->attributes($attributes);
-    }
-
-    /**
      * Make an unordered list.
-     *
-     * @param  array  $attributes
-     *
-     * @return \Arcanedev\Html\Elements\Ul
      */
-    public function ul(array $attributes = [])
+    public function ul(array $attributes = []): Ul
     {
         return Ul::make()->attributes($attributes);
-    }
-
-    /**
-     * Make a description list.
-     *
-     * @param  array  $attributes
-     *
-     * @return \Arcanedev\Html\Elements\Dl
-     */
-    public function dl(array $attributes = [])
-    {
-        return Dl::make()->attributes($attributes);
     }
 
     /* -----------------------------------------------------------------
@@ -580,22 +400,26 @@ class Html implements HtmlContract
 
     /**
      * Format the date/time value.
-     *
-     * @param  string  $value
-     * @param  string  $format
-     *
-     * @return string
      */
     protected static function formatDateTime(string $value, string $format): string
     {
         try {
-            if ( ! empty($value))
+            if (!empty($value))
                 $value = (new DateTimeImmutable($value))->format($format);
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             // Do nothing...
         }
 
         return $value;
+    }
+
+    /**
+     * Check if the input can be formatted.
+     */
+    protected function canFormatDateInput(Input $input, ?string $value, bool $format): bool
+    {
+        return $format
+            && $input->hasAttribute('value')
+            && !empty($value = $input->getAttribute('value')->value());
     }
 }

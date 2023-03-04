@@ -21,11 +21,9 @@ trait HasDisabledAttribute
     /**
      * Add the disabled attribute.
      *
-     * @param  bool  $disabled
-     *
      * @return $this
      */
-    public function disabled($disabled = true)
+    public function disabled(bool $disabled = true): static
     {
         return $disabled
             ? $this->attribute('disabled', 'disabled')

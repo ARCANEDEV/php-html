@@ -16,10 +16,5 @@ class Span extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    /**
-     * The tag type.
-     *
-     * @var string
-     */
-    protected $tag = 'span';
+    protected string $tag = 'span';
 }

@@ -33,19 +33,14 @@ interface HtmlElement extends Renderable
     /**
      * Set an attribute.
      *
-     * @param  string       $name
-     * @param  string|null  $value
-     *
-     * @return static
+     * @return $this
      */
-    public function attribute(string $name, $value = null);
+    public function attribute(string $name, mixed $value = null): static;
 
     /**
      * Set the attributes.
      *
-     * @param  iterable  $attributes
-     *
-     * @return static
+     * @return $this
      */
-    public function attributes($attributes);
+    public function attributes(iterable $attributes): static;
 }

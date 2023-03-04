@@ -21,11 +21,9 @@ trait HasRequiredAttribute
     /**
      * Add the required attribute.
      *
-     * @param  bool  $required
-     *
      * @return $this
      */
-    public function required($required = true)
+    public function required(bool $required = true): static
     {
         return $required
             ? $this->attribute('required')

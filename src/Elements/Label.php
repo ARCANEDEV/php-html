@@ -16,8 +16,7 @@ class Label extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    /** @var  string */
-    protected $tag = 'label';
+    protected string $tag = 'label';
 
     /* -----------------------------------------------------------------
      |  Main Methods
@@ -27,11 +26,9 @@ class Label extends HtmlElement
     /**
      * Set the for attribute.
      *
-     * @param  string  $for
-     *
      * @return $this
      */
-    public function for($for)
+    public function for(string $for): static
     {
         return $this->attribute('for', $for);
     }

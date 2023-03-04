@@ -1,4 +1,6 @@
-/build/
-/vendor/
+/.phpunit.cache
+/build
+/vendor
 /composer.lock
 /composer.phar
+.phpunit.result.cache

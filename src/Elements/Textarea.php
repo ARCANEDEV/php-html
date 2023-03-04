@@ -38,7 +38,7 @@ class Textarea extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    protected $tag = 'textarea';
+    protected string $tag = 'textarea';
 
     /* -----------------------------------------------------------------
      |  Main Methods
@@ -48,11 +48,9 @@ class Textarea extends HtmlElement
     /**
      * Set the textarea value.
      *
-     * @param string|null $value
-     *
      * @return $this
      */
-    public function value($value)
+    public function value(?string $value): static
     {
         return $this->html($value);
     }
@@ -60,11 +58,9 @@ class Textarea extends HtmlElement
     /**
      * Set the textarea cols & rows sizes.
      *
-     * @param  string  $size
-     *
      * @return $this
      */
-    public function size(string $size)
+    public function size(string $size): static
     {
         list($cols, $rows) = explode('x', $size);
 

@@ -21,9 +21,9 @@ trait HasChildElements
      */
 
     /**
-     * @var \Arcanedev\Html\Entities\ChildrenCollection
+     * The element's children.
      */
-    protected $children;
+    protected ChildrenCollection $children;
 
     /* -----------------------------------------------------------------
      |  Getters & Setters
@@ -32,10 +32,8 @@ trait HasChildElements
 
     /**
      * Get the children elements.
-     *
-     * @return \Arcanedev\Html\Entities\ChildrenCollection
      */
-    public function getChildren()
+    public function getChildren(): ChildrenCollection
     {
         return $this->children;
     }
@@ -43,11 +41,9 @@ trait HasChildElements
     /**
      * Set the children elements.
      *
-     * @param \Arcanedev\Html\Entities\ChildrenCollection $children
-     *
      * @return $this
      */
-    public function setChildren(ChildrenCollection $children)
+    public function setChildren(ChildrenCollection $children): static
     {
         $this->children = $children;
 
@@ -64,22 +60,17 @@ trait HasChildElements
      *
      * @return $this
      */
-    public function initChildren()
+    public function initChildren(): static
     {
-        return $this->setChildren(
-            new ChildrenCollection
-        );
+        return $this->setChildren(new ChildrenCollection);
     }
 
     /**
      * Alias for `addChild`.
      *
-     * @param  mixed          $children
-     * @param  \Closure|null  $mapper
-     *
      * @return $this
      */
-    public function children($children, Closure $mapper = null)
+    public function children(mixed $children, ?Closure $mapper = null): static
     {
         return $this->addChild($children, $mapper);
     }
@@ -87,12 +78,9 @@ trait HasChildElements
     /**
      * Add a child element to the parent.
      *
-     * @param  mixed          $child
-     * @param  \Closure|null  $mapper
-     *
      * @return $this
      */
-    public function addChild($child, Closure $mapper = null)
+    public function addChild(mixed $child, ?Closure $mapper = null): static
     {
         if (is_null($child))
             return $this;
@@ -107,12 +95,9 @@ trait HasChildElements
     /**
      * Replace all children with an array of elements.
      *
-     * @param  mixed          $children
-     * @param  \Closure|null  $mapper
-     *
      * @return $this
      */
-    public function setNewChildren($children, Closure $mapper = null)
+    public function setNewChildren(mixed $children, Closure $mapper = null): static
     {
         return tap(clone $this)
             ->initChildren()
@@ -122,12 +107,9 @@ trait HasChildElements
     /**
      * Alias for `prependChildren`.
      *
-     * @param  \Arcanedev\Html\Elements\HtmlElement|string|iterable  $children
-     * @param  \Closure|null                                         $mapper
-     *
      * @return $this
      */
-    public function prependChild($children, $mapper = null)
+    public function prependChild(mixed $children, ?Closure $mapper = null): static
     {
         return $this->prependChildren($children, $mapper);
     }
@@ -135,12 +117,9 @@ trait HasChildElements
     /**
      * Prepend children elements.
      *
-     * @param  mixed          $children
-     * @param  \Closure|null  $mapper
-     *
      * @return $this
      */
-    public function prependChildren($children, Closure $mapper = null)
+    public function prependChildren(mixed $children, ?Closure $mapper = null): static
     {
         return tap(clone $this, function (HtmlElement $elt) use ($children, $mapper) {
             $elt->getChildren()

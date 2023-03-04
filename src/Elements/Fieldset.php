@@ -16,8 +16,7 @@ class Fieldset extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    /** @var  string */
-    protected $tag = 'fieldset';
+    protected string $tag = 'fieldset';
 
     /* -----------------------------------------------------------------
      |  Main Methods
@@ -27,11 +26,9 @@ class Fieldset extends HtmlElement
     /**
      * Set the legend.
      *
-     * @param  \Arcanedev\Html\Elements\HtmlElement|string  $content
-     *
      * @return $this
      */
-    public function legend($content)
+    public function legend(mixed $content): static
     {
         return $this->prependChild(
             Legend::make()->text($content)

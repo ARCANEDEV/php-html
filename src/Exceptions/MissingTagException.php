@@ -4,25 +4,24 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Exceptions;
 
+use Exception;
+
 /**
  * Class     MissingTagException
  *
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class MissingTagException extends \Exception
+class MissingTagException extends Exception
 {
     /* -----------------------------------------------------------------
      |  Main Methods
      | -----------------------------------------------------------------
      */
 
-    /**
-     * @param  string  $className
-     *
-     * @return static
-     */
-    public static function onClass($className)
+    public static function onClass(string $className): static
     {
-        return new self("Class {$className} has no `\$tag` property or empty.");
+        return new static(
+            "Class {$className} has no `\$tag` property or empty."
+        );
     }
 }

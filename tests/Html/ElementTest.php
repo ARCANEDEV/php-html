@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Html;
 
-use Arcanedev\Html\Elements\Element;
+use Arcanedev\Html\Elements\HtmlElement;
 
 /**
  * Class     ElementTest
@@ -31,7 +31,7 @@ class ElementTest extends TestCase
     public function it_can_add_conditional_changes(): void
     {
         $elt      = $this->html->element('foo');
-        $callback = function (Element $elt) {
+        $callback = function (HtmlElement $elt) {
             return (clone $elt)->attributes(['class' => 'active']);
         };
 

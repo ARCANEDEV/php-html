@@ -4,6 +4,25 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Contracts;
 
+use Arcanedev\Html\Contracts\Elements\HtmlElement;
+use Arcanedev\Html\Elements\A;
+use Arcanedev\Html\Elements\Button;
+use Arcanedev\Html\Elements\Div;
+use Arcanedev\Html\Elements\Dl;
+use Arcanedev\Html\Elements\Fieldset;
+use Arcanedev\Html\Elements\File;
+use Arcanedev\Html\Elements\Form;
+use Arcanedev\Html\Elements\I;
+use Arcanedev\Html\Elements\Img;
+use Arcanedev\Html\Elements\Input;
+use Arcanedev\Html\Elements\Label;
+use Arcanedev\Html\Elements\Ol;
+use Arcanedev\Html\Elements\Option;
+use Arcanedev\Html\Elements\Select;
+use Arcanedev\Html\Elements\Span;
+use Arcanedev\Html\Elements\Textarea;
+use Arcanedev\Html\Elements\Ul;
+
 /**
  * Interface  Html
  *
@@ -18,160 +37,93 @@ interface Html
 
     /**
      * Make an `a` tag.
-     *
-     * @param  string|null  $href
-     * @param  string|null  $content
-     *
-     * @return \Arcanedev\Html\Elements\A
      */
-    public function a($href = null, $content = null);
+    public function a(?string $href = null, ?string $content = null): A;
 
     /**
      * Make a `button` tag.
-     *
-     * @param  string|null  $content
-     * @param  string|null  $type
-     *
-     * @return \Arcanedev\Html\Elements\Button
      */
-    public function button($content = null, $type = null);
+    public function button(mixed $content = null, ?string $type = null): Button;
 
     /**
      * Make a checkbox input.
-     *
-     * @param  string|null  $name
-     * @param  bool|null    $checked
-     * @param  string|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function checkbox($name = null, $checked = null, $value = '1');
+    public function checkbox(?string $name = null, ?bool $checked = null, string|int $value = '1'): Input;
 
     /**
      * Parse and render `class` attribute.
-     *
-     * @param  iterable|string  $classes
-     *
-     * @return string
      */
-    public function class($classes): string;
+    public function class(iterable|string $classes): string;
 
     /**
      * Make a date input.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $value
-     * @param  bool         $format
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function date($name = null, $value = null, bool $format = true);
+    public function date(?string $name = null, ?string $value = null, bool $format = true): Input;
+
+    /**
+     * Make a datetime input.
+     */
+    public function datetime(?string $name = null, ?string $value = null, ?bool $format = true): Input;
 
     /**
      * Make a div element.
-     *
-     * @param  \Arcanedev\Html\Elements\HtmlElement|string|null  $content
-     *
-     * @return \Arcanedev\Html\Elements\Div
      */
-    public function div($content = null);
+    public function div(mixed $content = null): Div;
+
+    /**
+     * Make a description list.
+     */
+    public function dl(array $attributes = []): Dl;
 
     /**
      * Make a custom tag element.
-     *
-     * @param  string  $tag
-     *
-     * @return \Arcanedev\Html\Elements\Element
      */
-    public function element($tag);
+    public function element(string $tag): HtmlElement;
 
     /**
      * Make an email input.
-     *
-     * @param  string       $name
-     * @param  string|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function email($name = null, $value = null);
+    public function email(?string $name = null, ?string $value = null): Input;
 
     /**
      * Make a fieldset tag.
-     *
-     * @param  \Arcanedev\Html\Elements\HtmlElement|string|null  $legend
-     *
-     * @return \Arcanedev\Html\Elements\Fieldset
      */
-    public function fieldset($legend = null);
+    public function fieldset(mixed $legend = null): Fieldset;
 
     /**
      * Make a file input.
-     *
-     * @param  string|null  $name
-     *
-     * @return \Arcanedev\Html\Elements\File
      */
-    public function file($name = null);
+    public function file(?string $name = null): File;
 
     /**
      * Make a form tag.
-     *
-     * @param  string       $method
-     * @param  string|null  $action
-     *
-     * @return \Arcanedev\Html\Elements\Form
      */
-    public function form($method = 'POST', $action = null);
+    public function form(string $method = 'POST', ?string $action = null): Form;
 
     /**
      * Make a hidden input.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function hidden($name = null, $value = null);
+    public function hidden(?string $name = null, ?string $value = null): Input;
 
     /**
      * Make an i tag.
-     *
-     * @param  string|null  $content
-     *
-     * @return \Arcanedev\Html\Elements\I
      */
-    public function i($content = null);
+    public function i(?string $content = null): I;
 
     /**
      * Make an input tag.
-     *
-     * @param  string|null  $type
-     * @param  string|null  $name
-     * @param  string|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function input($type = null, $name = null, $value = null);
+    public function input(?string $type = null, ?string $name = null, mixed $value = null): Input;
 
     /**
      * Make an image tag.
-     *
-     * @param  string|null  $src
-     * @param  string|null  $alt
-     *
-     * @return \Arcanedev\Html\Elements\Img
      */
-    public function img($src = null, $alt = null);
+    public function img(?string $src = null, ?string $alt = null): Img;
 
     /**
      * Make a label tag.
-     *
-     * @param  \Arcanedev\Html\Elements\HtmlElement|iterable|string|null  $content
-     * @param  string|null                                                $for
-     *
-     * @return \Arcanedev\Html\Elements\Label
      */
-    public function label($content = null, $for = null);
+    public function label(mixed $content = null, ?string $for = null): Label;
 
     /**
      * Make a legend tag.
@@ -184,73 +136,65 @@ interface Html
 
     /**
      * Make a mailto link.
-     *
-     * @param  string       $email
-     * @param  string|null  $content
-     *
-     * @return \Arcanedev\Html\Elements\A
      */
-    public function mailto($email, $content = null);
+    public function mailto(string $email, ?string $content = null): A;
+
+    /**
+     * Make a number input.
+     */
+    public function number(
+        ?string $name = null,
+        mixed $value = null,
+        mixed $min = null,
+        mixed $max = null,
+        mixed $step = null
+    ): Input;
+
+    /**
+     * Make an ordered list.
+     */
+    public function ol(array $attributes = []): Ol;
 
     /**
      * Make an option tag.
-     *
-     * @param  string|null  $text
-     * @param  string|null  $value
-     * @param  bool         $selected
-     *
-     * @return \Arcanedev\Html\Elements\Option
      */
-    public function option($text = null, $value = null, $selected = false);
+    public function option(?string $text = null, mixed $value = null, bool $selected = false): Option;
 
     /**
      * Make a password input.
-     *
-     * @param  string|null  $name
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function password($name = null);
+    public function password(?string $name = null): Input;
 
     /**
      * Make a radio input.
-     *
-     * @param  string|null  $name
-     * @param  bool|null    $checked
-     * @param  string|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function radio($name = null, $checked = null, $value = null);
+    public function radio(?string $name = null, ?bool $checked = null, mixed $value = null): Input;
+
+    /**
+     * Make a range input.
+     */
+    public function range(
+        string $name = null,
+        mixed $value = null,
+        mixed $min = null,
+        mixed $max = null,
+        mixed $step = null
+    ): Input;
 
     /**
      * Make a reset button.
-     *
-     * @param  string|null  $text
-     *
-     * @return \Arcanedev\Html\Elements\Button
      */
-    public function reset($text = null);
+    public function reset(mixed $content = null): Button;
 
     /**
      * Make a select tag.
-     *
-     * @param  string|null           $name
-     * @param  array|iterable        $options
-     * @param  string|iterable|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Select
      */
-    public function select($name = null, $options = [], $value = null);
+    public function select(?string $name = null, iterable $options = [], mixed $value = null): Select;
 
     /**
      * Make a span tag.
-     *
-     * @param  \Arcanedev\Html\Elements\HtmlElement|string|null  $content
-     *
-     * @return \Arcanedev\Html\Elements\Span
      */
-    public function span($content = null);
+    public function span(mixed $content = null): Span;
 
     /**
      * Make a submit button.
@@ -263,33 +207,18 @@ interface Html
 
     /**
      * Make a tel link.
-     *
-     * @param  string       $phoneNumber
-     * @param  string|null  $text
-     *
-     * @return \Arcanedev\Html\Elements\A
      */
-    public function telLink($phoneNumber, $text = null);
+    public function telLink(string $phoneNumber, mixed $text = null): A;
 
     /**
      * Make a text input.
-     *
-     * @param  string       $name
-     * @param  string|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
-    public function text($name, $value = null);
+    public function text(string $name, ?string $value = null): Input;
 
     /**
      * Make a textarea tag.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Textarea
      */
-    public function textarea($name = null, $value = null);
+    public function textarea(?string $name = null, ?string $value = null): Textarea;
 
     /**
      * Make a time input.
@@ -300,15 +229,10 @@ interface Html
      *
      * @return \Arcanedev\Html\Elements\Input
      */
-    public function time($name = null, $value = null, $format = true);
+    public function time(?string $name = null, ?string $value = null, bool $format = true): Input;
 
     /**
-     * Make a number input.
-     *
-     * @param  string       $name
-     * @param  string|null  $value
-     *
-     * @return \Arcanedev\Html\Elements\Input
+     * Make an unordered list.
      */
-    public function number($name, $value = null);
+    public function ul(array $attributes = []): Ul;
 }

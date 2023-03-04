@@ -7,6 +7,7 @@ namespace Arcanedev\Html\Entities;
 use Arcanedev\Html\Contracts\Renderable;
 use Arcanedev\Html\Elements\HtmlElement;
 use Arcanedev\Html\Exceptions\InvalidChildException;
+use Closure;
 use Illuminate\Support\{Collection, HtmlString};
 use Illuminate\Contracts\Support\Htmlable;
 
@@ -23,39 +24,37 @@ class ChildrenCollection extends Collection implements Renderable
      */
 
     /**
+     * Parse the element's children.
+     *
      * @param  mixed          $children
      * @param  \Closure|null  $mapper
      *
      * @return static
+     *
+     * @throws \Arcanedev\Html\Exceptions\InvalidChildException
      */
-    public static function parse($children, $mapper = null)
+    public static function parse(mixed $children, ?Closure $mapper = null): static
     {
         return static::make($children)
-            ->unless(is_null($mapper), function (ChildrenCollection $items) use ($mapper) {
-                return $items->map($mapper);
-            })
+            ->unless(is_null($mapper), fn(ChildrenCollection $items) => $items->map($mapper))
             ->each(function ($child) {
-                if ( ! static::isValidChild($child))
+                if (! static::isValidChild($child))
                     throw new InvalidChildException;
             });
     }
 
     /**
      * Render the object as a string of HTML.
-     *
-     * @return \Illuminate\Support\HtmlString
      */
-    public function render()
+    public function render(): HtmlString
     {
         return new HtmlString($this->toHtml());
     }
 
     /**
      * Get content as a string of HTML.
-     *
-     * @return string
      */
-    public function toHtml()
+    public function toHtml(): string
     {
         $mapper = function ($child): string {
             if (is_null($child))
@@ -80,12 +79,8 @@ class ChildrenCollection extends Collection implements Renderable
 
     /**
      * Results array of items from Collection or Arrayable.
-     *
-     * @param  mixed  $items
-     *
-     * @return array
      */
-    protected function getArrayableItems($items)
+    protected function getArrayableItems(mixed $items): array
     {
         if ($items instanceof HtmlElement || $items instanceof HtmlString)
             return [$items];
@@ -95,12 +90,8 @@ class ChildrenCollection extends Collection implements Renderable
 
     /**
      * Check if valid child.
-     *
-     * @param  mixed  $child
-     *
-     * @return bool
      */
-    protected static function isValidChild($child)
+    protected static function isValidChild(mixed $child): bool
     {
         return $child instanceof Htmlable
             || is_string($child)

@@ -21,11 +21,9 @@ trait HasAutofocusAttribute
     /**
      * Add the autofocus attribute.
      *
-     * @param  bool  $autofocus
-     *
      * @return $this
      */
-    public function autofocus($autofocus = true)
+    public function autofocus(bool $autofocus = true): static
     {
         return $autofocus
             ? $this->attribute('autofocus')
