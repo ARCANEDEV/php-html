@@ -31,9 +31,6 @@ class DivTest extends TestCase
      * @test
      *
      * @dataProvider getCustomStylesDP
-     *
-     * @param  array   $styles
-     * @param  string  $expected
      */
     public function it_can_create_with_custom_styles(array $styles, string $expected): void
     {
@@ -55,10 +52,8 @@ class DivTest extends TestCase
 
     /**
      * Get the custom styles (data provider).
-     *
-     * @return array
      */
-    public function getCustomStylesDP(): array
+    public static function getCustomStylesDP(): array
     {
         return [
             [

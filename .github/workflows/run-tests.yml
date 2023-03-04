@@ -9,14 +9,14 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [8.0, 8.1]
+        php: [8.1, 8.2]
         dependency-version: [prefer-lowest, prefer-stable]
 
     name: PHP ${{ matrix.php }} - ${{ matrix.dependency-version }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 2
 
@@ -30,19 +30,16 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: curl, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, iconv
-          tools: composer:v2
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, iconv
           coverage: pcov
 
       - name: Install dependencies
         run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
       - name: Execute tests
-        run: |
-          mkdir -p build/logs
-          vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+        run: composer test:ci
 
-#      - name: Scrutinizer CI
-#        run: |
-#          composer require scrutinizer/ocular --dev
-#          vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover
+      - name: Scrutinizer CI
+        run: |
+          composer require scrutinizer/ocular --dev
+          vendor/bin/ocular code-coverage:upload --format=php-clover /build/coverage/clover.xml

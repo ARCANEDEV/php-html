@@ -64,10 +64,8 @@ class ChildrenCollectionTest extends TestCase
      * @test
      *
      * @dataProvider getInvalidChildrenToParseDataProvider
-     *
-     * @param  mixed  $child
      */
-    public function it_must_throw_exception_on_parse_with_invalid_child($child): void
+    public function it_must_throw_exception_on_parse_with_invalid_child(mixed $child): void
     {
         $this->expectException(\Arcanedev\Html\Exceptions\InvalidChildException::class);
 
@@ -78,10 +76,8 @@ class ChildrenCollectionTest extends TestCase
      * @test
      *
      * @dataProvider getInvalidChildrenToParseDataProvider
-     *
-     * @param  mixed  $child
      */
-    public function it_must_throw_exception_on_convert_to_html_with_invalid_child($child): void
+    public function it_must_throw_exception_on_convert_to_html_with_invalid_child(mixed $child): void
     {
         $this->expectException(\Arcanedev\Html\Exceptions\InvalidChildException::class);
 
@@ -90,13 +86,8 @@ class ChildrenCollectionTest extends TestCase
 
     /**
      * >DATA PROVIDER
-     *
-     * @see it_must_throw_exception_on_parse_with_invalid_child
-     * @see it_must_throw_exception_on_convert_to_html_with_invalid_child
-     *
-     * @return array
      */
-    public function getInvalidChildrenToParseDataProvider(): array
+    public static function getInvalidChildrenToParseDataProvider(): array
     {
         return [
             [true],

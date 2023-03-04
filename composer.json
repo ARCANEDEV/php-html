@@ -32,8 +32,10 @@
         }
     },
     "scripts": {
-        "test": "phpunit",
-        "coverage": "phpunit --coverage-html build/coverage/html"
+        "test": "phpunit --colors=always",
+        "test:dox": "phpunit --testdox --colors=always",
+        "test:cov": "phpunit --coverage-html",
+        "test:ci": "phpunit --coverage-text"
     },
     "extra": {
         "branch-alias": {
