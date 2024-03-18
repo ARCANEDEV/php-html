@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Elements;
 
-use Arcanedev\Html\Elements\Concerns\{HasNameAttribute, HasTypeAttribute, HasValueAttribute};
+use Arcanedev\Html\Elements\Concerns\HasNameAttribute;
+use Arcanedev\Html\Elements\Concerns\HasTypeAttribute;
+use Arcanedev\Html\Elements\Concerns\HasValueAttribute;
 
 /**
  * Class     Button
@@ -27,8 +29,7 @@ class Button extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    /** @var  string */
-    protected $tag = 'button';
+    protected string $tag = 'button';
 
     /* -----------------------------------------------------------------
      |  Main Methods
@@ -38,9 +39,9 @@ class Button extends HtmlElement
     /**
      * Set as submit button.
      *
-     * @return \Arcanedev\Html\Elements\Button
+     * @return $this
      */
-    public function submit()
+    public function submit(): static
     {
         return $this->type('submit');
     }
@@ -48,9 +49,9 @@ class Button extends HtmlElement
     /**
      * Set as reset button.
      *
-     * @return \Arcanedev\Html\Elements\Button
+     * @return $this
      */
-    public function reset()
+    public function reset(): static
     {
         return $this->type('reset');
     }

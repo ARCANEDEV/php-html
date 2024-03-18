@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Elements;
 
-use Arcanedev\Html\Elements\Concerns\{HasAutofocusAttribute, HasNameAttribute, HasRequiredAttribute};
+use Arcanedev\Html\Elements\Concerns\HasAutofocusAttribute;
+use Arcanedev\Html\Elements\Concerns\HasNameAttribute;
+use Arcanedev\Html\Elements\Concerns\HasRequiredAttribute;
 
 /**
  * Class     File
@@ -36,8 +38,7 @@ class File extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    /** @var  string */
-    protected $tag = 'input';
+    protected string $tag = 'input';
 
     /* -----------------------------------------------------------------
      |  Constructor
@@ -62,11 +63,9 @@ class File extends HtmlElement
     /**
      * Add the accept attribute.
      *
-     * @param  string  $type
-     *
      * @return $this
      */
-    public function accept($type)
+    public function accept(string $type): static
     {
         return $this->attribute('accept', $type);
     }
@@ -76,7 +75,7 @@ class File extends HtmlElement
      *
      * @return $this
      */
-    public function acceptAudio()
+    public function acceptAudio(): static
     {
         return $this->accept(self::ACCEPT_AUDIO);
     }
@@ -86,7 +85,7 @@ class File extends HtmlElement
      *
      * @return $this
      */
-    public function acceptVideo()
+    public function acceptVideo(): static
     {
         return $this->accept(self::ACCEPT_VIDEO);
     }
@@ -96,7 +95,7 @@ class File extends HtmlElement
      *
      * @return $this
      */
-    public function acceptImage()
+    public function acceptImage(): static
     {
         return $this->accept(self::ACCEPT_IMAGE);
     }
@@ -106,7 +105,7 @@ class File extends HtmlElement
      *
      * @return $this
      */
-    public function multiple()
+    public function multiple(): static
     {
         return $this->attribute('multiple');
     }

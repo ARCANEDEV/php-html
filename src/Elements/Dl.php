@@ -18,7 +18,7 @@ class Dl extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    protected $tag = 'dl';
+    protected string $tag = 'dl';
 
     /* -----------------------------------------------------------------
      |  Main Methods
@@ -28,12 +28,9 @@ class Dl extends HtmlElement
     /**
      * Add a term item.
      *
-     * @param  string|mixed  $value
-     * @param  array         $attributes
-     *
      * @return $this
      */
-    public function dt($value, array $attributes = [])
+    public function dt(mixed $value, array $attributes = []): static
     {
         return $this->addChild(
             $this->makeTerm($value, $attributes)
@@ -43,12 +40,9 @@ class Dl extends HtmlElement
     /**
      * Add a definition item.
      *
-     * @param  string|mixed  $value
-     * @param  array         $attributes
-     *
      * @return $this
      */
-    public function dd($value, array $attributes = [])
+    public function dd(mixed $value, array $attributes = []): static
     {
         return $this->addChild(
             $this->makeDefinition($value, $attributes)
@@ -58,12 +52,9 @@ class Dl extends HtmlElement
     /**
      * Add list items.
      *
-     * @param  array|iterable  $items
-     * @param  array           $attributes
-     *
      * @return $this
      */
-    public function items($items, array $attributes = [])
+    public function items(iterable $items, array $attributes = []): static
     {
         $dtAttributes = Arr::pull($attributes, 'dt', []);
         $ddAttributes = Arr::pull($attributes, 'dd', []);
@@ -90,31 +81,17 @@ class Dl extends HtmlElement
 
     /**
      * Make a term item.
-     *
-     * @param  string|mixed  $value
-     * @param  array         $attributes
-     *
-     * @return \Arcanedev\Html\Elements\Element
      */
-    protected function makeTerm($value, array $attributes = [])
+    protected function makeTerm(mixed $value, array $attributes = []): HtmlElement
     {
-        return Element::withTag('dt')
-            ->attributes($attributes)
-            ->html($value);
+        return static::withTag('dt')->attributes($attributes)->html($value);
     }
 
     /**
      * Make a definition item.
-     *
-     * @param  string|mixed  $value
-     * @param  array         $attributes
-     *
-     * @return \Arcanedev\Html\Elements\Element
      */
-    protected function makeDefinition($value, array $attributes = [])
+    protected function makeDefinition(mixed $value, array $attributes = []): HtmlElement
     {
-        return Element::withTag('dd')
-            ->attributes($attributes)
-            ->html($value);
+        return static::withTag('dd')->attributes($attributes)->html($value);
     }
 }

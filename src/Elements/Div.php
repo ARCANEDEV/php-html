@@ -16,5 +16,5 @@ class Div extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    protected $tag = 'div';
+    protected string $tag = 'div';
 }

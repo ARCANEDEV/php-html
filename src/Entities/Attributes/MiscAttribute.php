@@ -16,8 +16,7 @@ class MiscAttribute extends AbstractAttribute
      | -----------------------------------------------------------------
      */
 
-    /** @var  string|mixed */
-    protected $value;
+    protected mixed $value;
 
     /* -----------------------------------------------------------------
      |  Constructor
@@ -26,11 +25,8 @@ class MiscAttribute extends AbstractAttribute
 
     /**
      * Attribute constructor.
-     *
-     * @param  string  $name
-     * @param  mixed   $value
      */
-    public function __construct($name, $value)
+    public function __construct(string $name, mixed $value)
     {
         $this->name = $name;
         $this->setValue($value);
@@ -43,10 +39,8 @@ class MiscAttribute extends AbstractAttribute
 
     /**
      * Get the attribute's value.
-     *
-     * @return string
      */
-    public function value()
+    public function value(): mixed
     {
         return $this->value;
     }
@@ -54,11 +48,9 @@ class MiscAttribute extends AbstractAttribute
     /**
      * Set the value.
      *
-     * @param  mixed  $value
-     *
-     * @return static
+     * @return $this
      */
-    protected function setValue($value)
+    protected function setValue(mixed $value): static
     {
         $this->value = trim((string) $value);
 
@@ -72,10 +64,8 @@ class MiscAttribute extends AbstractAttribute
 
     /**
      * Render the attribute.
-     *
-     * @return string
      */
-    public function render()
+    public function render(): string
     {
         $value = $this->value();
 

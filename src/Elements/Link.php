@@ -16,8 +16,7 @@ class Link extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    /** @var  string */
-    protected $tag = 'link';
+    protected string $tag = 'link';
 
     /* -----------------------------------------------------------------
      |  Main Methods
@@ -27,11 +26,9 @@ class Link extends HtmlElement
     /**
      * Set the href url.
      *
-     * @param  string  $href
-     *
      * @return $this
      */
-    public function href($href)
+    public function href(string $href): static
     {
         return $this->attribute('href', $href);
     }
@@ -40,11 +37,9 @@ class Link extends HtmlElement
      * Set the rel value.
      * @link  https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types
      *
-     * @param  string  $value
-     *
      * @return $this
      */
-    public function rel($value)
+    public function rel(string $value): static
     {
         return $this->attribute('rel', $value);
     }
@@ -52,11 +47,9 @@ class Link extends HtmlElement
     /**
      * Set the rel as stylesheet.
      *
-     * @param  string  $href
-     *
      * @return $this
      */
-    public function stylesheet($href)
+    public function stylesheet(string $href): static
     {
         return $this->rel('stylesheet')->href($href);
     }
@@ -64,11 +57,9 @@ class Link extends HtmlElement
     /**
      * Set the rel as icon.
      *
-     * @param  string  $href
-     *
      * @return $this
      */
-    public function icon($href)
+    public function icon(string $href): static
     {
         return $this->rel('icon')->href($href);
     }

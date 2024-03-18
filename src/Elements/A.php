@@ -25,7 +25,7 @@ class A extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    protected $tag = 'a';
+    protected string $tag = 'a';
 
     /* -----------------------------------------------------------------
      |  Main Methods
@@ -35,11 +35,9 @@ class A extends HtmlElement
     /**
      * Set the href url.
      *
-     * @param  string  $href
-     *
-     * @return static
+     * @return $this
      */
-    public function href($href)
+    public function href(string $href): static
     {
         return $this->attribute('href', $href);
     }

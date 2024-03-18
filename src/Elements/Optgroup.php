@@ -16,8 +16,7 @@ class Optgroup extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    /** @var  string */
-    protected $tag = 'optgroup';
+    protected string $tag = 'optgroup';
 
     /* -----------------------------------------------------------------
      |  Main Methods
@@ -27,11 +26,9 @@ class Optgroup extends HtmlElement
     /**
      * Set the label attribute.
      *
-     * @param  string  $label
-     *
      * @return $this
      */
-    public function label($label)
+    public function label(string $label): static
     {
         return $this->attribute('label', $label);
     }

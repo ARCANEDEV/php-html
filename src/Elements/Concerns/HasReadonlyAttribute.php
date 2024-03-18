@@ -16,11 +16,9 @@ trait HasReadonlyAttribute
     /**
      * Add the readonly attribute.
      *
-     * @param  bool  $readonly
-     *
      * @return $this
      */
-    public function isReadonly(bool $readonly = true)
+    public function isReadonly(bool $readonly = true): static
     {
         return $readonly
             ? $this->attribute('readonly')

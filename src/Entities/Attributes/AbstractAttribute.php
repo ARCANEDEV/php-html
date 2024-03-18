@@ -16,8 +16,7 @@ abstract class AbstractAttribute
      | -----------------------------------------------------------------
      */
 
-    /** @var  string */
-    protected $name;
+    protected string $name;
 
     /* -----------------------------------------------------------------
      |  Getters & Setters
@@ -26,10 +25,8 @@ abstract class AbstractAttribute
 
     /**
      * Get the attribute name.
-     *
-     * @return string
      */
-    public function name()
+    public function name(): string
     {
         return $this->name;
     }
@@ -37,9 +34,9 @@ abstract class AbstractAttribute
     /**
      * Get the attribute's value.
      *
-     * @return string
+     * @return mixed
      */
-    abstract public function value();
+    abstract public function value(): mixed;
 
     /* -----------------------------------------------------------------
      |  Main Methods
@@ -48,8 +45,6 @@ abstract class AbstractAttribute
 
     /**
      * Render the attribute.
-     *
-     * @return string
      */
-    abstract public function render();
+    abstract public function render(): string;
 }

@@ -16,8 +16,7 @@ class Img extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    /** @var  string */
-    protected $tag = 'img';
+    protected string $tag = 'img';
 
     /* -----------------------------------------------------------------
      |  Main Methods
@@ -27,11 +26,9 @@ class Img extends HtmlElement
     /**
      * Set the src attribute.
      *
-     * @param  string  $src
-     *
      * @return $this
      */
-    public function src($src)
+    public function src(string $src): static
     {
         return $this->attribute('src', $src);
     }
@@ -39,11 +36,9 @@ class Img extends HtmlElement
     /**
      * Set the alt attribute.
      *
-     * @param  string  $alt
-     *
      * @return $this
      */
-    public function alt($alt)
+    public function alt(string $alt): static
     {
         return $this->attribute('alt', $alt);
     }

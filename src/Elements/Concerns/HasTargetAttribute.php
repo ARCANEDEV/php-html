@@ -11,12 +11,17 @@ namespace Arcanedev\Html\Elements\Concerns;
  */
 trait HasTargetAttribute
 {
-    /**
-     * @param string $target
-     *
-     * @return static
+    /* -----------------------------------------------------------------
+     |  Main Methods
+     | -----------------------------------------------------------------
      */
-    public function target($target)
+
+    /**
+     * Add the target attribute.
+     *
+     * @return $this
+     */
+    public function target(string $target): static
     {
         return $this->attribute('target', $target);
     }

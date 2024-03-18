@@ -6,7 +6,9 @@ namespace Arcanedev\Html\Entities\Attributes;
 
 use Countable;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\{Arr, Collection};
+use Illuminate\Support\{
+    Arr,
+    Collection};
 
 /**
  * Class     ClassAttribute
@@ -20,10 +22,9 @@ class ClassAttribute extends AbstractAttribute implements Countable
      | -----------------------------------------------------------------
      */
 
-    /** @var  string */
-    protected $name = 'class';
+    protected string $name = 'class';
 
-    protected $classes = [];
+    protected array $classes = [];
 
     /* -----------------------------------------------------------------
      |  Constructor
@@ -32,20 +33,18 @@ class ClassAttribute extends AbstractAttribute implements Countable
 
     /**
      * ClassAttribute constructor.
-     *
-     * @param  mixed|null $value
      */
-    public function __construct($value = null)
+    public function __construct(mixed $value = null)
     {
         $this->setValue($value);
     }
 
     /**
-     * @param  mixed|null $value
+     * Make a new instance.
      *
-     * @return \Arcanedev\Html\Entities\Attributes\ClassAttribute
+     * @return $this
      */
-    public static function make($value = null)
+    public static function make(mixed $value = null): static
     {
         return new static($value);
     }
@@ -57,10 +56,8 @@ class ClassAttribute extends AbstractAttribute implements Countable
 
     /**
      * Get the attribute's value.
-     *
-     * @return string
      */
-    public function value()
+    public function value(): string
     {
         return implode(' ', $this->all());
     }
@@ -68,11 +65,9 @@ class ClassAttribute extends AbstractAttribute implements Countable
     /**
      * Get the attribute's value.
      *
-     * @param  mixed $value
-     *
      * @return $this
      */
-    public function setValue($value)
+    public function setValue(mixed $value): static
     {
         if ( ! is_null($value))
             $this->classes = static::parseClasses($value);
@@ -87,10 +82,8 @@ class ClassAttribute extends AbstractAttribute implements Countable
 
     /**
      * Get all the classes.
-     *
-     * @return array
      */
-    public function all()
+    public function all(): array
     {
         return $this->classes;
     }
@@ -98,11 +91,9 @@ class ClassAttribute extends AbstractAttribute implements Countable
     /**
      * Push the given class.
      *
-     * @param  string  $class
-     *
      * @return $this
      */
-    public function push(string $class)
+    public function push(string $class): static
     {
         foreach (explode(' ', $class) as $item) {
             if ( ! $this->has($item))
@@ -115,11 +106,9 @@ class ClassAttribute extends AbstractAttribute implements Countable
     /**
      * Remove the given class.
      *
-     * @param  string  $class
-     *
      * @return $this
      */
-    public function remove($class)
+    public function remove(string $class): static
     {
         if ( ! $this->has($class))
             return $this;
@@ -133,12 +122,8 @@ class ClassAttribute extends AbstractAttribute implements Countable
 
     /**
      * Toggle the given class.
-     *
-     * @param  string  $class
-     *
-     * @return $this
      */
-    public function toggle(string $class)
+    public function toggle(string $class): static
     {
         return $this->has($class)
             ? $this->remove($class)
@@ -149,24 +134,16 @@ class ClassAttribute extends AbstractAttribute implements Countable
      * Check if contains the given class (alias).
      *
      * @see  has
-     *
-     * @param  string  $class
-     *
-     * @return bool
      */
-    public function contains(string $class)
+    public function contains(string $class): bool
     {
         return $this->has($class);
     }
 
     /**
      * Check if contains the given class.
-     *
-     * @param  string  $class
-     *
-     * @return bool
      */
-    public function has(string $class)
+    public function has(string $class): bool
     {
         return in_array(trim($class), $this->all());
     }
@@ -174,12 +151,9 @@ class ClassAttribute extends AbstractAttribute implements Countable
     /**
      * Replaces an existing class with a new class.
      *
-     * @param  string  $oldClass
-     * @param  string  $newClass
-     *
      * @return $this
      */
-    public function replace($oldClass, $newClass)
+    public function replace(string $oldClass, string $newClass): static
     {
         if ($this->has($oldClass))
             $this->remove($oldClass)->push($newClass);
@@ -189,8 +163,6 @@ class ClassAttribute extends AbstractAttribute implements Countable
 
     /**
      * Count the classes.
-     *
-     * @return int
      */
     public function count(): int
     {
@@ -199,30 +171,24 @@ class ClassAttribute extends AbstractAttribute implements Countable
 
     /**
      * Check if is empty.
-     *
-     * @return bool
      */
-    public function isEmpty()
+    public function isEmpty(): bool
     {
         return empty($this->all());
     }
 
     /**
      * Check if is not empty.
-     *
-     * @return bool
      */
-    public function isNotEmpty()
+    public function isNotEmpty(): bool
     {
         return ! $this->isEmpty();
     }
 
     /**
      * Render the attribute.
-     *
-     * @return string
      */
-    public function render()
+    public function render(): string
     {
         if ($this->isEmpty())
             return '';
@@ -234,10 +200,8 @@ class ClassAttribute extends AbstractAttribute implements Countable
      * Render the attribute.
      *
      * @see render
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->render();
     }
@@ -249,14 +213,10 @@ class ClassAttribute extends AbstractAttribute implements Countable
 
     /**
      * Parse the given value.
-     *
-     * @param  mixed  $classes
-     *
-     * @return array
      */
-    private static function parseClasses($classes)
+    private static function parseClasses(mixed $classes): array
     {
-        if ($classes instanceof Arrayable || $classes instanceof Collection)
+        if ($classes instanceof Arrayable)
             $classes = $classes->toArray();
 
         if (is_string($classes))
@@ -264,9 +224,7 @@ class ClassAttribute extends AbstractAttribute implements Countable
 
         if (Arr::isAssoc($classes))
             $classes = Collection::make($classes)
-                ->transform(function ($value, $key) {
-                    return is_numeric($key) ? $value : ($value ? $key : false);
-                })
+                ->transform(fn($value, $key) => is_numeric($key) ? $value : ($value ? $key : false))
                 ->filter()
                 ->values()
                 ->toArray();

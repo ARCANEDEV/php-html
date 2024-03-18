@@ -20,10 +20,8 @@ trait HasConditionalMethods
 
     /**
      * The supported conditions.
-     *
-     * @var array
      */
-    protected $supportedConditions = [
+    protected array $supportedConditions = [
         'If',
         'Unless',
         'IfNotNull',
@@ -38,12 +36,9 @@ trait HasConditionalMethods
      * Conditionally transform the element.
      * Note that since elements are immutable, you'll need to return a new instance from the callback.
      *
-     * @param  bool      $condition
-     * @param  \Closure  $callback
-     *
      * @return $this|mixed
      */
-    public function if(bool $condition, Closure $callback)
+    public function if(bool $condition, Closure $callback): mixed
     {
         return $condition ? $callback($this) : $this;
     }
@@ -52,12 +47,9 @@ trait HasConditionalMethods
      * Conditionally transform the element.
      * Note that since elements are immutable, you'll need to return a new instance from the callback.
      *
-     * @param  bool      $condition
-     * @param  \Closure  $callback
-     *
      * @return $this|mixed
      */
-    public function unless(bool $condition, Closure $callback)
+    public function unless(bool $condition, Closure $callback): mixed
     {
         return $this->if( ! $condition, $callback);
     }
@@ -66,12 +58,9 @@ trait HasConditionalMethods
      * Conditionally transform the element.
      * Note that since elements are immutable, you'll need to return a new instance from the callback.
      *
-     * @param  mixed     $value
-     * @param  \Closure  $callback
-     *
-     * @return mixed
+     * @return $this|mixed
      */
-    public function ifNotNull($value, Closure $callback)
+    public function ifNotNull(mixed $value, Closure $callback): mixed
     {
         return $this->if( ! is_null($value), $callback);
     }
@@ -84,30 +73,18 @@ trait HasConditionalMethods
     /**
      * Call the if condition.
      *
-     * @param  string  $conditions
-     * @param  string  $method
-     * @param  array   $arguments
-     *
-     * @return \Arcanedev\Html\Elements\HtmlElement|mixed
+     * @return $this|mixed
      */
-    protected function callConditionalMethod(string $conditions, string $method, array $arguments)
+    protected function callConditionalMethod(string $conditions, string $method, array $arguments): mixed
     {
         $value    = array_shift($arguments);
-        $callback = function () use ($method, $arguments): self {
-            return $this->{$method}(...$arguments);
+        $callback = fn(): self => $this->{$method}(...$arguments);
+
+        return match ($conditions) {
+            'If' => $this->if((bool)$value, $callback),
+            'Unless' => $this->unless((bool)$value, $callback),
+            'IfNotNull' => $this->ifNotNull($value, $callback),
+            default => $this,
         };
-
-        switch ($conditions) {
-            case 'If':
-                return $this->if((bool) $value, $callback);
-
-            case 'Unless':
-                return $this->unless((bool) $value, $callback);
-
-            case 'IfNotNull':
-                return $this->ifNotNull($value, $callback);
-            default:
-                return $this;
-        }
     }
 }

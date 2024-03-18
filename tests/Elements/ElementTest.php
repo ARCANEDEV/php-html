@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Elements;
 
-use Arcanedev\Html\Elements\{Div, Element};
+use Arcanedev\Html\Elements\Div;
+use Arcanedev\Html\Elements\HtmlElement;
 
 /**
  * Class     ElementTest
@@ -23,7 +24,7 @@ class ElementTest extends TestCase
     {
         static::assertEquals(
             '<meta>',
-            Element::withTag('meta')
+            HtmlElement::withTag('meta')
         );
     }
 
@@ -32,7 +33,7 @@ class ElementTest extends TestCase
     {
         static::assertHtmlStringEqualsHtmlString(
             '<meta name="csrf-token" content="csrf-token-value">',
-            Element::withTag('meta')->attributes(['name' => 'csrf-token', 'content' => 'csrf-token-value'])
+            HtmlElement::withTag('meta')->attributes(['name' => 'csrf-token', 'content' => 'csrf-token-value'])
         );
     }
 
@@ -41,7 +42,7 @@ class ElementTest extends TestCase
     {
         static::assertSame(
             '<foo></foo>',
-            Element::withTag('foo')->toHtml()
+            HtmlElement::withTag('foo')->toHtml()
         );
     }
 
@@ -49,18 +50,16 @@ class ElementTest extends TestCase
     public function it_cant_create_an_element_without_a_tag(): void
     {
         $this->expectException(\Arcanedev\Html\Exceptions\MissingTagException::class);
-        $this->expectExceptionMessage('Class Arcanedev\Html\Elements\Element has no `$tag` property or empty.');
+        $this->expectExceptionMessage('Class Arcanedev\Html\Elements\HtmlElement has no `$tag` property or empty.');
 
-        Element::make()->render();
+        HtmlElement::make()->render();
     }
 
     /** @test */
     public function it_can_add_conditional_changes(): void
     {
-        $elt      = Element::withTag('foo');
-        $callback = function (Element $elt) {
-            return (clone $elt)->attributes(['class' => 'active']);
-        };
+        $elt      = HtmlElement::withTag('foo');
+        $callback = fn(HtmlElement $elt) => (clone $elt)->attributes(['class' => 'active']);
 
         static::assertEquals(
             '<foo class="active"></foo>',
@@ -96,7 +95,7 @@ class ElementTest extends TestCase
 
         static::assertHtmlStringEqualsHtmlString(
             '<div foo="bar"></div>',
-            Element::withTag('div')
+            HtmlElement::withTag('div')
                 ->attributeUnless(false, 'foo', 'bar')
                 ->attributeUnless(true, 'bar', 'baz')
                 ->render()
@@ -104,7 +103,7 @@ class ElementTest extends TestCase
 
         static::assertHtmlStringEqualsHtmlString(
             '<input required>',
-            Element::withTag('input')
+            HtmlElement::withTag('input')
                 ->attributeUnless(false, 'required')
                 ->render()
         );
@@ -113,7 +112,7 @@ class ElementTest extends TestCase
     /** @test */
     public function it_can_get_class_list(): void
     {
-        $elt = Element::withTag('a')->class('btn btn-primary');
+        $elt = HtmlElement::withTag('a')->class('btn btn-primary');
 
         static::assertEquals(
             '<a class="btn btn-primary"></a>',
@@ -143,7 +142,7 @@ class ElementTest extends TestCase
     /** @test */
     public function it_can_push_class_to_class_list(): void
     {
-        $elt = Element::withTag('a')->class('btn btn-primary');
+        $elt = HtmlElement::withTag('a')->class('btn btn-primary');
 
         static::assertHtmlStringEqualsHtmlString(
             '<a class="btn btn-primary"></a>', $elt
@@ -164,6 +163,6 @@ class ElementTest extends TestCase
         $this->expectException(\Arcanedev\Html\Exceptions\InvalidHtmlException::class);
         $this->expectExceptionMessage("Can't set inner contents on `br` because it's a void element");
 
-        Element::withTag('br')->html('Hello');
+        HtmlElement::withTag('br')->html('Hello');
     }
 }

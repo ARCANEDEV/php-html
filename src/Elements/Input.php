@@ -41,8 +41,7 @@ class Input extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    /** @var  string */
-    protected $tag = 'input';
+    protected string $tag = 'input';
 
     /* -----------------------------------------------------------------
      |  Main Methods
@@ -52,19 +51,15 @@ class Input extends HtmlElement
     /**
      * Add the checked attribute.
      *
-     * @param  bool  $checked
-     *
      * @return $this
      */
-    public function checked($checked = true)
+    public function checked(bool $checked = true): static
     {
         $type = $this->getAttributeValue('type');
 
-        return $this->if($type === 'checkbox', function (self $input) use ($checked) {
-            return $checked
-                ? $input->attribute('checked')
-                : $input->forgetAttribute('checked');
-        });
+        return $this->if($type === 'checkbox', fn(self $input) => $checked
+            ? $input->attribute('checked')
+            : $input->forgetAttribute('checked'));
     }
 
     /**
@@ -72,7 +67,7 @@ class Input extends HtmlElement
      *
      * @return $this
      */
-    public function unchecked()
+    public function unchecked(): static
     {
         return $this->checked(false);
     }

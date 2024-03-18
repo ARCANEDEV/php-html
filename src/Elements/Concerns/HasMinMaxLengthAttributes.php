@@ -21,11 +21,9 @@ trait HasMinMaxLengthAttributes
     /**
      * Add the `minlength` attribute.
      *
-     * @param  int  $length
-     *
      * @return $this
      */
-    public function minlength(int $length)
+    public function minlength(int $length): static
     {
         return $this->attribute('minlength', $length);
     }
@@ -33,11 +31,9 @@ trait HasMinMaxLengthAttributes
     /**
      * Add the `maxlength` attribute.
      *
-     * @param  int  $length
-     *
      * @return $this
      */
-    public function maxlength(int $length)
+    public function maxlength(int $length): static
     {
         return $this->attribute('maxlength', $length);
     }
