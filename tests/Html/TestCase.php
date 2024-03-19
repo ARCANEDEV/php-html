@@ -19,7 +19,7 @@ abstract class TestCase extends BaseTestCase
      | -----------------------------------------------------------------
      */
 
-    /** @var  \Arcanedev\Html\Html */
+    /** @var  Html */
     protected $html;
 
     /* -----------------------------------------------------------------
@@ -31,7 +31,7 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        $this->html = new Html;
+        $this->html = new Html();
     }
 
     protected function tearDown(): void

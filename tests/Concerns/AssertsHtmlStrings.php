@@ -24,8 +24,9 @@ trait AssertsHtmlStrings
      */
     public static function assertHtmlStringEqualsHtmlString(string $expected, mixed $actual, string $message = ''): void
     {
-        if ($actual instanceof Htmlable)
+        if ($actual instanceof Htmlable) {
             $actual = $actual->toHtml();
+        }
 
         static::assertEqualsCanonicalizing(
             static::convertToDomDocument($expected),
@@ -44,7 +45,7 @@ trait AssertsHtmlStrings
      */
     protected static function convertToDomDocument(string $html): DOMDocument
     {
-        return tap(new DOMDocument, function (DOMDocument $dom) use ($html) {
+        return tap(new DOMDocument(), function (DOMDocument $dom) use ($html): void {
             $dom->loadHTML(preg_replace('/>\s+</', '><', $html));
             $dom->preserveWhiteSpace = false;
         });

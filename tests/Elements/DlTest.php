@@ -74,13 +74,13 @@ class DlTest extends TestCase
         }
 
         static::assertHtmlStringEqualsHtmlString(
-            '<dl>'.
-                '<dt>Term 1</dt>'.
-                '<dd>Definition 1</dd>'.
-                '<dt>Term 2</dt>'.
-                '<dd>Definition 2</dd>'.
-                '<dt>Term 3</dt>'.
-                '<dd>Definition 3</dd>'.
+            '<dl>' .
+                '<dt>Term 1</dt>' .
+                '<dd>Definition 1</dd>' .
+                '<dt>Term 2</dt>' .
+                '<dd>Definition 2</dd>' .
+                '<dt>Term 3</dt>' .
+                '<dd>Definition 3</dd>' .
             '</dl>',
             $dl
         );
@@ -96,13 +96,13 @@ class DlTest extends TestCase
         ];
 
         static::assertHtmlStringEqualsHtmlString(
-            '<dl>'.
-                '<dt>Term 1</dt>'.
-                '<dd>Definition 1</dd>'.
-                '<dt>Term 2</dt>'.
-                '<dd>Definition 2</dd>'.
-                '<dt>Term 3</dt>'.
-                '<dd>Definition 3</dd>'.
+            '<dl>' .
+                '<dt>Term 1</dt>' .
+                '<dd>Definition 1</dd>' .
+                '<dt>Term 2</dt>' .
+                '<dd>Definition 2</dd>' .
+                '<dt>Term 3</dt>' .
+                '<dd>Definition 3</dd>' .
             '</dl>',
             Dl::make()->items($items)
         );
@@ -118,13 +118,13 @@ class DlTest extends TestCase
         ];
 
         static::assertHtmlStringEqualsHtmlString(
-            '<dl>'.
-                '<dt class="list-item-term">Term 1</dt>'.
-                '<dd class="list-item-definition">Definition 1</dd>'.
-                '<dt class="list-item-term">Term 2</dt>'.
-                '<dd class="list-item-definition">Definition 2</dd>'.
-                '<dt class="list-item-term">Term 3</dt>'.
-                '<dd class="list-item-definition">Definition 3</dd>'.
+            '<dl>' .
+                '<dt class="list-item-term">Term 1</dt>' .
+                '<dd class="list-item-definition">Definition 1</dd>' .
+                '<dt class="list-item-term">Term 2</dt>' .
+                '<dd class="list-item-definition">Definition 2</dd>' .
+                '<dt class="list-item-term">Term 3</dt>' .
+                '<dd class="list-item-definition">Definition 3</dd>' .
             '</dl>',
             Dl::make()->items($items, [
                 'dt' => ['class' => 'list-item-term'],
@@ -143,29 +143,29 @@ class DlTest extends TestCase
         ];
 
         static::assertHtmlStringEqualsHtmlString(
-            '<dl>'.
-                '<dt>Term 1</dt>'.
-                '<dd>Definition 1</dd>'.
-                '<dt>Term 2</dt>'.
-                '<dd>Definition 2</dd>'.
-                '<dt>Term 3</dt>'.
-                '<dd>Definition 3-1</dd>'.
-                '<dd>Definition 3-2</dd>'.
-                '<dd>Definition 3-3</dd>'.
+            '<dl>' .
+                '<dt>Term 1</dt>' .
+                '<dd>Definition 1</dd>' .
+                '<dt>Term 2</dt>' .
+                '<dd>Definition 2</dd>' .
+                '<dt>Term 3</dt>' .
+                '<dd>Definition 3-1</dd>' .
+                '<dd>Definition 3-2</dd>' .
+                '<dd>Definition 3-3</dd>' .
             '</dl>',
             Dl::make()->items($items)
         );
 
         static::assertHtmlStringEqualsHtmlString(
-            '<dl>'.
-                '<dt class="list-item-term">Term 1</dt>'.
-                '<dd class="list-item-definition">Definition 1</dd>'.
-                '<dt class="list-item-term">Term 2</dt>'.
-                '<dd class="list-item-definition">Definition 2</dd>'.
-                '<dt class="list-item-term">Term 3</dt>'.
-                '<dd class="list-item-definition">Definition 3-1</dd>'.
-                '<dd class="list-item-definition">Definition 3-2</dd>'.
-                '<dd class="list-item-definition">Definition 3-3</dd>'.
+            '<dl>' .
+                '<dt class="list-item-term">Term 1</dt>' .
+                '<dd class="list-item-definition">Definition 1</dd>' .
+                '<dt class="list-item-term">Term 2</dt>' .
+                '<dd class="list-item-definition">Definition 2</dd>' .
+                '<dt class="list-item-term">Term 3</dt>' .
+                '<dd class="list-item-definition">Definition 3-1</dd>' .
+                '<dd class="list-item-definition">Definition 3-2</dd>' .
+                '<dd class="list-item-definition">Definition 3-3</dd>' .
             '</dl>',
             Dl::make()->items($items, [
                 'dt' => ['class' => 'list-item-term'],

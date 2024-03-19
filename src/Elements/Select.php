@@ -24,11 +24,15 @@ class Select extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    use HasAutofocusAttribute,
-        HasDisabledAttribute,
-        HasNameAttribute,
-        HasRequiredAttribute,
-        HasReadonlyAttribute;
+    use HasAutofocusAttribute;
+
+    use HasDisabledAttribute;
+
+    use HasNameAttribute;
+
+    use HasReadonlyAttribute;
+
+    use HasRequiredAttribute;
 
     /* -----------------------------------------------------------------
      |  Properties
@@ -59,7 +63,7 @@ class Select extends HtmlElement
 
         return $elt->if(
             $name && ! Str::endsWith($name->value(), '[]'),
-            fn(self $elt) => $elt->name($name->value().'[]')
+            fn(self $elt) => $elt->name($name->value() . '[]')
         )->applyValueToOptions();
     }
 
@@ -70,7 +74,9 @@ class Select extends HtmlElement
      */
     public function options(iterable $options, array $attributes = [], array $groupAttributes = []): static
     {
-        return $this->children($options, fn($text, $value) => is_array($text)
+        return $this->children(
+            $options,
+            fn($text, $value) => is_array($text)
             ? $this->makeOptionsGroup($value, $text, $attributes, $groupAttributes[$value] ?? [])
             : $this->makeOption($value, $text, $attributes[$value] ?? [])
         );
@@ -85,8 +91,8 @@ class Select extends HtmlElement
     {
         return $this->prependChild(
             $this->makeOption($value, $text)
-                 ->selectedUnless($this->hasSelection())
-                 ->disabled($disabled)
+                ->selectedUnless($this->hasSelection())
+                ->disabled($disabled)
         );
     }
 
@@ -97,9 +103,29 @@ class Select extends HtmlElement
      */
     public function value(mixed $value = null): static
     {
-        return tap(clone $this, function (self $element) use ($value) {
+        return tap(clone $this, function (self $element) use ($value): void {
             $element->value = $value;
         })->applyValueToOptions();
+    }
+
+    /**
+     * Apply the selected value to the options.
+     */
+    protected static function applyValueToElements(Collection $value, Collection $children): Collection
+    {
+        return $children->map(function (HtmlElement $child) use ($value) {
+            if ($child instanceof Optgroup) {
+                return $child->setNewChildren(static::applyValueToElements($value, $child->getChildren()));
+            }
+
+            if ($child instanceof Selectable) {
+                return $child->selectedIf(
+                    $value->contains($child->getAttribute('value')->value())
+                );
+            }
+
+            return $child;
+        });
     }
 
     /* -----------------------------------------------------------------
@@ -156,29 +182,12 @@ class Select extends HtmlElement
     {
         $value = Collection::make($this->value);
 
-        if ( ! $this->hasAttribute('multiple'))
+        if ( ! $this->hasAttribute('multiple')) {
             $value = $value->take(1);
+        }
 
         return $this->setNewChildren(
             static::applyValueToElements($value, $this->getChildren())
         );
-    }
-
-    /**
-     * Apply the selected value to the options.
-     */
-    protected static function applyValueToElements(Collection $value, Collection $children): Collection
-    {
-        return $children->map(function (HtmlElement $child) use ($value) {
-            if ($child instanceof Optgroup)
-                return $child->setNewChildren(static::applyValueToElements($value, $child->getChildren()));
-
-            if ($child instanceof Selectable)
-                return $child->selectedIf(
-                    $value->contains($child->getAttribute('value')->value())
-                );
-
-            return $child;
-        });
     }
 }

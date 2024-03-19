@@ -165,7 +165,7 @@ class ClassAttributeTest extends TestCase
     #[Test]
     public function it_can_count_classes(): void
     {
-        $attribute = new ClassAttribute;
+        $attribute = new ClassAttribute();
 
         static::assertEmpty($attribute);
         static::assertCount(0, $attribute);

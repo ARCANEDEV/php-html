@@ -68,10 +68,10 @@ class OlTest extends TestCase
         }
 
         static::assertHtmlStringEqualsHtmlString(
-            '<ol>'.
-                '<li>Item 1</li>'.
-                '<li>Item 2</li>'.
-                '<li>Item 3</li>'.
+            '<ol>' .
+                '<li>Item 1</li>' .
+                '<li>Item 2</li>' .
+                '<li>Item 3</li>' .
             '</ol>',
             $ol
         );
@@ -87,19 +87,19 @@ class OlTest extends TestCase
         ]);
 
         static::assertHtmlStringEqualsHtmlString(
-            '<ol>'.
-                '<li><a href="#">Item 1</a></li>'.
-                '<li><a href="#">Item 2</a></li>'.
-                '<li><a href="#">Item 3</a></li>'.
+            '<ol>' .
+                '<li><a href="#">Item 1</a></li>' .
+                '<li><a href="#">Item 2</a></li>' .
+                '<li><a href="#">Item 3</a></li>' .
             '</ol>',
             Ol::make()->items($items)
         );
 
         static::assertHtmlStringEqualsHtmlString(
-            '<ol class="list-group">'.
-                '<li class="list-group-item"><a href="#">Item 1</a></li>'.
-                '<li class="list-group-item"><a href="#">Item 2</a></li>'.
-                '<li class="list-group-item"><a href="#">Item 3</a></li>'.
+            '<ol class="list-group">' .
+                '<li class="list-group-item"><a href="#">Item 1</a></li>' .
+                '<li class="list-group-item"><a href="#">Item 2</a></li>' .
+                '<li class="list-group-item"><a href="#">Item 3</a></li>' .
             '</ol>',
             Ol::make()
                 ->attributes(['class' => 'list-group'])
@@ -117,19 +117,19 @@ class OlTest extends TestCase
         ];
 
         static::assertHtmlStringEqualsHtmlString(
-            '<ol>'.
-                '<li>Item 1</li>'.
-                '<li>Item 2</li>'.
-                '<li>Item 3</li>'.
+            '<ol>' .
+                '<li>Item 1</li>' .
+                '<li>Item 2</li>' .
+                '<li>Item 3</li>' .
             '</ol>',
             Ol::make()->items($items)
         );
 
         static::assertHtmlStringEqualsHtmlString(
-            '<ol class="list-group">'.
-                '<li class="list-group-item">Item 1</li>'.
-                '<li class="list-group-item">Item 2</li>'.
-                '<li class="list-group-item">Item 3</li>'.
+            '<ol class="list-group">' .
+                '<li class="list-group-item">Item 1</li>' .
+                '<li class="list-group-item">Item 2</li>' .
+                '<li class="list-group-item">Item 3</li>' .
             '</ol>',
             Ol::make()
                 ->attributes(['class' => 'list-group'])
@@ -147,16 +147,16 @@ class OlTest extends TestCase
         ];
 
         static::assertHtmlStringEqualsHtmlString(
-            '<ol>'.
-                '<li>Item 1</li>'.
-                '<li>Item 2</li>'.
-                '<li>'.
-                    '<ol>'.
-                        '<li>Sub Item 1</li>'.
-                        '<li>Sub Item 2</li>'.
-                        '<li>Sub Item 3</li>'.
-                    '</ol>'.
-                '</li>'.
+            '<ol>' .
+                '<li>Item 1</li>' .
+                '<li>Item 2</li>' .
+                '<li>' .
+                    '<ol>' .
+                        '<li>Sub Item 1</li>' .
+                        '<li>Sub Item 2</li>' .
+                        '<li>Sub Item 3</li>' .
+                    '</ol>' .
+                '</li>' .
             '</ol>',
             Ol::make()->items($items)
         );
