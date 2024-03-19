@@ -62,7 +62,7 @@ trait HasChildElements
      */
     public function initChildren(): static
     {
-        return $this->setChildren(new ChildrenCollection);
+        return $this->setChildren(new ChildrenCollection());
     }
 
     /**
@@ -82,10 +82,11 @@ trait HasChildElements
      */
     public function addChild(mixed $child, ?Closure $mapper = null): static
     {
-        if (is_null($child))
+        if ($child === null) {
             return $this;
+        }
 
-        return tap(clone $this, function (HtmlElement $elt) use ($child, $mapper) {
+        return tap(clone $this, function (HtmlElement $elt) use ($child, $mapper): void {
             $elt->setChildren(
                 $elt->getChildren()->merge(ChildrenCollection::parse($child, $mapper))
             );
@@ -97,7 +98,7 @@ trait HasChildElements
      *
      * @return $this
      */
-    public function setNewChildren(mixed $children, Closure $mapper = null): static
+    public function setNewChildren(mixed $children, ?Closure $mapper = null): static
     {
         return tap(clone $this)
             ->initChildren()
@@ -121,7 +122,7 @@ trait HasChildElements
      */
     public function prependChildren(mixed $children, ?Closure $mapper = null): static
     {
-        return tap(clone $this, function (HtmlElement $elt) use ($children, $mapper) {
+        return tap(clone $this, function (HtmlElement $elt) use ($children, $mapper): void {
             $elt->getChildren()
                 ->prepend(ChildrenCollection::parse($children, $mapper));
         });

@@ -146,14 +146,16 @@ class ElementTest extends TestCase
         $elt = HtmlElement::withTag('a')->class('btn btn-primary');
 
         static::assertHtmlStringEqualsHtmlString(
-            '<a class="btn btn-primary"></a>', $elt
+            '<a class="btn btn-primary"></a>',
+            $elt
         );
         static::assertCount(2, $elt->classList());
 
         $elt->pushClass('btn-block active');
 
         static::assertHtmlStringEqualsHtmlString(
-            '<a class="btn btn-primary btn-block active"></a>', $elt
+            '<a class="btn btn-primary btn-block active"></a>',
+            $elt
         );
         static::assertCount(4, $elt->classList());
     }

@@ -20,9 +20,11 @@ class Button extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    use HasNameAttribute,
-        HasTypeAttribute,
-        HasValueAttribute;
+    use HasNameAttribute;
+
+    use HasTypeAttribute;
+
+    use HasValueAttribute;
 
     /* -----------------------------------------------------------------
      |  Properties

@@ -11,7 +11,6 @@ use Arcanedev\Html\Elements\Concerns\HasNameAttribute;
 use Arcanedev\Html\Elements\Concerns\HasPlaceholderAttribute;
 use Arcanedev\Html\Elements\Concerns\HasReadonlyAttribute;
 use Arcanedev\Html\Elements\Concerns\HasRequiredAttribute;
-use Arcanedev\Html\Elements\Concerns\HasValueAttribute;
 
 /**
  * Class     Textarea
@@ -25,13 +24,19 @@ class Textarea extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    use HasAutofocusAttribute,
-        HasDisabledAttribute,
-        HasMinMaxLengthAttributes,
-        HasNameAttribute,
-        HasPlaceholderAttribute,
-        HasReadonlyAttribute,
-        HasRequiredAttribute;
+    use HasAutofocusAttribute;
+
+    use HasDisabledAttribute;
+
+    use HasMinMaxLengthAttributes;
+
+    use HasNameAttribute;
+
+    use HasPlaceholderAttribute;
+
+    use HasReadonlyAttribute;
+
+    use HasRequiredAttribute;
 
     /* -----------------------------------------------------------------
      |  Properties

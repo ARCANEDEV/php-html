@@ -64,7 +64,7 @@ class LabelTest extends TestCase
     }
 
     #[Test]
-    public function it_can_create_a_label_with_float_content()
+    public function it_can_create_a_label_with_float_content(): void
     {
         static::assertHtmlStringEqualsHtmlString(
             '<label>5000.5</label>',

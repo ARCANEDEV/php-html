@@ -49,7 +49,7 @@ trait HasAttributes
      */
     public function initAttributes(): static
     {
-        $this->attributes = new Attributes;
+        $this->attributes = new Attributes();
 
         return $this;
     }
@@ -61,7 +61,7 @@ trait HasAttributes
      */
     public function attribute(string $name, mixed $value = null): static
     {
-        return tap(clone $this, function (HtmlElement $elt) use ($name, $value) {
+        return tap(clone $this, function (HtmlElement $elt) use ($name, $value): void {
             $elt->getAttributes()->set($name, $value);
         });
     }
@@ -73,7 +73,7 @@ trait HasAttributes
      */
     public function attributes(iterable $attributes): static
     {
-        return tap(clone $this, function (HtmlElement $elt) use ($attributes) {
+        return tap(clone $this, function (HtmlElement $elt) use ($attributes): void {
             $elt->getAttributes()->setMany($attributes);
         });
     }
@@ -85,10 +85,11 @@ trait HasAttributes
      */
     public function forgetAttribute(string $name): static
     {
-        if ( ! $this->hasAttribute($name))
+        if ( ! $this->hasAttribute($name)) {
             return $this;
+        }
 
-        return tap(clone $this, function (self $elt) use ($name) {
+        return tap(clone $this, function (self $elt) use ($name): void {
             $elt->getAttributes()->forget($name);
         });
     }
@@ -104,21 +105,22 @@ trait HasAttributes
     }
 
     /**
-     * Get the attribute's value.
-     */
-    protected function getAttributeValue(string $name): ?string
-    {
-        if (! $this->hasAttribute($name))
-            return null;
-
-        return $this->getAttribute($name)->value();
-    }
-
-    /**
      * Check if attribute exists.
      */
     public function hasAttribute(string $attribute): bool
     {
         return $this->getAttributes()->has($attribute);
+    }
+
+    /**
+     * Get the attribute's value.
+     */
+    protected function getAttributeValue(string $name): ?string
+    {
+        if ( ! $this->hasAttribute($name)) {
+            return null;
+        }
+
+        return $this->getAttribute($name)->value();
     }
 }

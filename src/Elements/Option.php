@@ -21,8 +21,9 @@ class Option extends HtmlElement implements Selectable
      | -----------------------------------------------------------------
      */
 
-    use HasDisabledAttribute,
-        HasValueAttribute;
+    use HasDisabledAttribute;
+
+    use HasValueAttribute;
 
     /* -----------------------------------------------------------------
      |  Properties

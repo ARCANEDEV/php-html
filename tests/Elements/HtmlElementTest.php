@@ -23,7 +23,7 @@ class HtmlElementTest extends TestCase
     public function it_can_register_a_macro(): void
     {
         HtmlElement::macro('btnPrimary', function () {
-            /** @var \Arcanedev\Html\Elements\HtmlElement $this */
+            /** @var HtmlElement $this */
             return $this->class('btn btn-primary');
         });
 

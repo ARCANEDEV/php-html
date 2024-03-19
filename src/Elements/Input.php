@@ -26,15 +26,23 @@ class Input extends HtmlElement
      | -----------------------------------------------------------------
      */
 
-    use HasAutofocusAttribute,
-        HasDisabledAttribute,
-        HasMinMaxLengthAttributes,
-        HasNameAttribute,
-        HasPlaceholderAttribute,
-        HasReadonlyAttribute,
-        HasRequiredAttribute,
-        HasTypeAttribute,
-        HasValueAttribute;
+    use HasAutofocusAttribute;
+
+    use HasDisabledAttribute;
+
+    use HasMinMaxLengthAttributes;
+
+    use HasNameAttribute;
+
+    use HasPlaceholderAttribute;
+
+    use HasReadonlyAttribute;
+
+    use HasRequiredAttribute;
+
+    use HasTypeAttribute;
+
+    use HasValueAttribute;
 
     /* -----------------------------------------------------------------
      |  Properties

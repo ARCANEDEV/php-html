@@ -50,18 +50,6 @@ class MiscAttribute extends AbstractAttribute
         return $this->value;
     }
 
-    /**
-     * Set the value.
-     *
-     * @return $this
-     */
-    protected function setValue(mixed $value): static
-    {
-        $this->value = trim((string) $value);
-
-        return $this;
-    }
-
     /* -----------------------------------------------------------------
      |  Main Methods
      | -----------------------------------------------------------------
@@ -74,8 +62,20 @@ class MiscAttribute extends AbstractAttribute
     {
         $value = $this->value();
 
-        return (is_null($value) || $value === '')
+        return ($value === null || $value === '')
             ? $this->name
-            : $this->name.'="'.e($value, false).'"';
+            : $this->name . '="' . e($value, false) . '"';
+    }
+
+    /**
+     * Set the value.
+     *
+     * @return $this
+     */
+    protected function setValue(mixed $value): static
+    {
+        $this->value = trim((string) $value);
+
+        return $this;
     }
 }

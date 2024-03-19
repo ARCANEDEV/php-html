@@ -16,22 +16,23 @@ use Arcanedev\Html\Elements\Concerns\HasRequiredAttribute;
 class File extends HtmlElement
 {
     /* -----------------------------------------------------------------
-     |  Constants
-     | -----------------------------------------------------------------
-     */
-
-    const ACCEPT_AUDIO = 'audio/*';
-    const ACCEPT_VIDEO = 'video/*';
-    const ACCEPT_IMAGE = 'image/*';
-
-    /* -----------------------------------------------------------------
      |  Traits
      | -----------------------------------------------------------------
      */
 
-    use HasAutofocusAttribute,
-        HasNameAttribute,
-        HasRequiredAttribute;
+    use HasAutofocusAttribute;
+
+    use HasNameAttribute;
+
+    use HasRequiredAttribute;
+    /* -----------------------------------------------------------------
+     |  Constants
+     | -----------------------------------------------------------------
+     */
+
+    public const ACCEPT_AUDIO = 'audio/*';
+    public const ACCEPT_VIDEO = 'video/*';
+    public const ACCEPT_IMAGE = 'image/*';
 
     /* -----------------------------------------------------------------
      |  Properties

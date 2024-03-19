@@ -49,7 +49,7 @@ class Form extends HtmlElement
      */
     public function method(string $method): static
     {
-        $method = strtoupper($method);
+        $method = mb_strtoupper($method);
 
         return $this->attribute('method', $method === 'GET' ? 'GET' : 'POST');
     }

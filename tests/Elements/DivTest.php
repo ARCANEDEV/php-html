@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Div;
-use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     DivTest
@@ -15,6 +15,27 @@ use PHPUnit\Framework\Attributes\DataProvider;
  */
 class DivTest extends TestCase
 {
+    /* -----------------------------------------------------------------
+     |  Data Providers
+     | -----------------------------------------------------------------
+     */
+
+    /**
+     * Get the custom styles (data provider).
+     */
+    public static function getCustomStylesDP(): array
+    {
+        return [
+            [
+                [],
+                '<div></div>'
+            ],
+            [
+                ['width' => '20px', 'background-color' => 'red'],
+                '<div style="width: 20px; background-color: red"></div>'
+            ],
+        ];
+    }
     /* -----------------------------------------------------------------
      |  Tests
      | -----------------------------------------------------------------
@@ -42,27 +63,5 @@ class DivTest extends TestCase
             $expected,
             Div::make()->styleUnless(empty($styles), $styles)->toHtml()
         );
-    }
-
-    /* -----------------------------------------------------------------
-     |  Data Providers
-     | -----------------------------------------------------------------
-     */
-
-    /**
-     * Get the custom styles (data provider).
-     */
-    public static function getCustomStylesDP(): array
-    {
-        return [
-            [
-                [],
-                '<div></div>'
-            ],
-            [
-                ['width' => '20px', 'background-color' => 'red'],
-                '<div style="width: 20px; background-color: red"></div>'
-            ],
-        ];
     }
 }

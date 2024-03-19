@@ -62,7 +62,7 @@ trait HasConditionalMethods
      */
     public function ifNotNull(mixed $value, Closure $callback): mixed
     {
-        return $this->if( ! is_null($value), $callback);
+        return $this->if($value !== null, $callback);
     }
 
     /* -----------------------------------------------------------------
@@ -81,8 +81,8 @@ trait HasConditionalMethods
         $callback = fn(): self => $this->{$method}(...$arguments);
 
         return match ($conditions) {
-            'If' => $this->if((bool)$value, $callback),
-            'Unless' => $this->unless((bool)$value, $callback),
+            'If' => $this->if((bool) $value, $callback),
+            'Unless' => $this->unless((bool) $value, $callback),
             'IfNotNull' => $this->ifNotNull($value, $callback),
             default => $this,
         };

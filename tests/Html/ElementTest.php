@@ -32,9 +32,7 @@ class ElementTest extends TestCase
     public function it_can_add_conditional_changes(): void
     {
         $elt      = $this->html->element('foo');
-        $callback = function (HtmlElement $elt) {
-            return (clone $elt)->attributes(['class' => 'active']);
-        };
+        $callback = fn(HtmlElement $elt) => (clone $elt)->attributes(['class' => 'active']);
 
         static::assertEquals(
             '<foo class="active"></foo>',

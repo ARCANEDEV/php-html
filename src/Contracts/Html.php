@@ -129,7 +129,7 @@ interface Html
     /**
      * Make a legend tag.
      */
-    public function legend(HtmlElement|string $content = null): Legend;
+    public function legend(HtmlElement|string|null $content = null): Legend;
 
     /**
      * Make a mailto link.
@@ -171,7 +171,7 @@ interface Html
      * Make a range input.
      */
     public function range(
-        string $name = null,
+        ?string $name = null,
         mixed $value = null,
         mixed $min = null,
         mixed $max = null,
@@ -196,7 +196,7 @@ interface Html
     /**
      * Make a submit button.
      */
-    public function submit(string $text = null): Button;
+    public function submit(?string $text = null): Button;
 
     /**
      * Make a tel link.

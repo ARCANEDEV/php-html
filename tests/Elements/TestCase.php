@@ -11,7 +11,4 @@ use Arcanedev\Html\Tests\TestCase as BaseTestCase;
  *
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-abstract class TestCase extends BaseTestCase
-{
-    //
-}
+abstract class TestCase extends BaseTestCase {}

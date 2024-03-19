@@ -30,7 +30,7 @@ class HtmlTest extends TestCase
     {
         parent::setUp();
 
-        $this->html = new Html;
+        $this->html = new Html();
     }
 
     /* -----------------------------------------------------------------
