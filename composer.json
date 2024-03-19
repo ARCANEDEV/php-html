@@ -19,7 +19,7 @@
     },
     "require-dev": {
         "ext-dom": "*",
-        "phpunit/phpunit": "^10.0"
+        "phpunit/phpunit": "^10.0.7"
     },
     "autoload": {
         "psr-4": {
