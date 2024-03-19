@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Html;
 
+use PHPUnit\Framework\Attributes\Test;
+
 /**
  * Class     SubmitTest
  *
@@ -16,7 +18,7 @@ class SubmitTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_submit_button(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -25,7 +27,7 @@ class SubmitTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_submit_button_with_contents(): void
     {
         static::assertHtmlStringEqualsHtmlString(

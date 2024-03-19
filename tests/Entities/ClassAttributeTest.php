@@ -6,6 +6,7 @@ namespace Arcanedev\Html\Tests\Entities;
 
 use Arcanedev\Html\Entities\Attributes\ClassAttribute;
 use Arcanedev\Html\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     ClassAttributeTest
@@ -19,7 +20,7 @@ class ClassAttributeTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_be_instantiated(): void
     {
         static::assertSame([], ClassAttribute::make()->all());
@@ -40,7 +41,7 @@ class ClassAttributeTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_classes(): void
     {
         $attribute = ClassAttribute::make();
@@ -59,7 +60,7 @@ class ClassAttributeTest extends TestCase
         static::assertSame(['btn', 'btn-primary'], $attribute->all());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_classes_conditionally_with_an_associative_array(): void
     {
         $attribute = new ClassAttribute([
@@ -71,7 +72,7 @@ class ClassAttributeTest extends TestCase
         static::assertEquals(['foo', 'baz'], $attribute->all());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_check_if_class_exists(): void
     {
         $attribute = ClassAttribute::make();
@@ -92,7 +93,7 @@ class ClassAttributeTest extends TestCase
         static::assertFalse($attribute->contains('btn-block'));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_remove_classes(): void
     {
         $attribute = ClassAttribute::make('btn btn-primary');
@@ -109,7 +110,7 @@ class ClassAttributeTest extends TestCase
         static::assertSame(['btn'], $attribute->all());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_can_toggle_classes(): void
     {
         $attribute = ClassAttribute::make('btn btn-primary');
@@ -125,7 +126,7 @@ class ClassAttributeTest extends TestCase
         static::assertSame(['btn', 'btn-primary'], $attribute->all());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_replace_classes(): void
     {
         $attribute = ClassAttribute::make('btn btn-primary');
@@ -142,7 +143,7 @@ class ClassAttributeTest extends TestCase
         static::assertSame(['btn', 'btn-success'], $attribute->all());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_check_classes_is_empty_or_not(): void
     {
         $attribute = ClassAttribute::make();
@@ -161,7 +162,7 @@ class ClassAttributeTest extends TestCase
         static::assertFalse($attribute->isNotEmpty());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_count_classes(): void
     {
         $attribute = new ClassAttribute;
@@ -177,7 +178,7 @@ class ClassAttributeTest extends TestCase
         static::assertSame(2, $attribute->count());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_render(): void
     {
         static::assertSame('', ClassAttribute::make()->render());

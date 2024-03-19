@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Html;
 
+use PHPUnit\Framework\Attributes\Test;
+
 /**
  * Class     SelectTest
  *
@@ -16,7 +18,7 @@ class SelectTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_render_a_select_element(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -25,7 +27,7 @@ class SelectTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_render_a_select_element_required(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -34,7 +36,7 @@ class SelectTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_render_a_select_element_with_options(): void
     {
         $options = [
@@ -51,7 +53,7 @@ class SelectTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_render_a_select_element_with_options_with_a_selected_value(): void
     {
         $options = [
@@ -68,7 +70,7 @@ class SelectTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_render_a_select_element_with_options_with_a_selected_value_when_the_values_are_similar(): void
     {
         $options = [
@@ -87,7 +89,7 @@ class SelectTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_select_with_multiple_attribute(): void
     {
         $options = [

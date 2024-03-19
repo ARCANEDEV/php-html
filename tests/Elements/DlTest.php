@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Dl;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     DlTest
@@ -18,7 +19,7 @@ class DlTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_be_instantiated(): void
     {
         $dl = Dl::make();
@@ -32,7 +33,7 @@ class DlTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_list(): void
     {
         $dl = Dl::make();
@@ -48,7 +49,7 @@ class DlTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_items(): void
     {
         $dl    = Dl::make();
@@ -85,7 +86,7 @@ class DlTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_html_items(): void
     {
         $items = [
@@ -107,7 +108,7 @@ class DlTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_multiple_items_at_once_with_custom_attributes(): void
     {
         $items = [
@@ -132,7 +133,7 @@ class DlTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_multiple_items_with_multiple_definitions(): void
     {
         $items = [

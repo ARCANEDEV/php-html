@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\{A, Ul};
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     UlTest
@@ -18,7 +19,7 @@ class UlTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_be_instantiated(): void
     {
         $ul = Ul::make();
@@ -34,7 +35,7 @@ class UlTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_list(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -48,7 +49,7 @@ class UlTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_items(): void
     {
         $ul = Ul::make();
@@ -77,7 +78,7 @@ class UlTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_html_items(): void
     {
         $items = collect([
@@ -107,7 +108,7 @@ class UlTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_multiple_items_at_once(): void
     {
         $items = [
@@ -137,7 +138,7 @@ class UlTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_handle_nested_items(): void
     {
         $items = [

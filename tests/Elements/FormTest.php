@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\{Form, Input};
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     FormTest
@@ -18,7 +19,7 @@ class FormTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -27,7 +28,7 @@ class FormTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_split_form_tags(): void
     {
         $form = Form::make();
@@ -41,7 +42,7 @@ class FormTest extends TestCase
         static::assertSame('</form>', (string) $form->close());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_a_custom_action(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -50,7 +51,7 @@ class FormTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_a_custom_method(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -59,7 +60,7 @@ class FormTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_accepts_files(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -68,7 +69,7 @@ class FormTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_html_builder(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -77,7 +78,7 @@ class FormTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_form_with_a_novalidate_attribute(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -86,7 +87,7 @@ class FormTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_form_that_has_novalidate_when_passing_true(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -95,7 +96,7 @@ class FormTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_wont_create_a_form_that_has_novalidate_when_passing_false(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -104,7 +105,7 @@ class FormTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_multiple_children_type_html_element(): void
     {
         $form = Form::make();
@@ -131,7 +132,7 @@ class FormTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_multiple_children_type_html_string(): void
     {
         $form = Form::make();
@@ -158,7 +159,7 @@ class FormTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_form_with_a_target(): void
     {
         static::assertHtmlStringEqualsHtmlString(

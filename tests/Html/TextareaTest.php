@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Html;
 
+use PHPUnit\Framework\Attributes\Test;
+
 /**
  * Class     TextareaTest
  *
@@ -16,7 +18,7 @@ class TextareaTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_textarea(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -25,7 +27,7 @@ class TextareaTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_textarea_with_a_name(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -34,7 +36,7 @@ class TextareaTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_textarea_with_a_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(

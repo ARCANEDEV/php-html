@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Html;
 
+use PHPUnit\Framework\Attributes\Test;
+
 /**
  * Class     SpanTest
  *
@@ -16,7 +18,7 @@ class SpanTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_span(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -25,7 +27,7 @@ class SpanTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_span_with_contents(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -34,7 +36,7 @@ class SpanTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_span_with_html_contents(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -43,7 +45,7 @@ class SpanTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_span_with_integer_content(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -52,7 +54,7 @@ class SpanTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_span_with_float_content(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -61,7 +63,7 @@ class SpanTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_span_with_hexadecimal_content(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -70,7 +72,7 @@ class SpanTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_span_with_octal_content(): void
     {
         static::assertHtmlStringEqualsHtmlString(

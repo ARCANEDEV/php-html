@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\A;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     ATest
@@ -18,7 +19,7 @@ class ATest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -27,7 +28,7 @@ class ATest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_a_href(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -36,7 +37,7 @@ class ATest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_custom_data_attributes(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -45,7 +46,7 @@ class ATest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_a_element_with_a_target(): void
     {
         static::assertHtmlStringEqualsHtmlString(

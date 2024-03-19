@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Input;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     InputTest
@@ -18,7 +19,7 @@ class InputTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -27,7 +28,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_a_custom_type(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -36,7 +37,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_a_name(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -45,7 +46,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_a_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -54,7 +55,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_a_placeholder(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -63,7 +64,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_that_is_required(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -72,7 +73,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_that_is_required_when_passing_true(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -81,7 +82,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_wont_create_that_is_required_when_passing_false(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -90,7 +91,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_that_has_autofocus(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -99,7 +100,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_input_that_has_autofocus_when_passing_true(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -108,7 +109,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_wont_create_an_input_that_has_autofocus_when_passing_false(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -117,7 +118,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_check(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -131,7 +132,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_uncheck(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -145,7 +146,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_builder(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -154,7 +155,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_input_that_is_readonly(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -163,7 +164,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_date_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -172,7 +173,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_time_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -181,7 +182,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_number_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -190,7 +191,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_button_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -204,7 +205,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_input_with_maxlength(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -213,7 +214,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_input_with_minlength(): void
     {
         static::assertHtmlStringEqualsHtmlString(

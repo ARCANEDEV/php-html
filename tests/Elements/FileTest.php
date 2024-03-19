@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\File;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     FileTest
@@ -18,7 +19,7 @@ class FileTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_file(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -27,7 +28,7 @@ class FileTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_autofocus_attribute(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -36,7 +37,7 @@ class FileTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_autofocus_attribute_when_passing_true(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -45,7 +46,7 @@ class FileTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_wont_create_a_file_that_has_autofocus_when_passing_false(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -54,7 +55,7 @@ class FileTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_required_attribute(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -63,7 +64,7 @@ class FileTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_a_name(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -72,7 +73,7 @@ class FileTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_a_name_and_id(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -81,7 +82,7 @@ class FileTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_accept_audio(): void
     {
         $expected = '<input type="file" accept="audio/*">';
@@ -90,7 +91,7 @@ class FileTest extends TestCase
         static::assertHtmlStringEqualsHtmlString($expected, File::make()->acceptAudio());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_accept_video(): void
     {
         $expected = '<input type="file" accept="video/*">';
@@ -99,7 +100,7 @@ class FileTest extends TestCase
         static::assertHtmlStringEqualsHtmlString($expected, File::make()->acceptVideo());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_accept_image(): void
     {
         $expected = '<input type="file" accept="image/*">';
@@ -108,7 +109,7 @@ class FileTest extends TestCase
         static::assertHtmlStringEqualsHtmlString($expected, File::make()->acceptImage());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_custom_accept(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -117,7 +118,7 @@ class FileTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_multiple_attribute(): void
     {
         static::assertHtmlStringEqualsHtmlString(

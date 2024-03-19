@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Html;
 
+use PHPUnit\Framework\Attributes\Test;
+
 /**
  * Class     InputTest
  *
@@ -16,7 +18,7 @@ class InputTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_make_an_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -25,7 +27,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_an_input_with_a_custom_type(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -34,7 +36,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_an_input_with_a_name(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -43,7 +45,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_an_input_with_a_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -52,7 +54,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_an_input_with_a_placeholder(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -61,7 +63,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_an_input_that_is_required(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -70,7 +72,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_an_input_that_has_autofocus(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -79,7 +81,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_checkbox_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -98,7 +100,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_check_an_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -112,7 +114,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_uncheck_an_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -126,7 +128,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_an_input_that_is_readonly(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -135,7 +137,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_input_without_readonly(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -144,7 +146,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_remove_readonly_from_a_readonly_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -153,7 +155,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_a_date_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -162,7 +164,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_a_date_input_with_blank_date(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -171,7 +173,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_a_date_input_and_format_date(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -180,7 +182,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_a_date_input_with_invalid_date(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -189,7 +191,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_datetime_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -198,7 +200,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_datetime_input_with_blank_date(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -207,7 +209,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_datetime_input_and_format_date(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -216,7 +218,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_datetime_input_with_invalid_date(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -225,7 +227,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_a_time_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -234,7 +236,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_a_time_input_with_blank_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -243,7 +245,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_a_time_input_with_time_string_and_format(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -252,7 +254,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_a_time_input_with_string_and_format(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -261,7 +263,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_a_time_input_with_invalid_time(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -270,7 +272,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_a_hidden_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -279,7 +281,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_text_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -288,7 +290,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_number_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -302,7 +304,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_a_number_input_with_min_max_step(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -321,7 +323,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_number_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -330,7 +332,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_number_input_with_min_max(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -339,7 +341,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_number_input_with_min_max_step(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -348,7 +350,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_number_input_with_max_step(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -357,7 +359,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_avoids_fill_value_for_password_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -366,7 +368,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_a_range_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -375,7 +377,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_a_range_input_with_min_max(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -384,7 +386,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_a_range_input_with_min_max_step(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -393,7 +395,7 @@ class InputTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_a_range_input_with_max_step(): void
     {
         static::assertHtmlStringEqualsHtmlString(

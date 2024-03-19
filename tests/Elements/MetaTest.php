@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Meta;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     MetaTest
@@ -18,7 +19,7 @@ class MetaTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_be_instantiated(): void
     {
         $expected = '<meta/>';
@@ -26,7 +27,7 @@ class MetaTest extends TestCase
         static::assertHtmlStringEqualsHtmlString($expected, Meta::make());
     }
 
-    /** @test */
+    #[Test]
     public function it_make_with_attributes(): void
     {
         $expected = '<meta name="csrf-token" content="12345"/>';

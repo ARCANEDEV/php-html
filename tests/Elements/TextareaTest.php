@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Textarea;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     TextareaTest
@@ -18,7 +19,7 @@ class TextareaTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -27,7 +28,7 @@ class TextareaTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_autofocus_attribute(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -36,7 +37,7 @@ class TextareaTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_a_placeholder(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -45,7 +46,7 @@ class TextareaTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_a_name(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -54,7 +55,7 @@ class TextareaTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_a_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -63,7 +64,7 @@ class TextareaTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_required_attribute(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -72,7 +73,7 @@ class TextareaTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_the_size(): void
     {
         static::assertHtmlStringEqualsHtmlString(

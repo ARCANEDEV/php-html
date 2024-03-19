@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Html;
 
+use PHPUnit\Framework\Attributes\Test;
+
 /**
  * Class     EmailInputTest
  *
@@ -16,7 +18,7 @@ class EmailInputTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_make_email_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Html;
 
+use PHPUnit\Framework\Attributes\Test;
+
 /**
  * Class     OptionTest
  *
@@ -16,7 +18,7 @@ class OptionTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_empty_option(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -25,7 +27,7 @@ class OptionTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_option_with_text(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -34,7 +36,7 @@ class OptionTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_option_with_text_and_a_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -43,7 +45,7 @@ class OptionTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_selected_option_with_text_and_a_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(

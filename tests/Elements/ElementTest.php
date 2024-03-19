@@ -6,6 +6,7 @@ namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Div;
 use Arcanedev\Html\Elements\HtmlElement;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     ElementTest
@@ -19,7 +20,7 @@ class ElementTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_element(): void
     {
         static::assertEquals(
@@ -28,7 +29,7 @@ class ElementTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_element_with_attributes(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -37,7 +38,7 @@ class ElementTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_element_with_a_custom_tag(): void
     {
         static::assertSame(
@@ -46,7 +47,7 @@ class ElementTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_cant_create_an_element_without_a_tag(): void
     {
         $this->expectException(\Arcanedev\Html\Exceptions\MissingTagException::class);
@@ -55,7 +56,7 @@ class ElementTest extends TestCase
         HtmlElement::make()->render();
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_conditional_changes(): void
     {
         $elt      = HtmlElement::withTag('foo');
@@ -82,7 +83,7 @@ class ElementTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_an_attribute_with_attribute_if(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -109,7 +110,7 @@ class ElementTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_class_list(): void
     {
         $elt = HtmlElement::withTag('a')->class('btn btn-primary');
@@ -139,7 +140,7 @@ class ElementTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_push_class_to_class_list(): void
     {
         $elt = HtmlElement::withTag('a')->class('btn btn-primary');
@@ -157,7 +158,7 @@ class ElementTest extends TestCase
         static::assertCount(4, $elt->classList());
     }
 
-    /** @test */
+    #[Test]
     public function it_must_throw_exception_on_void_element_with_child_elements(): void
     {
         $this->expectException(\Arcanedev\Html\Exceptions\InvalidHtmlException::class);
