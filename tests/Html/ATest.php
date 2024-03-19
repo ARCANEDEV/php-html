@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Html;
 
+use PHPUnit\Framework\Attributes\Test;
+
 /**
  * Class     ATest
  *
@@ -16,7 +18,7 @@ class ATest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_a_element(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -25,7 +27,7 @@ class ATest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_a_element_with_a_href(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -34,7 +36,7 @@ class ATest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_a_element_with_a_href_and_text_contents(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -43,7 +45,7 @@ class ATest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_a_element_with_a_href_and_html_contents(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -52,7 +54,7 @@ class ATest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_a_element_with_a_target(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -61,7 +63,7 @@ class ATest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_a_element_with_a_href_and_a_target(): void
     {
         static::assertHtmlStringEqualsHtmlString(

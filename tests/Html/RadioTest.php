@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Html;
 
+use PHPUnit\Framework\Attributes\Test;
+
 /**
  * Class     RadioTest
  *
@@ -16,7 +18,7 @@ class RadioTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_radio_button(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -25,7 +27,7 @@ class RadioTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_radio_button_with_a_name(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -34,7 +36,7 @@ class RadioTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_checked_radio_button_with_a_name(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -43,7 +45,7 @@ class RadioTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_radio_button_with_a_name_and_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -52,7 +54,7 @@ class RadioTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_radio_button_with_a_name_and_a_zero_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(

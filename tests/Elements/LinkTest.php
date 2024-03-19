@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Link;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     LinkTest
@@ -18,7 +19,7 @@ class LinkTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_make(): void
     {
         $link = Link::make();
@@ -29,7 +30,7 @@ class LinkTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_stylesheet_link(): void
     {
         $link = Link::make()->stylesheet('/style.css');
@@ -40,7 +41,7 @@ class LinkTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_favicon_link(): void
     {
         $link = Link::make()->icon('/favicon.ico');

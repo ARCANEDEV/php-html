@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Img;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     ImgTest
@@ -18,7 +19,7 @@ class ImgTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create(): void
     {
         $expected = '<img>';
@@ -26,7 +27,7 @@ class ImgTest extends TestCase
         static::assertHtmlStringEqualsHtmlString($expected, Img::make());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_an_alt_attribute(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -35,7 +36,7 @@ class ImgTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_a_src_attribute(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -44,7 +45,7 @@ class ImgTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_builder(): void
     {
         static::assertHtmlStringEqualsHtmlString(

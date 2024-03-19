@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Div;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * Class     DivTest
@@ -18,7 +20,7 @@ class DivTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -27,11 +29,8 @@ class DivTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider getCustomStylesDP
-     */
+    #[Test]
+    #[DataProvider('getCustomStylesDP')]
     public function it_can_create_with_custom_styles(array $styles, string $expected): void
     {
         static::assertHtmlStringEqualsHtmlString(

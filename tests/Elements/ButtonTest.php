@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\{Button, I};
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     ButtonTest
@@ -18,7 +19,7 @@ class ButtonTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -27,7 +28,7 @@ class ButtonTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_custom_type_and_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -36,7 +37,7 @@ class ButtonTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_content(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -45,7 +46,7 @@ class ButtonTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_html_content(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -54,7 +55,7 @@ class ButtonTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_html_element_object(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -65,7 +66,7 @@ class ButtonTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_with_a_specific_type(): void
     {
         static::assertHtmlStringEqualsHtmlString(

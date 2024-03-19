@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Html;
 
+use PHPUnit\Framework\Attributes\Test;
+
 /**
  * Class     ITest
  *
@@ -16,7 +18,7 @@ class ITest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_i_element(): void
     {
         static::assertHtmlStringEqualsHtmlString(

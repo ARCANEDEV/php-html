@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\Span;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     SpanTest
@@ -18,7 +19,7 @@ class SpanTest extends TestCase
     | -----------------------------------------------------------------
     */
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_span_element(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -27,7 +28,7 @@ class SpanTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_span_with_content(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -42,7 +43,7 @@ class SpanTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_span_element_with_classes(): void
     {
         static::assertHtmlStringEqualsHtmlString(

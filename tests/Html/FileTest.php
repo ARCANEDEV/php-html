@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Tests\Html;
 
+use PHPUnit\Framework\Attributes\Test;
+
 /**
  * Class     FileTest
  *
@@ -16,7 +18,7 @@ class FileTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_file_input(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -25,7 +27,7 @@ class FileTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_create_a_file_input_with_a_name(): void
     {
         static::assertHtmlStringEqualsHtmlString(

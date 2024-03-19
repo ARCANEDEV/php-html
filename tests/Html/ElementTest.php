@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Html;
 
 use Arcanedev\Html\Elements\HtmlElement;
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     ElementTest
@@ -18,7 +19,7 @@ class ElementTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_create_an_element(): void
     {
         static::assertEquals(
@@ -27,7 +28,7 @@ class ElementTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_conditional_changes(): void
     {
         $elt      = $this->html->element('foo');
@@ -56,7 +57,7 @@ class ElementTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_an_attribute_with_attribute_if(): void
     {
         static::assertHtmlStringEqualsHtmlString(

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\{A, Ol};
+use PHPUnit\Framework\Attributes\Test;
 
 /**
  * Class     OlTest
@@ -18,7 +19,7 @@ class OlTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    /** @test */
+    #[Test]
     public function it_can_be_instantiated(): void
     {
         $ol = Ol::make();
@@ -34,7 +35,7 @@ class OlTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function it_can_make_list(): void
     {
         $ol = Ol::make();
@@ -47,7 +48,7 @@ class OlTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_items(): void
     {
         $ol = Ol::make();
@@ -76,7 +77,7 @@ class OlTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_html_items(): void
     {
         $items = collect([
@@ -106,7 +107,7 @@ class OlTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_multiple_items_at_once(): void
     {
         $items = [
@@ -136,7 +137,7 @@ class OlTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_handle_nested_items(): void
     {
         $items = [
