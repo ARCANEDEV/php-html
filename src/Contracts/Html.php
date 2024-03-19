@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Contracts;
 
-use Arcanedev\Html\Contracts\Elements\HtmlElement;
 use Arcanedev\Html\Elements\A;
 use Arcanedev\Html\Elements\Button;
 use Arcanedev\Html\Elements\Div;
@@ -12,10 +11,12 @@ use Arcanedev\Html\Elements\Dl;
 use Arcanedev\Html\Elements\Fieldset;
 use Arcanedev\Html\Elements\File;
 use Arcanedev\Html\Elements\Form;
+use Arcanedev\Html\Elements\HtmlElement;
 use Arcanedev\Html\Elements\I;
 use Arcanedev\Html\Elements\Img;
 use Arcanedev\Html\Elements\Input;
 use Arcanedev\Html\Elements\Label;
+use Arcanedev\Html\Elements\Legend;
 use Arcanedev\Html\Elements\Ol;
 use Arcanedev\Html\Elements\Option;
 use Arcanedev\Html\Elements\Select;
@@ -127,12 +128,8 @@ interface Html
 
     /**
      * Make a legend tag.
-     *
-     * @param  \Arcanedev\Html\Elements\HtmlElement|string|null  $content
-     *
-     * @return \Arcanedev\Html\Elements\Legend
      */
-    public function legend($content = null);
+    public function legend(HtmlElement|string $content = null): Legend;
 
     /**
      * Make a mailto link.
@@ -198,12 +195,8 @@ interface Html
 
     /**
      * Make a submit button.
-     *
-     * @param  string|null  $text
-     *
-     * @return \Arcanedev\Html\Elements\Button
      */
-    public function submit($text = null);
+    public function submit(string $text = null): Button;
 
     /**
      * Make a tel link.
@@ -222,12 +215,6 @@ interface Html
 
     /**
      * Make a time input.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $value
-     * @param  bool         $format
-     *
-     * @return \Arcanedev\Html\Elements\Input
      */
     public function time(?string $name = null, ?string $value = null, bool $format = true): Input;
 

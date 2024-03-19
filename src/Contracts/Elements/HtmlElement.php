@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Contracts\Elements;
 
 use Arcanedev\Html\Contracts\Renderable;
+use Arcanedev\Html\Entities\Attributes;
 
 /**
  * Interface  HtmlElement
@@ -20,10 +21,8 @@ interface HtmlElement extends Renderable
 
     /**
      * Get the element attributes.
-     *
-     * @return \Arcanedev\Html\Entities\Attributes
      */
-    public function getAttributes();
+    public function getAttributes(): Attributes;
 
     /* -----------------------------------------------------------------
      |  Main Methods

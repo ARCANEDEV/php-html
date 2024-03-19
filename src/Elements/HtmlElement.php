@@ -279,13 +279,7 @@ class HtmlElement implements HtmlElementContract
     }
 
     /**
-     * Dynamically handle calls to the class.
-     * Check for methods finishing by If or fallback to Macroable.
-     *
-     * @param  string  $name
-     * @param  array   $arguments
-     *
-     * @return mixed
+     * @inheritDoc
      */
     public function __call($name, array $arguments = [])
     {

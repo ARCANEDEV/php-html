@@ -16,6 +16,11 @@ class MiscAttribute extends AbstractAttribute
      | -----------------------------------------------------------------
      */
 
+    /**
+     * The attribute's value.
+     *
+     * @var mixed
+     */
     protected mixed $value;
 
     /* -----------------------------------------------------------------

@@ -105,7 +105,7 @@ class Attributes implements ArrayAccess, Arrayable
     /**
      * Determine if an item exists in the collection by key.
      *
-     * @param array<string> ...$keys
+     * @param string|array<string> ...$keys
      *
      * @return bool
      */

@@ -228,7 +228,7 @@ class Html implements HtmlContract
     /**
      * Make a legend tag.
      */
-    public function legend(mixed $content = null): Legend
+    public function legend(HtmlElement|string $content = null): Legend
     {
         return Legend::make()->html($content);
     }
@@ -341,7 +341,7 @@ class Html implements HtmlContract
     /**
      * Make a submit button.
      */
-    public function submit(mixed $text = null): Button
+    public function submit(string $text = null): Button
     {
         return $this->button($text, 'submit');
     }

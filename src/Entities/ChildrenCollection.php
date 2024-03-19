@@ -26,10 +26,7 @@ class ChildrenCollection extends Collection implements Renderable
     /**
      * Parse the element's children.
      *
-     * @param  mixed          $children
-     * @param  \Closure|null  $mapper
-     *
-     * @return static
+     * @return $this
      *
      * @throws \Arcanedev\Html\Exceptions\InvalidChildException
      */

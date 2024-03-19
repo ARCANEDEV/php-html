@@ -22,8 +22,16 @@ class ClassAttribute extends AbstractAttribute implements Countable
      | -----------------------------------------------------------------
      */
 
+    /**
+     * The attribute's name.
+     */
     protected string $name = 'class';
 
+    /**
+     * The CSS classes.
+     *
+     * @var array<int, string>
+     */
     protected array $classes = [];
 
     /* -----------------------------------------------------------------
