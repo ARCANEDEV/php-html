@@ -25,13 +25,9 @@ class Select extends HtmlElement
      */
 
     use HasAutofocusAttribute;
-
     use HasDisabledAttribute;
-
     use HasNameAttribute;
-
     use HasReadonlyAttribute;
-
     use HasRequiredAttribute;
 
     /* -----------------------------------------------------------------
@@ -76,7 +72,7 @@ class Select extends HtmlElement
     {
         return $this->children(
             $options,
-            fn($text, $value) => is_array($text)
+            fn($text, $value) => is_array($text) || $text instanceof Collection
             ? $this->makeOptionsGroup($value, $text, $attributes, $groupAttributes[$value] ?? [])
             : $this->makeOption($value, $text, $attributes[$value] ?? [])
         );

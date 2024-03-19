@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Tests\Elements;
 
 use Arcanedev\Html\Elements\HtmlElement;
+use Arcanedev\Html\Exceptions\MissingTagException;
 use PHPUnit\Framework\Attributes\Test;
 
 /**
@@ -18,6 +19,16 @@ class HtmlElementTest extends TestCase
      |  Tests
      | -----------------------------------------------------------------
      */
+
+    #[Test]
+    public function it_cant_be_instantiated_without_a_tag_name_on_the_class(): void
+    {
+        static::expectException(MissingTagException::class);
+
+        $element = new class () extends HtmlElement {};
+
+        $element->render();
+    }
 
     #[Test]
     public function it_can_register_a_macro(): void

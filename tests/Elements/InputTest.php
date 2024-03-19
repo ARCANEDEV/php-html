@@ -147,6 +147,15 @@ class InputTest extends TestCase
     }
 
     #[Test]
+    public function it_can_disable_an_input(): void
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<input type="checkbox" disabled>',
+            Input::make()->type('checkbox')->disabled()
+        );
+    }
+
+    #[Test]
     public function it_can_create_with_builder(): void
     {
         static::assertHtmlStringEqualsHtmlString(

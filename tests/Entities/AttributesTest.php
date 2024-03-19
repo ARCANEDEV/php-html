@@ -35,7 +35,10 @@ class AttributesTest extends TestCase
     {
         $attributes = (new Attributes())->addClass('foo bar');
 
-        static::assertEquals(['class' => 'foo bar'], $attributes->toArray());
+        $actual = $attributes->toArray();
+
+        static::assertArrayHasKey('class', $actual);
+        static::assertEquals(['class' => 'foo bar'], $actual);
     }
 
     #[Test]
@@ -43,7 +46,10 @@ class AttributesTest extends TestCase
     {
         $attributes = (new Attributes())->addClass(['foo', 'bar']);
 
-        static::assertEquals(['class' => 'foo bar'], $attributes->toArray());
+        $actual = $attributes->toArray();
+
+        static::assertArrayHasKey('class', $actual);
+        static::assertEquals(['class' => 'foo bar'], $actual);
     }
 
     #[Test]
@@ -54,7 +60,10 @@ class AttributesTest extends TestCase
             'bar' => false,
         ]);
 
-        static::assertEquals(['class' => 'foo'], $attributes->toArray());
+        $actual = $attributes->toArray();
+
+        static::assertArrayHasKey('class', $actual);
+        static::assertEquals(['class' => 'foo'], $actual);
     }
 
     #[Test]
@@ -66,7 +75,10 @@ class AttributesTest extends TestCase
             'baz',
         ]);
 
-        static::assertEquals(['class' => 'foo baz'], $attributes->toArray());
+        $actual = $attributes->toArray();
+
+        static::assertArrayHasKey('class', $actual);
+        static::assertEquals(['class' => 'foo baz'], $actual);
     }
 
     #[Test]
@@ -76,10 +88,11 @@ class AttributesTest extends TestCase
         $attributes->set('href', '#');
         $attributes->set('class', 'foobar');
 
-        static::assertEquals(
-            ['href' => '#', 'class' => 'foobar'],
-            $attributes->toArray()
-        );
+        $actual = $attributes->toArray();
+
+        static::assertArrayHasKey('href', $actual);
+        static::assertArrayHasKey('class', $actual);
+        static::assertEquals(['href' => '#', 'class' => 'foobar'], $actual);
     }
 
     #[Test]
@@ -87,10 +100,10 @@ class AttributesTest extends TestCase
     {
         $attributes = (new Attributes())->set('required');
 
-        static::assertEquals(
-            ['required' => null],
-            $attributes->toArray()
-        );
+        $actual = $attributes->toArray();
+
+        static::assertArrayHasKey('required', $actual);
+        static::assertEquals(['required' => null], $actual);
     }
 
     #[Test]
@@ -159,10 +172,12 @@ class AttributesTest extends TestCase
             'required',
         ]);
 
-        static::assertEquals(
-            ['name' => 'email', 'class' => 'foobar', 'required' => null],
-            $attributes->toArray()
-        );
+        $actual = $attributes->toArray();
+
+        static::assertArrayHasKey('name', $actual);
+        static::assertArrayHasKey('class', $actual);
+        static::assertArrayHasKey('required', $actual);
+        static::assertEquals(['name' => 'email', 'class' => 'foobar', 'required' => null], $actual);
     }
 
     #[Test]

@@ -36,4 +36,13 @@ class OptgroupTest extends TestCase
             Optgroup::make()->label('Cats')
         );
     }
+
+    #[Test]
+    public function it_can_disable_an_optgroup(): void
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<optgroup disabled></optgroup>',
+            Optgroup::make()->disabled()
+        );
+    }
 }

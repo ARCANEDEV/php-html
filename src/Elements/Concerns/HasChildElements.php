@@ -70,7 +70,7 @@ trait HasChildElements
      *
      * @return $this
      */
-    public function children(mixed $children, ?Closure $mapper = null): static
+    public function children(mixed $children, Closure|array|null $mapper = null): static
     {
         return $this->addChild($children, $mapper);
     }
@@ -80,7 +80,7 @@ trait HasChildElements
      *
      * @return $this
      */
-    public function addChild(mixed $child, ?Closure $mapper = null): static
+    public function addChild(mixed $child, Closure|array|null $mapper = null): static
     {
         if ($child === null) {
             return $this;
@@ -98,7 +98,7 @@ trait HasChildElements
      *
      * @return $this
      */
-    public function setNewChildren(mixed $children, ?Closure $mapper = null): static
+    public function setNewChildren(mixed $children, Closure|array|null $mapper = null): static
     {
         return tap(clone $this)
             ->initChildren()
@@ -110,7 +110,7 @@ trait HasChildElements
      *
      * @return $this
      */
-    public function prependChild(mixed $children, ?Closure $mapper = null): static
+    public function prependChild(mixed $children, Closure|array|null $mapper = null): static
     {
         return $this->prependChildren($children, $mapper);
     }
@@ -120,7 +120,7 @@ trait HasChildElements
      *
      * @return $this
      */
-    public function prependChildren(mixed $children, ?Closure $mapper = null): static
+    public function prependChildren(mixed $children, Closure|array|null $mapper = null): static
     {
         return tap(clone $this, function (HtmlElement $elt) use ($children, $mapper): void {
             $elt->getChildren()

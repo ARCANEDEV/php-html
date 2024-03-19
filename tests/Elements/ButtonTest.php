@@ -29,6 +29,15 @@ class ButtonTest extends TestCase
     }
 
     #[Test]
+    public function it_can_create_a_button_with_a_value(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<button value="1"></button>',
+            Button::make()->value(1)
+        );
+    }
+
+    #[Test]
     public function it_can_create_with_custom_type_and_value(): void
     {
         static::assertHtmlStringEqualsHtmlString(
@@ -82,6 +91,15 @@ class ButtonTest extends TestCase
         static::assertHtmlStringEqualsHtmlString(
             '<button type="reset">Reset the form</button>',
             Button::make()->reset()->html('Reset the form')
+        );
+    }
+
+    #[Test]
+    public function it_can_disable_a_button(): void
+    {
+        static::assertHtmlStringEqualsHtmlString(
+            '<button disabled></button>',
+            Button::make()->disabled()
         );
     }
 }

@@ -19,7 +19,7 @@ interface Selectable
     /**
      * Add the selected attribute.
      */
-    public function selected(bool $selected = true): static;
+    public function selected(): static;
 
     /**
      * Add the selected if it fulfill the condition.

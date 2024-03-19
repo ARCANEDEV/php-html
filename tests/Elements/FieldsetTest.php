@@ -36,4 +36,13 @@ class FieldsetTest extends TestCase
             Fieldset::make()->legend('Legend')
         );
     }
+
+    #[Test]
+    public function it_can_disable_a_fieldset(): void
+    {
+        $this->assertHtmlStringEqualsHtmlString(
+            '<fieldset disabled></fieldset>',
+            Fieldset::make()->disabled()
+        );
+    }
 }

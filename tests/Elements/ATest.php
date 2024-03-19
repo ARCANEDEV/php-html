@@ -24,7 +24,7 @@ class ATest extends TestCase
     {
         static::assertHtmlStringEqualsHtmlString(
             '<a></a>',
-            A::make()->toHtml()
+            A::make()
         );
     }
 

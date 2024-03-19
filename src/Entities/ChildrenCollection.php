@@ -30,7 +30,7 @@ class ChildrenCollection extends Collection implements Renderable
      *
      * @throws InvalidChildException
      */
-    public static function parse(mixed $children, ?Closure $mapper = null): static
+    public static function parse(mixed $children, Closure|array|null $mapper = null): static
     {
         return static::make($children)
             ->unless($mapper === null, fn(ChildrenCollection $items) => $items->map($mapper))

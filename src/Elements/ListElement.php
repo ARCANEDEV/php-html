@@ -11,14 +11,15 @@ namespace Arcanedev\Html\Elements;
  */
 abstract class ListElement extends HtmlElement
 {
-    /**
-     * Make an item.
-     */
-    abstract protected function makeItem(mixed $value, array $attributes): HtmlElement;
     /* -----------------------------------------------------------------
      |  Main Methods
      | -----------------------------------------------------------------
      */
+
+    /**
+     * Make an item.
+     */
+    abstract protected function makeItem(mixed $value, array $attributes): HtmlElement;
 
     /**
      * Add an item.

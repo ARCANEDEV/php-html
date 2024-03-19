@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Elements;
 
+use Arcanedev\Html\Elements\Concerns\HasDisabledAttribute;
+
 /**
  * Class     Fieldset
  *
@@ -11,6 +13,13 @@ namespace Arcanedev\Html\Elements;
  */
 class Fieldset extends HtmlElement
 {
+    /* -----------------------------------------------------------------
+     |  Properties
+     | -----------------------------------------------------------------
+     */
+
+    use HasDisabledAttribute;
+
     /* -----------------------------------------------------------------
      |  Properties
      | -----------------------------------------------------------------

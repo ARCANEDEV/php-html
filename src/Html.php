@@ -20,6 +20,7 @@ use Arcanedev\Html\Elements\Label;
 use Arcanedev\Html\Elements\Legend;
 use Arcanedev\Html\Elements\Ol;
 use Arcanedev\Html\Elements\Option;
+use Arcanedev\Html\Elements\P;
 use Arcanedev\Html\Elements\Select;
 use Arcanedev\Html\Elements\Span;
 use Arcanedev\Html\Elements\Textarea;
@@ -275,6 +276,14 @@ class Html implements HtmlContract
             ->text($text)
             ->value($value)
             ->selectedIf($selected);
+    }
+
+    /**
+     * Make a paragraph tag.
+     */
+    public function p(HtmlElement|string|null $content = null): P
+    {
+        return P::make()->html($content);
     }
 
     /**

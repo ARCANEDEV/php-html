@@ -21,10 +21,9 @@ class File extends HtmlElement
      */
 
     use HasAutofocusAttribute;
-
     use HasNameAttribute;
-
     use HasRequiredAttribute;
+
     /* -----------------------------------------------------------------
      |  Constants
      | -----------------------------------------------------------------

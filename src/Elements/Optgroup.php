@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Elements;
 
+use Arcanedev\Html\Elements\Concerns\HasDisabledAttribute;
+
 /**
  * Class     Optgroup
  *
@@ -11,6 +13,13 @@ namespace Arcanedev\Html\Elements;
  */
 class Optgroup extends HtmlElement
 {
+    /* -----------------------------------------------------------------
+     |  Traits
+     | -----------------------------------------------------------------
+     */
+
+    use HasDisabledAttribute;
+
     /* -----------------------------------------------------------------
      |  Properties
      | -----------------------------------------------------------------

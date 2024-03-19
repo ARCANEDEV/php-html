@@ -25,17 +25,11 @@ class Textarea extends HtmlElement
      */
 
     use HasAutofocusAttribute;
-
     use HasDisabledAttribute;
-
     use HasMinMaxLengthAttributes;
-
     use HasNameAttribute;
-
     use HasPlaceholderAttribute;
-
     use HasReadonlyAttribute;
-
     use HasRequiredAttribute;
 
     /* -----------------------------------------------------------------

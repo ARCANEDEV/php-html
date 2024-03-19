@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Arcanedev\Html\Elements;
 
+use Arcanedev\Html\Elements\Concerns\HasDisabledAttribute;
 use Arcanedev\Html\Elements\Concerns\HasNameAttribute;
 use Arcanedev\Html\Elements\Concerns\HasTypeAttribute;
 use Arcanedev\Html\Elements\Concerns\HasValueAttribute;
@@ -20,10 +21,9 @@ class Button extends HtmlElement
      | -----------------------------------------------------------------
      */
 
+    use HasDisabledAttribute;
     use HasNameAttribute;
-
     use HasTypeAttribute;
-
     use HasValueAttribute;
 
     /* -----------------------------------------------------------------

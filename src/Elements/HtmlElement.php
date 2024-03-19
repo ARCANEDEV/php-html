@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace Arcanedev\Html\Elements;
 
 use Arcanedev\Html\Contracts\Elements\HtmlElement as HtmlElementContract;
+use Arcanedev\Html\Elements\Concerns\{HasAttributes, HasChildElements, HasConditionalMethods};
 use Arcanedev\Html\Entities\Attributes\ClassAttribute;
 use Arcanedev\Html\Exceptions\InvalidHtmlException;
 use Arcanedev\Html\Exceptions\MissingTagException;
-use Illuminate\Support\Collection;
-use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
-use Illuminate\Support\Traits\Macroable;
+use Illuminate\Support\{Collection, HtmlString, Str, Traits\Macroable};
 
 /**
  * Class     HtmlElement
@@ -29,12 +27,12 @@ class HtmlElement implements HtmlElementContract
      | -----------------------------------------------------------------
      */
 
-    use Concerns\HasAttributes,
-        Concerns\HasChildElements,
-        Concerns\HasConditionalMethods,
-        Macroable {
-            __call as __callMacro;
-        }
+    use HasAttributes;
+    use HasChildElements;
+    use HasConditionalMethods;
+    use Macroable {
+        __call as __callMacro;
+    }
 
     /* -----------------------------------------------------------------
      |  Properties
@@ -200,11 +198,9 @@ class HtmlElement implements HtmlElementContract
     }
 
     /**
-     * Add an html child/children.
+     * Add a html child/children.
      *
      * @return $this
-     *
-     * @throws InvalidHtmlException
      */
     public function html(mixed $html): static
     {
@@ -296,10 +292,20 @@ class HtmlElement implements HtmlElementContract
      */
     protected function getTag(): string
     {
+        $this->ensureHasTag();
+
+        return $this->tag;
+    }
+
+    /**
+     * Ensure the tag property is defined.
+     *
+     * @throws MissingTagException
+     */
+    protected function ensureHasTag(): void
+    {
         if (empty($this->tag)) {
             throw MissingTagException::onClass(static::class);
         }
-
-        return $this->tag;
     }
 }

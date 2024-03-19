@@ -24,7 +24,7 @@ class OptionTest extends TestCase
     {
         static::assertHtmlStringEqualsHtmlString(
             '<option></option>',
-            Option::make()->render()
+            Option::make()
         );
     }
 
@@ -40,6 +40,11 @@ class OptionTest extends TestCase
     #[Test]
     public function it_can_render_itself_in_a_selected_state(): void
     {
+        static::assertHtmlStringEqualsHtmlString(
+            '<option selected value="0">Choose...</option>',
+            Option::make()->value('0')->text('Choose...')->selected()
+        );
+
         static::assertHtmlStringEqualsHtmlString(
             '<option selected value="0">Choose...</option>',
             Option::make()->value('0')->text('Choose...')->selected()
